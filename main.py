@@ -3,7 +3,7 @@ import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.label import Label
-from kivy.lang import Builder # using this no need of having main class same as kivy
+from kivy.lang import Builder      # using this no need of having main class same as kivy
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 
@@ -43,7 +43,12 @@ class CreateAccountWindow(Screen):
         confirm = ""
 
 class MainWindow(Screen):
-    pass
+    
+    def modelOn():
+        pass # this will check in the model
+    
+    def modelOff():
+        pass   # this will check out off the model
 
 class SettingMain(Screen):
     pass
