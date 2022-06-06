@@ -1,0 +1,195 @@
+WindowManager:
+
+    LoginWindow:
+
+    CreateAccountWindow:
+
+    MainWindow:
+
+    SettingMain:
+
+    SettingProfile:
+
+    SettingNotif:
+
+    Graph:
+
+
+
+<LoginWindow>:
+
+    name: "login" # name of the window is login
+
+    username: username
+    password: password
+
+    FloatLayout:
+
+        Label:
+            text: "Username: "
+            font_size: (root.width**2 + root.height**2)/ 13**4
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35,0.15
+
+        TextInput:
+        
+            id: username
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint:{"x":0.45, "top":0.9}
+            size_hint: 0.4, 0.15
+
+        Label:
+            text: "Passcode: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint:{"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint:{"x":0.45, "top":0.7}
+            size_hint: 0.4, 0.15
+
+        Button:
+
+            text: "Sign in"
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint:{"x":0.2, "y":0.05}
+            size_hint: 0.6, 0.2
+            on_release: 
+                root.manager.transition.direction = "up"  # here root is login window
+                root.loginBtn()
+
+        Button:
+            text: "Don't have an account? Create one!"
+            font_size: (root.width**2 + root.height**2) / 17**4
+            pos_hint:{"x":0.3, "y":0.3}
+            size_hint: 0.4, 0.1
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<CreateAccountWindow>:
+    name: "create"
+
+    username: username
+    password: password
+    confirm: confirm
+
+    FloatLayout:
+        cols:1
+        
+        FloatLayout:
+            size: root.width, root.height/2  # dimensions of first float
+
+            Label:
+                text: "Create an Account"
+                size_hint: 0.8, 0.2
+                pos_hint:{"x":0.1, "top": 1}
+                font_size: (root.width**2 + root.height**2) / 14**4 
+
+            Label:
+                
+                text: "Username: "
+                size_hint: 0.5, 0.12
+                pos_hint:{"x":0, "top": 0.8}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+            
+                id: username
+                multiline: False
+                size_hint: 0.4, 0.12
+                font_size: (root.width**2 + root.height**2) / 14**4  
+                pos_hint: {"x":0.5, "top":0.8}
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top": 0.8-0.13 * 2}
+                text: "Password: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                
+                id: password
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top": 0.8-0.13 * 2}
+                text: "Confirm: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+            
+            TextInput:
+                
+                id: confirm
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Button:
+                text: "Already have an Account? Log In!"
+                pos_hint:{"x":0.3, "y":0.25}
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                on_release: 
+                    root.manager.transition.direction = "left"
+                    root.login()   # moving to login window
+
+
+            Button:
+                text: "Submit"
+                pos_hint: {"x":0.2, "y": 0.05}
+                size_hint: 0.6, 0.15
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.submit()
+
+<MainWindow>:
+    name: "mainW"
+
+    FloatLayout:
+        cols:1
+        FloatLayout:
+            cols: 2
+            size: root.width, root.height/2
+            
+
+            Button:
+                text: "Check in"
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                pos_hint: {"x":0.0,"y":0.5}
+            Button:
+                text: "Check out"
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                pos_hint: {"x":0.5,"y":0.5}
+        
+<SettingMain>:
+    name: "settingM"
+
+<SettingNotif>:
+    name: "settingN"
+
+<SettingProfile>:
+    name: "settingP"
+
+<Graph>:
+
+    name: "graph"
+
+        
+
+            
+            
