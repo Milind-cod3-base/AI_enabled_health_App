@@ -162,7 +162,7 @@ WindowManager:
         cols:1
         FloatLayout:
             cols: 2
-            size: root.width, root.height/2
+            size: root.width, root.height/3
             
 
             Button:
@@ -181,9 +181,95 @@ WindowManager:
                 pos_hint: {"x":0.6,"top":1.0}
                 on_release:
                     root.modelOff()
+
+        FloatLayout:
+            cols:1
+            size: root.width, root.height/3
+
+            Label:
+                text: "Motivational task"
+                size_hint: 0.8,0.3
+                font_size: (root.width **2 + root.height **2) / 13**4
+                pos_hint: {"x":0.01, "top":0.9}
+                
+        FloatLayout:
+            cols:2
+            size: root.width, root.height/3
+            Button:
+                text: "Pause"
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                pos_hint: {"x":0.0,"top":0.65}
+                on_release: 
+                    # also can give a pop up that model has started working
+                    root.pauseNotif()
+            
+            Button:
+                text: "Remind Me"
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                pos_hint: {"x":0.6,"top":0.65}
+                on_release:
+                    root.remindMe()
+
+        FloatLayout:
+            cols:1
+
+            Button:
+
+                text: "Graph"
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                pos_hint: {"x":0.30,"top":0.40}
+                on_release: 
+                    root.manager.transition.direction = "left"
+                    root.scale()  # method for going to graph window
+        
+        FloatLayout:
+            cols:1
+
+            Button:
+
+                text: "Setting"
+                size_hint: 0.4,0.1
+                font_size: (root.width **2 + root.height **2) / 17**4 
+                pos_hint: {"x":0.30,"top":0.20}
+                on_release: 
+                    root.manager.transition.direction = "left"
+                    root.set()  # method for going to setting window
         
 <SettingMain>:
     name: "settingM"
+
+    Button:
+        text: "Notification settings"
+        size_hint: 0.4,0.1
+        font_size: (root.width **2 + root.height **2) / 17**4 
+        pos_hint: {"x":0.30,"top":0.80}
+        on_release: 
+            root.manager.transition.direction = "left"
+            root.notif()  # going to notification setting window
+    
+    
+    Button:
+        text: "Profile settings"
+        size_hint: 0.4,0.1
+        font_size: (root.width **2 + root.height **2) / 17**4 
+        pos_hint: {"x":0.30,"top":0.40}
+        on_release: 
+            root.manager.transition.direction = "left"
+            root.prof()  # going to profile setting window
+
+    
+    Button:
+        text: "Logout"
+        size_hint: 0.4,0.1
+        font_size: (root.width **2 + root.height **2) / 17**4 
+        pos_hint: {"x":0.30,"top":0.20}
+        on_release: 
+            root.manager.transition.direction = "right"
+            root.login()  # going to profile setting window
+
 
 <SettingNotif>:
     name: "settingN"
@@ -191,9 +277,56 @@ WindowManager:
 <SettingProfile>:
     name: "settingP"
 
+    n:n
+    age:age
+    #weight:weight
+    #height:height
+    #job:job
+    #profile:profile
+
+
+    Label:
+        text: "Name: "
+        font_size: (root.width**2 + root.height**2)/ 13**4
+        pos_hint: {"x":0.1, "top":0.9}
+        size_hint: 0.35,0.15
+
+    TextInput:
+        
+        id: n
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 13**4
+        pos_hint:{"x":0.45, "top":0.9}
+        size_hint: 0.4, 0.15
+
+    Label:
+        text: "Age: "
+        font_size: (root.width**2 + root.height**2) / 13**4
+        pos_hint:{"x":0.1, "top":0.7}
+        size_hint: 0.35, 0.15
+
+    TextInput:
+        id: age
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 13**4
+        pos_hint:{"x":0.45, "top":0.7}
+        size_hint: 0.4, 0.15
+
+
+
 <Graph>:
 
     name: "graph"
+
+    Button:
+        text: "Go to main screen"
+        size_hint: 0.4,0.1
+        font_size: (root.width **2 + root.height **2) / 17**4 
+        pos_hint: {"x":0.30,"top":0.40}
+        on_release: 
+            root.manager.transition.direction = "right"
+            root.back() 
+
 
         
 

@@ -44,14 +44,37 @@ class CreateAccountWindow(Screen):
 
 class MainWindow(Screen):
     
-    def modelOn():
+    def modelOn(self):
         pass # this will check in the model
     
-    def modelOff():
+    def modelOff(self):
         pass   # this will check out off the model
+    
+    def pauseNotif(self):  # logic to pause notification
+        pass
+
+    def unpauseNotif(self):  # logic to unpause notification
+        pass
+
+    def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
+        pass
+    
+    def scale(self):
+        sm.current = "graph"
+
+    def set(self):
+        sm.current = "settingM"
 
 class SettingMain(Screen):
-    pass
+    
+    def notif(self):
+        sm.current = "settingN"
+
+    def prof(self):
+        sm.current = "settingP"
+
+    def login(self):
+        sm.current = "login"
 
 class SettingProfile(Screen):
     pass
@@ -60,7 +83,9 @@ class SettingNotif(Screen):
     pass
 
 class Graph(Screen):
-    pass
+    
+    def back(self):
+        sm.current="mainW"
 
 class WindowManager(ScreenManager): # inheriting screenmanager class properties to manage multiple screens
     pass
