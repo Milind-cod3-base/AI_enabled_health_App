@@ -103,7 +103,9 @@ class SettingProfile(Screen):
 
 
 class SettingNotif(Screen):
-    pass
+
+    def back(self):
+        sm.current = "settingM"
 
 class Graph(Screen):
     
