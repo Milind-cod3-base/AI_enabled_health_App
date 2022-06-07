@@ -283,6 +283,7 @@ WindowManager:
     #height:height
     #job:job
     #profile:profile
+    
 
 
     Label:
@@ -312,7 +313,20 @@ WindowManager:
         pos_hint:{"x":0.45, "top":0.7}
         size_hint: 0.4, 0.15
 
+    Button:
+        
+        text: "Save"
+        on_release: root.save()
+        font_size: (root.width**2 + root.height**2) / 15**4
+        pos_hint:{"x":0.05, "top":0.4}
+        size_hint: 0.4, 0.15
 
+    Button:
+        text: "Cancel"
+        on_release: root.reset()
+        font_size: (root.width**2 + root.height**2) / 15**4
+        pos_hint:{"x":0.65, "top":0.4}
+        size_hint: 0.4, 0.15
 
 <Graph>:
 

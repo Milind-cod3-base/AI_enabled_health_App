@@ -77,7 +77,25 @@ class SettingMain(Screen):
         sm.current = "login"
 
 class SettingProfile(Screen):
-    pass
+    
+    n = ObjectProperty(None)
+    age = ObjectProperty(None)
+    #weight:ObjectProperty(None)
+    #height:ObjectProperty(None)
+    #job:ObjectProperty(None)
+    #profile:ObjectProperty(None)
+
+    def save(self):
+        pass   # this function will save the data into the database
+    
+    def reset(self):  # clear data
+        n = ""
+        age= ""
+        #weight:""
+        #height:""
+        #job:""
+        #profile:""
+
 
 class SettingNotif(Screen):
     pass
