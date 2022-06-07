@@ -76,6 +76,9 @@ class SettingMain(Screen):
     def login(self):
         sm.current = "login"
 
+    def back(self):
+        sm.current= "mainW"
+
 class SettingProfile(Screen):
     
     n = ObjectProperty(None)
