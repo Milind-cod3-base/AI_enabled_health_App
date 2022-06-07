@@ -88,6 +88,9 @@ class SettingProfile(Screen):
     def save(self):
         pass   # this function will save the data into the database
     
+    def back(self):
+        sm.current = "settingM"
+    
     def reset(self):  # clear data
         n = ""
         age= ""
@@ -95,6 +98,8 @@ class SettingProfile(Screen):
         #height:""
         #job:""
         #profile:""
+    
+    
 
 
 class SettingNotif(Screen):
