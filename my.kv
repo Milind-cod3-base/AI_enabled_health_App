@@ -167,18 +167,18 @@ WindowManager:
 
             Button:
                 text: "Check in"
-                size_hint: 0.4,0.1
+                size_hint: 0.2,0.1
                 font_size: (root.width **2 + root.height **2) / 17**4 
-                pos_hint: {"x":0.0,"top":1.0}
+                pos_hint: {"x":0.05,"top":0.95}
                 on_release: 
                     # also can give a pop up that model has started working
                     root.modelOn()
             
             Button:
                 text: "Check out"
-                size_hint: 0.4,0.1
+                size_hint: 0.2,0.1
                 font_size: (root.width **2 + root.height **2) / 17**4 
-                pos_hint: {"x":0.6,"top":1.0}
+                pos_hint: {"right":0.95,"top":0.95}
                 on_release:
                     root.modelOff()
 
@@ -197,18 +197,18 @@ WindowManager:
             size: root.width, root.height/3
             Button:
                 text: "Pause"
-                size_hint: 0.4,0.1
+                size_hint: 0.2,0.1
                 font_size: (root.width **2 + root.height **2) / 17**4 
-                pos_hint: {"x":0.0,"top":0.65}
+                pos_hint: {"x":0.05,"top":0.65}
                 on_release: 
                     # also can give a pop up that model has started working
                     root.pauseNotif()
             
             Button:
                 text: "Remind Me"
-                size_hint: 0.4,0.1
+                size_hint: 0.2,0.1
                 font_size: (root.width **2 + root.height **2) / 17**4 
-                pos_hint: {"x":0.6,"top":0.65}
+                pos_hint: {"right":0.95,"top":0.65}
                 on_release:
                     root.remindMe()
 
@@ -218,9 +218,9 @@ WindowManager:
             Button:
 
                 text: "Graph"
-                size_hint: 0.4,0.1
+                size_hint: 0.2,0.1
                 font_size: (root.width **2 + root.height **2) / 17**4 
-                pos_hint: {"x":0.30,"top":0.40}
+                pos_hint: {"x":0.40,"top":0.40}
                 on_release: 
                     root.manager.transition.direction = "left"
                     root.scale()  # method for going to graph window
@@ -231,9 +231,9 @@ WindowManager:
             Button:
 
                 text: "Setting"
-                size_hint: 0.4,0.1
+                size_hint: 0.2,0.1
                 font_size: (root.width **2 + root.height **2) / 17**4 
-                pos_hint: {"x":0.30,"top":0.20}
+                pos_hint: {"x":0.40,"top":0.20}
                 on_release: 
                     root.manager.transition.direction = "left"
                     root.set()  # method for going to setting window
