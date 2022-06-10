@@ -13,8 +13,62 @@ class LoginWindow(Screen): # login screen class inheriting screen class
 
 
     def loginBtn(self):
-        self.reset()
-        sm.current = "mainW"
+        # connecting to database
+        conn = sqlite3.connect('login.db')
+
+        # cursor
+        c = conn.cursor()
+
+        c.execute("""SELECT * FROM users """)
+
+        items = c.fetchall() # fetching all usernames
+
+        u = self.ids["username"].text # making instance of username and password text input
+        p = self.ids["password"].text
+
+        count = 0  # a count function to keep track of true and false
+
+
+        for i in range(len(items)):
+            if u == items[i][0]:    # checking if username exists or not
+
+                if p == items[i][1]:      # checking if right password has been entered
+                    
+                    self.reset()
+                    sm.current = "mainW"
+
+                else:
+                        popup = Popup(
+                        title='Invalid password',
+                        content=Label(text='You have entered wrong password.\n\nPlease retry with a correct one'),
+                        size_hint = (0.5,0.5)
+                        )
+            
+                        popup.open()
+                
+                    
+                count+=1  # to execute next statement in case username is not found
+                break  # to break the loop if the username found
+
+        
+        if count == 0:  # if count is still 0 it means there is no existing username
+
+            popup = Popup(
+                        title='Invalid Username',
+                        content=Label(text='This username does not exist.\n\nPlease Sign Up'),
+                        size_hint = (0.5,0.5)
+                        )
+            
+            popup.open()
+
+
+        # committing 
+        conn.commit()
+
+        # closing
+        conn.close()
+        
+        
 
     def createBtn(self):
         self.reset()  # clears everything
@@ -59,8 +113,6 @@ class CreateAccountWindow(Screen):
                 conn.close()
         
                 sm.current = "login"
-                
-                
             
             else:
                 popup = Popup(
@@ -80,10 +132,11 @@ class CreateAccountWindow(Screen):
             
             popup.open()
 
-    def reset(self):   # resets everything to blank
-        username = ""
-        password = ""
-        confirm =  ""
+        u = ""
+        p = ""
+        co =  ""
+
+    
 
 class MainWindow(Screen):
     
