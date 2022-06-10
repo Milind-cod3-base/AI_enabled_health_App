@@ -63,11 +63,22 @@ class CreateAccountWindow(Screen):
                 
             
             else:
-                popup = Popup(title='Invalid Password', content=Label(text='Password and Confirm-Password does not match.\nPlease try again'), size_hint = (0.5,0.5))
+                popup = Popup(
+                            title='Invalid Password', 
+                            content=Label(text='Password and Confirm-Password does not match.\n\nPlease try again'), 
+                            size_hint = (0.5,0.5)
+                            )
+
                 popup.open()
         
-        #else:
-            #pop up giving fill required details
+        else:
+            popup = Popup(
+                        title='Invalid Credentials',
+                        content=Label(text='One or more fields have been left blank.\n\nPlease fill them before pressing Submit'),
+                        size_hint = (0.5,0.5)
+                        )
+            
+            popup.open()
 
     def reset(self):   # resets everything to blank
         username = ""
