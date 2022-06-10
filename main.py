@@ -35,12 +35,44 @@ class CreateAccountWindow(Screen):
         sm.current = "login"
 
     def submit(self):
-        pass
+        
+        # connecting to database
+        conn = sqlite3.connect('login.db')
+        
+        # create a cursor
+        c = conn.cursor()
+        
+        # taking user data
+        if self.ids["username"].text and self.ids["password"].text and self.ids["confirm"] .text is not None:
+
+            u = self.ids["username"].text
+            p = self.ids["password"].text
+            co = self.ids["confirm"].text
+
+            if p==co:  # if password and confirm password are same then only push to database
+
+
+                # add a record
+                c.execute("INSERT INTO users VALUES (?,?)",(u,p))
+            
+                conn.commit()
+                conn.close()
+        
+        self.reset()
+                #sm.current = "login"
+                
+                
+            
+            #else:
+                #pop up telling password and confirm doesnt match and self.reset
+        
+        #else:
+            #pop up giving fill required details
 
     def reset(self):   # resets everything to blank
         username = ""
         password = ""
-        confirm = ""
+        confirm =  ""
 
 class MainWindow(Screen):
     
@@ -146,7 +178,9 @@ sm.current = "login"  # default screen must be login
 
 
 class MyMainApp(App): # inheriting the properties of App class from kivy library
+    
     def build(self):
+
         return sm    # going to screenmanager
 
 
