@@ -58,13 +58,13 @@ class CreateAccountWindow(Screen):
                 conn.commit()
                 conn.close()
         
-        self.reset()
-                #sm.current = "login"
+                sm.current = "login"
                 
                 
             
-            #else:
-                #pop up telling password and confirm doesnt match and self.reset
+            else:
+                popup = Popup(title='Invalid Password', content=Label(text='Password and Confirm-Password does not match.\nPlease try again'), size_hint = (0.5,0.5))
+                popup.open()
         
         #else:
             #pop up giving fill required details
