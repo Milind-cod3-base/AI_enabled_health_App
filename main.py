@@ -200,9 +200,9 @@ class SettingProfile(Screen):
         self.h = self.ids["heigh"].text
         self.j = self.ids["job"].text
         
-        if n and a and w and h and j is not None:
+        if self.n and self.a and self.w and self.h and self.j is not None:
 
-            cur.execute("INSERT INTO users(name,age,weight,height,job) VALUES (?,?,?,?,?) WHERE ",(self.n,self.a,self.w,self.h,self.j))   
+            cur.execute("INSERT INTO users(name,age,weight,height,job) VALUES (?,?,?,?,?) ",(self.n,self.a,self.w,self.h,self.j))   
 
             conne.commit()
             conne.close()
