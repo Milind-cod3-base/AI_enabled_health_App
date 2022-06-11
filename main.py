@@ -14,13 +14,14 @@ class LoginWindow(Screen): # login screen class inheriting screen class
 
 
     def loginBtn(self):
+        
         # connecting to database
         conn = sqlite3.connect('login.db')
 
         # cursor
         c = conn.cursor()
 
-        c.execute("""SELECT * FROM users""")
+        c.execute("""SELECT username, password FROM users""")
 
         items = c.fetchall() # fetching all usernames
 
@@ -108,7 +109,7 @@ class CreateAccountWindow(Screen):
 
 
                 # add a record
-                c.execute("INSERT INTO users VALUES (?,?)",(u,p))
+                c.execute("INSERT INTO users(username, password) VALUES (?,?)",(u,p))
             
                 conn.commit()
                 conn.close()
@@ -181,11 +182,11 @@ class SettingMain(Screen):
 class SettingProfile(Screen):
     
     n = ObjectProperty(None)
-    age = ObjectProperty(None)
-    weight:ObjectProperty(None)
-    height:ObjectProperty(None)
-    job:ObjectProperty(None)
-    profile:ObjectProperty(None)
+    a = ObjectProperty(None)
+    w= ObjectProperty(None)
+    h=ObjectProperty(None)
+    j=ObjectProperty(None)
+    
 
     # this function will save the data into the database
     def save(self):
@@ -193,16 +194,28 @@ class SettingProfile(Screen):
 
         cur = conne.cursor()
 
-        n = self.ids["n"].text
-        a = self.ids["age"].text
-        w = self.ids["weight"].text
-        h = self.ids["heigh"].text
-        j = self.ids["job"].text
+        self.n = self.ids["n"].text
+        self.a = self.ids["age"].text
+        self.w = self.ids["weight"].text
+        self.h = self.ids["heigh"].text
+        self.j = self.ids["job"].text
         
-        cur.execute("INSERT INTO settings VALUES (?,?,?,?,?)",(n,a,w,h,j))   
+        if n and a and w and h and j is not None:
 
-        conne.commit()
-        conne.close()
+            cur.execute("INSERT INTO users(name,age,weight,height,job) VALUES (?,?,?,?,?) WHERE ",(self.n,self.a,self.w,self.h,self.j))   
+
+            conne.commit()
+            conne.close()
+        
+        else:
+            popup = Popup(
+            title='Invalid Credentials',
+            content=Label(text='One or more fields have been left blank.\n\nPlease fill them before pressing Submit'),
+            size_hint = (0.5,0.5)
+            )
+
+            popup.open()
+
 
 
            
@@ -216,7 +229,7 @@ class SettingProfile(Screen):
         weight=""
         height=""
         job=""
-        profile=""
+        
     
     
 
@@ -271,9 +284,8 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     c = conn.cursor()
 
     # Here just creating a table if it doesnt exist from before
-    c.execute("""CREATE TABLE if not exists users(username, password)""")  
+    c.execute("""CREATE TABLE if not exists users( username, password, name, age, weight, height, job )""")  
     
-    c.execute("""CREATE TABLE if not exists settings(name,age,weight,height,job)""")
 
     conn.commit()
     conn.close()
