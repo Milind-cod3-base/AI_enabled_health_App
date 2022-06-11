@@ -7,6 +7,7 @@ from kivy.lang import Builder      # using this no need of having main class sam
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 
+
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
@@ -19,7 +20,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         # cursor
         c = conn.cursor()
 
-        c.execute("""SELECT * FROM users """)
+        c.execute("""SELECT * FROM users""")
 
         items = c.fetchall() # fetching all usernames
 
@@ -131,12 +132,12 @@ class CreateAccountWindow(Screen):
                         )
             
             popup.open()
+            
 
+    def reset(self):   # resets everything to blank
         u = ""
         p = ""
         co =  ""
-
-    
 
 class MainWindow(Screen):
     
@@ -161,6 +162,7 @@ class MainWindow(Screen):
     def set(self):
         sm.current = "settingM"
 
+
 class SettingMain(Screen):
     
     def notif(self):
@@ -175,17 +177,35 @@ class SettingMain(Screen):
     def back(self):
         sm.current= "mainW"
 
+
 class SettingProfile(Screen):
     
     n = ObjectProperty(None)
     age = ObjectProperty(None)
-    #weight:ObjectProperty(None)
-    #height:ObjectProperty(None)
-    #job:ObjectProperty(None)
-    #profile:ObjectProperty(None)
+    weight:ObjectProperty(None)
+    height:ObjectProperty(None)
+    job:ObjectProperty(None)
+    profile:ObjectProperty(None)
 
+    # this function will save the data into the database
     def save(self):
-        pass   # this function will save the data into the database
+        conne = sqlite3.connect('login.db')
+
+        cur = conne.cursor()
+
+        n = self.ids["n"].text
+        a = self.ids["age"].text
+        w = self.ids["weight"].text
+        h = self.ids["heigh"].text
+        j = self.ids["job"].text
+        
+        cur.execute("INSERT INTO settings VALUES (?,?,?,?,?)",(n,a,w,h,j))   
+
+        conne.commit()
+        conne.close()
+
+
+           
     
     def back(self):
         sm.current = "settingM"
@@ -193,10 +213,10 @@ class SettingProfile(Screen):
     def reset(self):  # clear data
         n = ""
         age= ""
-        #weight:""
-        #height:""
-        #job:""
-        #profile:""
+        weight=""
+        height=""
+        job=""
+        profile=""
     
     
 
@@ -211,7 +231,10 @@ class Graph(Screen):
     def back(self):
         sm.current="mainW"
 
-class WindowManager(ScreenManager): # inheriting screenmanager class properties to manage multiple screens
+
+
+# inheriting screenmanager class properties to manage multiple screens
+class WindowManager(ScreenManager): 
     pass
 
 
@@ -243,6 +266,19 @@ sm.current = "login"  # default screen must be login
 
 class MyMainApp(App): # inheriting the properties of App class from kivy library
     
+    conn = sqlite3.connect('login.db')
+    
+    c = conn.cursor()
+
+    # Here just creating a table if it doesnt exist from before
+    c.execute("""CREATE TABLE if not exists users(username, password)""")  
+    
+    c.execute("""CREATE TABLE if not exists settings(name,age,weight,height,job)""")
+
+    conn.commit()
+    conn.close()
+
+
     def build(self):
 
         return sm    # going to screenmanager
