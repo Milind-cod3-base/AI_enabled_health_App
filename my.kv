@@ -1,5 +1,7 @@
+
 WindowManager:
 
+    
     LoginWindow:
 
     CreateAccountWindow:
@@ -282,6 +284,7 @@ WindowManager:
 
 
 <SettingNotif>:
+
     name: "settingN"
 
     Button:
@@ -298,53 +301,107 @@ WindowManager:
 
     n:n
     age:age
-    #weight:weight
-    #height:height
-    #job:job
-    #profile:profile
+    weight:weight
+    heigh:heigh
+    job:job
+    profile:profile
     
 
 
     Label:
         text: "Name: "
-        font_size: (root.width**2 + root.height**2)/ 13**4
-        pos_hint: {"x":0.1, "top":0.9}
-        size_hint: 0.35,0.15
+        font_size: (root.width**2 + root.height**2)/ 14**4
+        pos_hint: {"x":0.1, "top":0.98}
+        size_hint: 0.40,0.15
 
     TextInput:
         
         id: n
         multiline: False
-        font_size: (root.width**2 + root.height**2) / 13**4
-        pos_hint:{"x":0.45, "top":0.9}
-        size_hint: 0.4, 0.15
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.98}
+        size_hint: 0.40, 0.10
 
     Label:
         text: "Age: "
-        font_size: (root.width**2 + root.height**2) / 13**4
-        pos_hint:{"x":0.1, "top":0.7}
-        size_hint: 0.35, 0.15
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.1, "top":0.88}
+        size_hint: 0.40, 0.15
 
     TextInput:
         id: age
         multiline: False
-        font_size: (root.width**2 + root.height**2) / 13**4
-        pos_hint:{"x":0.45, "top":0.7}
-        size_hint: 0.4, 0.15
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.88}
+        size_hint: 0.4, 0.10
+    
+    Label:
+        text: "Weight: "
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.1, "top":0.78}
+        size_hint: 0.40, 0.15
 
+    TextInput:
+        id: weight
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.78}
+        size_hint: 0.4, 0.10
+
+    Label:
+        text: "Height: "
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.1, "top":0.68}
+        size_hint: 0.40, 0.15
+
+    TextInput:
+        id: heigh
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.68}
+        size_hint: 0.4, 0.10
+
+    Label:
+        text: "Job Postion: "
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.1, "top":0.58}
+        size_hint: 0.40, 0.15
+
+    TextInput:
+        id: job
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.58}
+        size_hint: 0.4, 0.10
+
+    Label:
+        text: "Movement Profile: "
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.1, "top":0.48}
+        size_hint: 0.40, 0.15
+
+    TextInput:
+        id: profile
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.48}
+        size_hint: 0.4, 0.10
+
+
+    
     Button:
         
         text: "Save"
         on_release: root.save()
         font_size: (root.width**2 + root.height**2) / 15**4
-        pos_hint:{"x":0.05, "top":0.4}
-        size_hint: 0.4, 0.15
+        pos_hint:{"x":0.05, "top":0.28}
+        size_hint: 0.4, 0.10
 
     Button:
         text: "Cancel"
         on_release: root.reset()
         font_size: (root.width**2 + root.height**2) / 15**4
-        pos_hint:{"x":0.55, "top":0.4}
+        pos_hint:{"x":0.55, "top":0.28}
         size_hint: 0.4, 0.15
 
     Button:
@@ -354,8 +411,10 @@ WindowManager:
             root.manager.transition.direction = "right"
             root.back()
         font_size: (root.width**2 + root.height**2) / 15**4
-        pos_hint:{"x":0.40, "top":0.2}
+        pos_hint:{"x":0.40, "top":0.1}
         size_hint: 0.4, 0.15
+
+
 <Graph>:
 
     name: "graph"
