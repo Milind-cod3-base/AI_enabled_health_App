@@ -12,6 +12,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
 
+    u = "cat"
     
     def loginBtn(self):
         
@@ -100,7 +101,7 @@ class CreateAccountWindow(Screen):
         c = conn.cursor()
         
         # taking user data
-        if self.ids["username"].text and self.ids["password"].text and self.ids["confirm"] .text is not None:
+        if self.ids["username"].text and self.ids["password"].text and self.ids["confirm"].text is not None:
 
             u = self.ids["username"].text
             p = self.ids["password"].text
@@ -202,10 +203,13 @@ class SettingProfile(Screen):
         self.j = self.ids["job"].text
         self.g = self.ids["gender"].text
         
+        # creating instance of LoginWindow
+        login_wind = self.manager.get_screen('login')
+
         if self.n and self.a and self.w and self.h and self.j and self.g is not None:
 
             # cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, ))   
-            cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=?,,gender=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, self.g, ))   
+            cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=?,gender=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, self.g, login_wind.u ))   
             conne.commit()
             conne.close()
         
