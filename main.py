@@ -12,20 +12,21 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
 
-
+    
     def loginBtn(self):
         
         # connecting to database
-        conn = sqlite3.connect('login.db')
+        conn = sqlite3.connect('users.db')
 
         # cursor
         c = conn.cursor()
 
-        c.execute("""SELECT username, password FROM users""")
+        c.execute("""SELECT username, password FROM data""")
 
         items = c.fetchall() # fetching all usernames
 
-        u = self.ids["username"].text # making instance of username and password text input
+        
+        u = self.ids["username"].text     # making instance of username and password text input
         p = self.ids["password"].text
 
         count = 0  # a count function to keep track of true and false
@@ -93,7 +94,7 @@ class CreateAccountWindow(Screen):
     def submit(self):
         
         # connecting to database
-        conn = sqlite3.connect('login.db')
+        conn = sqlite3.connect('users.db')
         
         # create a cursor
         c = conn.cursor()
@@ -109,7 +110,7 @@ class CreateAccountWindow(Screen):
 
 
                 # add a record
-                c.execute("INSERT INTO users(username, password) VALUES (?,?)",(u,p))
+                c.execute("INSERT INTO data(username, password) VALUES (?,?)",(u,p))
             
                 conn.commit()
                 conn.close()
@@ -190,7 +191,7 @@ class SettingProfile(Screen):
 
     # this function will save the data into the database
     def save(self):
-        conne = sqlite3.connect('login.db')
+        conne = sqlite3.connect('users.db')
 
         cur = conne.cursor()
 
@@ -199,11 +200,12 @@ class SettingProfile(Screen):
         self.w = self.ids["weight"].text
         self.h = self.ids["heigh"].text
         self.j = self.ids["job"].text
+        self.g = self.ids["gender"].text
         
-        if self.n and self.a and self.w and self.h and self.j is not None:
+        if self.n and self.a and self.w and self.h and self.j and self.g is not None:
 
-            cur.execute("INSERT INTO users(name,age,weight,height,job) VALUES (?,?,?,?,?) ",(self.n,self.a,self.w,self.h,self.j))   
-
+            # cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, ))   
+            cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=?,,gender=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, self.g, ))   
             conne.commit()
             conne.close()
         
@@ -279,12 +281,12 @@ sm.current = "login"  # default screen must be login
 
 class MyMainApp(App): # inheriting the properties of App class from kivy library
     
-    conn = sqlite3.connect('login.db')
+    conn = sqlite3.connect('users.db')
     
     c = conn.cursor()
 
     # Here just creating a table if it doesnt exist from before
-    c.execute("""CREATE TABLE if not exists users( username, password, name, age, weight, height, job )""")  
+    c.execute("""CREATE TABLE if not exists data( username, password, name, age, weight, height, job, gender )""")  
     
 
     conn.commit()
