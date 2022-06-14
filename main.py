@@ -184,9 +184,9 @@ class SettingProfile(Screen):
     
     n = ObjectProperty(None)
     a = ObjectProperty(None)
-    w= ObjectProperty(None)
-    h=ObjectProperty(None)
-    j=ObjectProperty(None)
+    w = ObjectProperty(None)
+    h = ObjectProperty(None)
+    j = ObjectProperty(None)
     m = ObjectProperty(None)
 
     # this function will save the data into the database
