@@ -12,10 +12,10 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
 
-    u = "cat"
+    
+    
     
     def loginBtn(self):
-        
         # connecting to database
         conn = sqlite3.connect('users.db')
 
@@ -25,7 +25,6 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         c.execute("""SELECT username, password FROM data""")
 
         items = c.fetchall() # fetching all usernames
-
         
         u = self.ids["username"].text     # making instance of username and password text input
         p = self.ids["password"].text
@@ -209,7 +208,7 @@ class SettingProfile(Screen):
         if self.n and self.a and self.w and self.h and self.j and self.g is not None:
 
             # cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, ))   
-            cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=?,gender=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, self.g, login_wind.u ))   
+            cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=?,gender=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, self.g, self.n ))   
             conne.commit()
             conne.close()
         
