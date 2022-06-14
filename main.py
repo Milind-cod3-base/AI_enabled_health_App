@@ -187,7 +187,7 @@ class SettingProfile(Screen):
     w= ObjectProperty(None)
     h=ObjectProperty(None)
     j=ObjectProperty(None)
-    
+    m = ObjectProperty(None)
 
     # this function will save the data into the database
     def save(self):
@@ -201,11 +201,10 @@ class SettingProfile(Screen):
         self.h = self.ids["heigh"].text
         self.j = self.ids["job"].text
         self.g = self.ids["gender"].text
-        
-        # creating instance of LoginWindow
-        login_wind = self.manager.get_screen('login')
+        self.m = self.ids["mprofile"].text
 
-        if self.n and self.a and self.w and self.h and self.j and self.g is not None:
+
+        if self.n and self.a and self.w and self.h and self.j and self.g and self.m is not None:
 
                
             cur.execute("""UPDATE data 
@@ -214,8 +213,9 @@ class SettingProfile(Screen):
                             weight=?, 
                             height=?,
                             job=?,
-                            gender=? 
-                            WHERE username=? """,(self.n,self.a,self.w,self.h,self.j, self.g, self.n))   
+                            gender=?,
+                            movementProfile=?
+                            WHERE username=? """,(self.n,self.a,self.w,self.h,self.j, self.g, self.m, self.n))   
                             
             conne.commit()
             conne.close()
@@ -264,11 +264,6 @@ class WindowManager(ScreenManager):
     pass
 
 
-def invalidLogin():
-    pass
-
-def invalidForm():
-    pass
 
 kv = Builder.load_file("my.kv") # loading my.kv file
 
@@ -297,7 +292,7 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     c = conn.cursor()
 
     # Here just creating a table if it doesnt exist from before
-    c.execute("""CREATE TABLE if not exists data( username, password, name, age, weight, height, job, gender )""")  
+    c.execute("""CREATE TABLE if not exists data( username, password, name, age, weight, height, job, gender, movementProfile )""")  
     
 
     conn.commit()
