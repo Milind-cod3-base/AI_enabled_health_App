@@ -207,8 +207,16 @@ class SettingProfile(Screen):
 
         if self.n and self.a and self.w and self.h and self.j and self.g is not None:
 
-            # cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, ))   
-            cur.execute("UPDATE data SET name=?, age=?, weight=?, height=?,job=?,gender=? WHERE username=? ",(self.n,self.a,self.w,self.h,self.j, self.g, self.n ))   
+               
+            cur.execute("""UPDATE data 
+                            SET name=?,
+                            age=?, 
+                            weight=?, 
+                            height=?,
+                            job=?,
+                            gender=? 
+                            WHERE username=? """,(self.n,self.a,self.w,self.h,self.j, self.g, self.n))   
+                            
             conne.commit()
             conne.close()
         
