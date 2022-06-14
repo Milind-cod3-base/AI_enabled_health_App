@@ -307,6 +307,7 @@ WindowManager:
     weight:weight
     heigh:heigh
     job:job
+    mprofile:mprofile
 
     
 
@@ -390,6 +391,20 @@ WindowManager:
         pos_hint:{"x":0.45, "top":0.48}
         size_hint: 0.4, 0.10
 
+    Label:
+        text: "Movement Profile: "
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.1, "top":0.38}
+        size_hint: 0.40, 0.15
+
+    TextInput:
+        id: mprofile
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 14**4
+        pos_hint:{"x":0.45, "top":0.38}
+        size_hint: 0.4, 0.10
+
+    
     Button:
         
         text: "Save"
