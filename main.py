@@ -195,16 +195,16 @@ class SettingProfile(Screen):
 
         cur = conne.cursor()
 
-        self.n = self.ids["n"].text
-        self.a = self.ids["age"].text
-        self.w = self.ids["weight"].text
-        self.h = self.ids["heigh"].text
-        self.j = self.ids["job"].text
-        self.g = self.ids["gender"].text
-        self.m = self.ids["mprofile"].text
+        n = self.ids["n"].text
+        a = self.ids["age"].text
+        w = self.ids["weight"].text
+        h = self.ids["heigh"].text
+        j = self.ids["job"].text
+        g = self.ids["gender"].text
+        m = self.ids["mprofile"].text
 
 
-        if self.n and self.a and self.w and self.h and self.j and self.g and self.m is not None:
+        if n and a and w and h and j and g and m is not None:
 
                
             cur.execute("""UPDATE data 
@@ -215,7 +215,7 @@ class SettingProfile(Screen):
                             job=?,
                             gender=?,
                             movementProfile=?
-                            WHERE username=? """,(self.n,self.a,self.w,self.h,self.j, self.g, self.m, self.n))   
+                            WHERE username=? """,(n,a,w,h,j, g, m, n))   
                             
             conne.commit()
             conne.close()
