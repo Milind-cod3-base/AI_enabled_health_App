@@ -7,6 +7,9 @@ from kivy.lang import Builder      # using this no need of having main class sam
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 
+# importing self made encrypting module
+import encryptDatabase  
+
 
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
@@ -16,6 +19,11 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     
     
     def loginBtn(self):
+
+        # decrypting the database
+        key = encryptDatabase.loadKey() # loading the key 
+        encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
         # connecting to database
         conn = sqlite3.connect('users.db')
 
@@ -71,8 +79,11 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         # closing
         conn.close()
         
-        
+        # encrypting the database after closing connection
+        encryptDatabase.encrypt("users.db",key)  # encrypting using the key
 
+    
+    
     def createBtn(self):
         self.reset()  # clears everything
         sm.current = "create"
@@ -92,6 +103,11 @@ class CreateAccountWindow(Screen):
         sm.current = "login"
 
     def submit(self):
+
+        
+        # decrypting the database
+        key = encryptDatabase.loadKey() # loading the key 
+        encryptDatabase.decrypt("users.db",key)  # decrypting using key
         
         # connecting to database
         conn = sqlite3.connect('users.db')
@@ -114,6 +130,9 @@ class CreateAccountWindow(Screen):
             
                 conn.commit()
                 conn.close()
+
+                
+                encryptDatabase.encrypt("users.db",key)  # encrypting using key
         
                 sm.current = "login"
             
@@ -191,6 +210,12 @@ class SettingProfile(Screen):
 
     # this function will save the data into the database
     def save(self):
+
+        
+        # decrypting the database
+        key = encryptDatabase.loadKey() # loading the key 
+        encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
         conne = sqlite3.connect('users.db')
 
         cur = conne.cursor()
@@ -219,6 +244,9 @@ class SettingProfile(Screen):
                             
             conne.commit()
             conne.close()
+
+            
+            encryptDatabase.encrypt("users.db",key)  # encrypting using key
         
         else:
             popup = Popup(
@@ -287,17 +315,30 @@ sm.current = "login"  # default screen must be login
 
 class MyMainApp(App): # inheriting the properties of App class from kivy library
     
+
+
+    # decrypting the database
+    key = encryptDatabase.loadKey() # loading the key 
+    encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
     conn = sqlite3.connect('users.db')
     
     c = conn.cursor()
 
     # Here just creating a table if it doesnt exist from before
-    c.execute("""CREATE TABLE if not exists data( username, password, name, age, weight, height, job, gender, movementProfile )""")  
+    c.execute("""CREATE TABLE if not exists data( 
+                username, password, name, age, weight, height, 
+                job, gender, movementProfile )"""
+                )  
     
 
     conn.commit()
     conn.close()
 
+
+    # encrypting database after creating it and closing connection
+
+    encryptDatabase.encrypt("users.db",key)
 
     def build(self):
 
