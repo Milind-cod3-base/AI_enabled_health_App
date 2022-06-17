@@ -295,12 +295,19 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     c = conn.cursor()
 
     # Here just creating a table if it doesnt exist from before
-    c.execute("""CREATE TABLE if not exists data( username, password, name, age, weight, height, job, gender, movementProfile )""")  
+    c.execute("""CREATE TABLE if not exists data( 
+                username, password, name, age, weight, height, 
+                job, gender, movementProfile )"""
+                )  
     
 
     conn.commit()
     conn.close()
 
+
+    # encrypting database after creating it and closing connection
+    key = encryptDatabase.loadKey()
+    encryptDatabase.encrypt("users.db",key)
 
     def build(self):
 
