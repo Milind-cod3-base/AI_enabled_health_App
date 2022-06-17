@@ -318,7 +318,12 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
 
     """ Need an if else statement to check wether database is alread
         encrypted or not. or else sqlite3 wont be able to reach encrypted databse"""
-        
+
+
+    # decrypting the database
+    key = encryptDatabase.loadKey() # loading the key 
+    encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
     conn = sqlite3.connect('users.db')
     
     c = conn.cursor()
@@ -335,7 +340,7 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
 
 
     # encrypting database after creating it and closing connection
-    key = encryptDatabase.loadKey()
+
     encryptDatabase.encrypt("users.db",key)
 
     def build(self):
