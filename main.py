@@ -103,6 +103,11 @@ class CreateAccountWindow(Screen):
         sm.current = "login"
 
     def submit(self):
+
+        
+        # decrypting the database
+        key = encryptDatabase.loadKey() # loading the key 
+        encryptDatabase.decrypt("users.db",key)  # decrypting using key
         
         # connecting to database
         conn = sqlite3.connect('users.db')
@@ -125,6 +130,9 @@ class CreateAccountWindow(Screen):
             
                 conn.commit()
                 conn.close()
+
+                
+                encryptDatabase.encrypt("users.db",key)  # encrypting using key
         
                 sm.current = "login"
             
