@@ -7,6 +7,7 @@ import push_notification
 
 
 # This function will get the task from the taskmanager databse using input parameters.
+# The 4 output tasks will be displayed in the card widget
 def getTask(jobType, gender, age):
 
     movementProfile = "Get the movement profile from the ai, using its function"
@@ -24,10 +25,6 @@ def getTask(jobType, gender, age):
     # I call this function anywhere and pass in the above parameters, BUT, movementProfile will come only from ai while other 3 will come from userinput
     
 
+# This function only pushes the task which has been selected by user and activates after "Remind me button"
 def taskNotif(Task):
-    pass
-
-
-Task = "Here will be the task from the task task manager database."
-
-push_notification.pushNotif(Task)
+    push_notification.pushNotif(Task)
