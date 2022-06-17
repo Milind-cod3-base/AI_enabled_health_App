@@ -7,6 +7,9 @@ from kivy.lang import Builder      # using this no need of having main class sam
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 
+# importing self made encrypting module
+import encryptDatabase  
+
 
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
