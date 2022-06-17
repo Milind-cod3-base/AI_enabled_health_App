@@ -10,6 +10,8 @@ from kivy.uix.popup import Popup
 # importing self made encrypting module
 import encryptDatabase  
 
+# importing self made task manager module
+import taskManager
 
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
