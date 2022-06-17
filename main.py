@@ -19,6 +19,11 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     
     
     def loginBtn(self):
+
+        # decrypting the database
+        key = encryptDatabase.loadKey() # loading the key 
+        encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
         # connecting to database
         conn = sqlite3.connect('users.db')
 
@@ -74,8 +79,11 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         # closing
         conn.close()
         
-        
+        # encrypting the database after closing connection
+        encryptDatabase.encrypt("users.db",key)  # encrypting using the key
 
+    
+    
     def createBtn(self):
         self.reset()  # clears everything
         sm.current = "create"
