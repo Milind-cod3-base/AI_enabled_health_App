@@ -174,7 +174,8 @@ class MainWindow(Screen):
         pass
 
     def unpauseNotif(self):  # logic to unpause notification
-        pass
+        taskManager.taskNotif("Here must be the selected task from the UI")
+
 
     def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
         pass
