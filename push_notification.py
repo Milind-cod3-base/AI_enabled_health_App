@@ -5,12 +5,16 @@ import time
 
 # import TaskManager
 
-def PushNotif():
+def pushNotif():
     
     notification.notify(title = "Alert", message= "Taskmanager.attribute")
     
-    
-    
+
+def pauseNotif():
+    pass
 
 
-PushNotif
+pushNotif()
+
+    
+    
