@@ -316,9 +316,6 @@ sm.current = "login"  # default screen must be login
 class MyMainApp(App): # inheriting the properties of App class from kivy library
     
 
-    """ Need an if else statement to check wether database is alread
-        encrypted or not. or else sqlite3 wont be able to reach encrypted databse"""
-
 
     # decrypting the database
     key = encryptDatabase.loadKey() # loading the key 
