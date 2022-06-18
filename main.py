@@ -42,7 +42,9 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         u = self.ids["username"].text     # making instance of username and password text input
         p = self.ids["password"].text
 
-        tempUser.storeName(u)
+        # storing the entered username into tempUser.txt file.
+        tempUser.storeName(u) 
+
         count = 0  # a count function to keep track of true and false
 
 
@@ -246,7 +248,7 @@ class SettingProfile(Screen):
                             height=?,
                             job=?,
                             gender=?
-                            WHERE username=? """,(n,a,w,h,j, g, n))   
+                            WHERE username=? """,(n,a,w,h,j, g, tempUser.readName()))    # validating user by the login username and only updating its details
                             
             conne.commit()
             conne.close()
