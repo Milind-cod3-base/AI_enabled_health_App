@@ -16,6 +16,9 @@ import taskManager
 # importing self made temp User module
 import tempUser
 
+# importing module for querying
+import databaseManager
+
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
@@ -323,30 +326,10 @@ sm.current = "login"  # default screen must be login
 
 class MyMainApp(App): # inheriting the properties of App class from kivy library
     
-
-
-    # decrypting the database
-    key = encryptDatabase.loadKey() # loading the key 
-    encryptDatabase.decrypt("users.db",key)  # decrypting using key
-
-    conn = sqlite3.connect('users.db')
-    
-    c = conn.cursor()
-
-    # Here just creating a table if it doesnt exist from before
-    c.execute("""CREATE TABLE if not exists data( 
-                username, password, name, age, weight, height, 
-                job, gender )"""
-                )  
-    
-
-    conn.commit()
-    conn.close()
-
-
-    # encrypting database after creating it and closing connection
-
-    encryptDatabase.encrypt("users.db",key)
+    # decrypting database and creating connection
+    # checking whether the data table already exists in user.db.
+    # If not, then creating a table, closing connection and encrypting database.
+    databaseManager.creatingTable()
 
     def build(self):
 
