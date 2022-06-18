@@ -290,6 +290,10 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     # If not, then creating a table, closing connection and encrypting database.
     databaseManager.creatingTable()
 
+
+    # similarly initiating task manager's tasks table
+    databaseManager.creatingTableTaskManager()
+
     def build(self):
 
         return sm    # going to screenmanager
