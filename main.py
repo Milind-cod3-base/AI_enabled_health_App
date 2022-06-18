@@ -224,13 +224,7 @@ class SettingProfile(Screen):
     def save(self):
 
         
-        # decrypting the database
-        key = encryptDatabase.loadKey() # loading the key 
-        encryptDatabase.decrypt("users.db",key)  # decrypting using key
 
-        conne = sqlite3.connect('users.db')
-
-        cur = conne.cursor()
 
         n = self.ids["n"].text
         a = self.ids["age"].text
@@ -242,23 +236,10 @@ class SettingProfile(Screen):
 
 
         if n and a and w and h and j and g  is not None:
-
-               
-            cur.execute("""UPDATE data 
-                            SET name=?,
-                            age=?, 
-                            weight=?, 
-                            height=?,
-                            job=?,
-                            gender=?
-                            WHERE username=? """,(n,a,w,h,j, g, tempUser.readName()))    # validating user by the login username and only updating its details
-                            
-            conne.commit()
-            conne.close()
+            databaseManager.addProfile(n,a,w,h,j,g)
 
             
-            encryptDatabase.encrypt("users.db",key)  # encrypting using key
-        
+                    
         else:
             popup = Popup(
             title='Invalid Credentials',
