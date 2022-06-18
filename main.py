@@ -13,6 +13,9 @@ import encryptDatabase
 # importing self made task manager module
 import taskManager
 
+# importing self made temp User module
+import tempUser
+
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
@@ -39,6 +42,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         u = self.ids["username"].text     # making instance of username and password text input
         p = self.ids["password"].text
 
+        tempUser.storeName(u)
         count = 0  # a count function to keep track of true and false
 
 
