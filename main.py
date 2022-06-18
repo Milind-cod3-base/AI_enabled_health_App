@@ -229,10 +229,10 @@ class SettingProfile(Screen):
         h = self.ids["heigh"].text
         j = self.ids["job"].text
         g = self.ids["gender"].text
-        m = self.ids["mprofile"].text
+        
 
 
-        if n and a and w and h and j and g and m is not None:
+        if n and a and w and h and j and g  is not None:
 
                
             cur.execute("""UPDATE data 
@@ -241,9 +241,8 @@ class SettingProfile(Screen):
                             weight=?, 
                             height=?,
                             job=?,
-                            gender=?,
-                            movementProfile=?
-                            WHERE username=? """,(n,a,w,h,j, g, m, n))   
+                            gender=?
+                            WHERE username=? """,(n,a,w,h,j, g, n))   
                             
             conne.commit()
             conne.close()
@@ -331,7 +330,7 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     # Here just creating a table if it doesnt exist from before
     c.execute("""CREATE TABLE if not exists data( 
                 username, password, name, age, weight, height, 
-                job, gender, movementProfile )"""
+                job, gender )"""
                 )  
     
 
