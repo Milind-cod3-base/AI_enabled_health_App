@@ -1,1 +1,4 @@
 key.key
+venv/
+test.db
+new.db
