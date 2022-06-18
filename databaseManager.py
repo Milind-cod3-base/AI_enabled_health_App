@@ -100,8 +100,10 @@ def taskQuery(username):
 
     cur = con.cursor()
     username = tempUser.readName()
-    cur.execute("SELECT job, age, gender FROM data WHERE username=?", [username])
-    #cur.execute("SELECT job, age, gender FROM data WHERE username=?",("don"))
+    
+    # checks the username and gets the required job, age, gender
+    cur.execute("SELECT job, age, gender FROM data WHERE username=?", [username]) 
+    
 
     item = cur.fetchall()
 
