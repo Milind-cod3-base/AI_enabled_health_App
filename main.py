@@ -28,6 +28,12 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     
     def loginBtn(self):
 
+        u = self.ids["username"].text     # making instance of username and password text input
+        p = self.ids["password"].text
+
+        # storing the entered username into tempUser.txt file.
+        tempUser.storeName(u) 
+        
         # decrypting the database
         key = encryptDatabase.loadKey() # loading the key 
         encryptDatabase.decrypt("users.db",key)  # decrypting using key
@@ -42,11 +48,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
 
         items = c.fetchall() # fetching all usernames
         
-        u = self.ids["username"].text     # making instance of username and password text input
-        p = self.ids["password"].text
 
-        # storing the entered username into tempUser.txt file.
-        tempUser.storeName(u) 
 
         count = 0  # a count function to keep track of true and false
 
@@ -239,13 +241,6 @@ class SettingProfile(Screen):
     def back(self):
         sm.current = "settingM"
     
-    def reset(self):  # clear data
-        n = ""
-        age= ""
-        weight=""
-        height=""
-        job=""
-        
     
     
 
