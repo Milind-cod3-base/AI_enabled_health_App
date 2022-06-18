@@ -1,8 +1,10 @@
 import sqlite3
 
+
 # importing module to encrypt the database
 import encryptDatabase
 
+# importing tempUser to get the current logged in user's name
 import tempUser
 
 # this module is to create, commit and close connection with the databse
@@ -83,3 +85,9 @@ def addProfile(name,age,weight,height,job,gender):
 
     
     encryptDatabase.encrypt("users.db",key)  # encrypting using key
+
+
+
+
+
+    
