@@ -78,7 +78,8 @@ def addProfile(name,age,weight,height,job,gender):
                             height=?,
                             job=?,
                             gender=?
-                            WHERE username=? """,(name,age,weight,height,job, gender, tempUser.readName()))    # validating user by the login username and only updating its details
+                            WHERE username=? """,(name,age,weight,height,job, gender, tempUser.readName()))    
+                            # validating user by the login username and only updating its details
                             
     conne.commit()
     conne.close()
@@ -87,6 +88,31 @@ def addProfile(name,age,weight,height,job,gender):
     encryptDatabase.encrypt("users.db",key)  # encrypting using key
 
 
+def taskQuery(username):
+    
+    # decrypting the database
+    key = encryptDatabase.loadKey() # loading the key 
+    encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
+    # a function to get the query for task manager, coloumns job, age, gender
+    con = sqlite3.connect('users.db')
+
+    cur = con.cursor()
+    username = tempUser.readName()
+    cur.execute("SELECT job, age, gender FROM data WHERE username=?", [username])
+    #cur.execute("SELECT job, age, gender FROM data WHERE username=?",("don"))
+
+    item = cur.fetchall()
+
+    for i in item:
+        print(i)
+
+    con.commit()
+    con.close()
+     
+    # encrypting database after creating it and closing connection
+
+    encryptDatabase.encrypt("users.db",key)
 
 
 
