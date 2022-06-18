@@ -9,8 +9,27 @@ import tempUser
 
 
 # adding a new user via Create Account window
-def addUser():
-    pass
+def addUser(user,password):
+    # decrypting the database
+    key = encryptDatabase.loadKey() # loading the key 
+    encryptDatabase.decrypt("users.db",key)  # decrypting using key
+    
+    # connecting to database
+    conn = sqlite3.connect('users.db')
+    
+    # create a cursor
+    c = conn.cursor()
+
+    
+    # add a record
+    c.execute("INSERT INTO data(username, password) VALUES (?,?)",(user,password))
+
+    conn.commit()
+    conn.close()
+
+    
+    encryptDatabase.encrypt("users.db",key)  # encrypting using key
+    
 
 
 # creating a new table if it doesnt exist already
