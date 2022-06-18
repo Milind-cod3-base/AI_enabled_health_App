@@ -115,17 +115,6 @@ class CreateAccountWindow(Screen):
 
     def submit(self):
 
-        
-        # decrypting the database
-        key = encryptDatabase.loadKey() # loading the key 
-        encryptDatabase.decrypt("users.db",key)  # decrypting using key
-        
-        # connecting to database
-        conn = sqlite3.connect('users.db')
-        
-        # create a cursor
-        c = conn.cursor()
-        
         # taking user data
         if self.ids["username"].text and self.ids["password"].text and self.ids["confirm"].text is not None:
 
@@ -133,17 +122,11 @@ class CreateAccountWindow(Screen):
             p = self.ids["password"].text
             co = self.ids["confirm"].text
 
-            if p==co:  # if password and confirm password are same then only push to database
+            # if password and confirm password are same then only push to database
+            if p==co:  
 
-
-                # add a record
-                c.execute("INSERT INTO data(username, password) VALUES (?,?)",(u,p))
-            
-                conn.commit()
-                conn.close()
-
-                
-                encryptDatabase.encrypt("users.db",key)  # encrypting using key
+                # using module to query and store the user data into database
+                databaseManager.addUser(u,p)
         
                 sm.current = "login"
             
