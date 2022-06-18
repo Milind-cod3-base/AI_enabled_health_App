@@ -87,7 +87,8 @@ def addProfile(name,age,weight,height,job,gender):
     
     encryptDatabase.encrypt("users.db",key)  # encrypting using key
 
-
+# this function takes in the username and gives out three output, job, age, gender which then could be used
+# for the task manager database query, along with one more parameter- movement profile (given by AI)
 def taskQuery(username):
     
     # decrypting the database
