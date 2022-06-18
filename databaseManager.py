@@ -61,6 +61,27 @@ def creatingTable():
     encryptDatabase.encrypt("users.db",key)
 
 
+# checking and/or creating if tasks table doesnt exist in motivationTasks.db file
+def creatingTableTaskManager():
+
+    conn = sqlite3.connect('motivationTasks.db')
+    
+    c = conn.cursor()
+
+    # Here just creating a table if it doesnt exist from before
+    c.execute("""
+                CREATE TABLE if not exists tasks(
+                job, age, gender, movementProfile, 
+                task1, task2, task3, task4)
+                """
+                )  
+    
+
+    conn.commit()
+    conn.close()
+
+
+
 def addProfile(name,age,weight,height,job,gender):
     
     # decrypting the database
