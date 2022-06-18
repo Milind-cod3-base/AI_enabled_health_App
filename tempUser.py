@@ -14,5 +14,3 @@ def storeName(name):
 def readName():
     with open("tempUsername.txt","r") as file:
         return file.read()
-
-print(readName())
