@@ -184,3 +184,19 @@ def storeProfile(time, profile):
     conn.close()
 
     
+# CAUTION: clear table function, it will delete the mentioned table, use with caution
+def deleteTable(db):
+
+    conn = sqlite3.connect(db)
+    
+    # create a cursor
+    c = conn.cursor()
+
+    
+    # add a record
+    c.execute("DROP TABLE data")
+
+    conn.commit()
+    conn.close()
+
+
