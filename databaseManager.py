@@ -81,7 +81,7 @@ def creatingTableTaskManager():
     conn.close()
 
 
-
+# for storing user profile into the users.db 
 def addProfile(name,age,weight,height,job,gender):
     
     # decrypting the database
@@ -107,6 +107,7 @@ def addProfile(name,age,weight,height,job,gender):
 
     
     encryptDatabase.encrypt("users.db",key)  # encrypting using key
+
 
 # this function takes in the username and gives out three output, job, age, gender which then could be used
 # for the task manager database query, along with one more parameter- movement profile (given by AI)
@@ -139,5 +140,9 @@ def taskQuery(username):
     encryptDatabase.encrypt("users.db",key)
 
 
+# this will get the classified movemnt profile from the output and store it into the db file
+def getProfile(time, profile):
+    
 
+    pass
     
