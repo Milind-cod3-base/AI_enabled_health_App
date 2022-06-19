@@ -169,16 +169,18 @@ class MainWindow(Screen):
         accelerometer.enable()
         gyroscope.enable()
 
-        time = datetime.datetime.now()
+        while True:
 
-        # gets accelerometers data in tuple format in 3 axes (x,y,z)
-        acc_x, acc_y, acc_z = accelerometer.acceleration
-        
+            time = datetime.datetime.now()
 
-        gyr_x, gyr_y, gyr_z = gyroscope.rotation
+            # gets accelerometers data in tuple format in 3 axes (x,y,z)
+            acc_x, acc_y, acc_z = accelerometer.acceleration
+            
+            # gets gyrometers data in tuple format in 3 axes 
+            gyr_x, gyr_y, gyr_z = gyroscope.rotation
+            
+            aiModel.gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
         
-        aiModel.gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
-    
 
     # this will check out off the model     
     def modelOff(self):
