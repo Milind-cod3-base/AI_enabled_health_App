@@ -20,7 +20,7 @@ def gruResponse( time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z ):
 
 
 
-
+# this function starts to feed sensors data into the ai model
 def feedAI():
     accelerometer.enable()
     gyroscope.enable()
