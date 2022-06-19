@@ -26,13 +26,18 @@ def repeatNotif(hours,task):
     # as sleep function takes input in seconds, converting hours into seconds
     seconds = hours * 60 * 60
    
-    # this will snooze the notification for required seconds
-    time.sleep(seconds)
-    
-    # after snooze notification again.
-    pushNotif(task)
+   # setting up an idefinite loop of notifications
+    while True:
+        # this will snooze the notification for required seconds
+        time.sleep(seconds)
+        
+        # after snooze notification again.
+        pushNotif(task)
 
-""" One issue might occur: can other functions of app operate properly, while Notification is in sleep mode?"""
+
+""" One issue might occur: can other functions of app operate properly, while Notification is in sleep mode?
+    to counter this issue, i can create a counter with zero which adds to after certain time and call notification function,
+    like i can do this inside getTime function"""
 
 
 
