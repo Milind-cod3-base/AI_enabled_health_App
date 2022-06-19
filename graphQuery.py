@@ -12,6 +12,12 @@ def daily():
     
     # ending of time 
     upper_limit = datetime.datetime.now()
-    
+
     # starting of time
     lower_limit = datetime.datetime.now() - timedelta(days= -1)
+
+
+def weekly():
+    upper_limit = datetime.datetime.now()
+    lower_limit = datetime.datetime.now() - timedelta(days= -7)
+
