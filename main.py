@@ -6,6 +6,8 @@ from kivy.uix.label import Label
 from kivy.lang import Builder      # using this no need of having main class same as kivy
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
+from plyer import accelerometer
+from plyer import gyroscope
 
 # importing self made encrypting module
 import encryptDatabase  
@@ -18,6 +20,9 @@ import tempUser
 
 # importing module for querying
 import databaseManager
+
+#importing GRU model
+import aiModel
 
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
@@ -159,12 +164,30 @@ class CreateAccountWindow(Screen):
 class MainWindow(Screen):
     
     def modelOn(self):
-        pass # this will check in the model
+
+        accelerometer.enable()
+        gyroscope.enable()
+
+        time = "this must be taken from the phone api"
+
+        # gets accelerometers data in tuple format in 3 axes (x,y,z)
+        acc_x, acc_y, acc_z = accelerometer.acceleration
+        
+
+        gyr_x, gyr_y, gyr_z = gyroscope.rotation
+        
+        aiModel.gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
     
+
+    # this will check out off the model     
     def modelOff(self):
-        pass   # this will check out off the model
+        accelerometer.disable()
+        gyroscope.disable()
     
-    def pauseNotif(self):  # logic to pause notification
+    
+    
+    # logic to pause notification
+    def pauseNotif(self):  
         pass
 
     def unpauseNotif(self):  # logic to unpause notification
