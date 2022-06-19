@@ -8,6 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from plyer import accelerometer
 from plyer import gyroscope
+
 import datetime
 
 # importing self made encrypting module
@@ -166,20 +167,8 @@ class MainWindow(Screen):
     
     def modelOn(self):
 
-        accelerometer.enable()
-        gyroscope.enable()
-
-        while True:
-
-            time = datetime.datetime.now()
-
-            # gets accelerometers data in tuple format in 3 axes (x,y,z)
-            acc_x, acc_y, acc_z = accelerometer.acceleration
-            
-            # gets gyrometers data in tuple format in 3 axes 
-            gyr_x, gyr_y, gyr_z = gyroscope.rotation
-            
-            aiModel.gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
+        # this will initiate the model which will start taking in the sensors data
+        aiModel.feedAI()
         
 
     # this will check out off the model     
