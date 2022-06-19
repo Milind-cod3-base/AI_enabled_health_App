@@ -139,10 +139,47 @@ def taskQuery(username):
 
     encryptDatabase.encrypt("users.db",key)
 
+def createTableStoreProfile():
+
+    # create and connect a database for storing movement profile
+    conn = sqlite3.connect('movementProfile.db')
+    
+    c = conn.cursor()
+
+    # Here just creating a table if it doesnt exist from before
+    c.execute("""
+                CREATE TABLE if not exists data(
+                time, profile
+                )
+                """
+                )  
+    
+
+    conn.commit()
+    conn.close()
+
 
 # this will get the classified movemnt profile from the output and store it into the db file
 def storeProfile(time, profile):
 
+    # create and connect a database for storing movement profile
+    conn = sqlite3.connect('movementProfile.db')
+    
+    c = conn.cursor()
 
-    pass
+    # Here just creating a table if it doesnt exist from before
+    c.execute("""
+                CREATE TABLE if not exists data(
+                time, profile
+                )
+                """
+                )  
+    
+
+    conn.commit()
+
+
+    conn.commit()
+    conn.close()
+
     
