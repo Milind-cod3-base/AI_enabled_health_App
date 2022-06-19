@@ -139,6 +139,8 @@ def taskQuery(username):
 
     encryptDatabase.encrypt("users.db",key)
 
+
+# creating a table to store movement data coming from ai and time
 def createTableStoreProfile():
 
     # create and connect a database for storing movement profile
@@ -169,10 +171,9 @@ def storeProfile(time, profile):
 
     # Here just creating a table if it doesnt exist from before
     c.execute("""
-                CREATE TABLE if not exists data(
-                time, profile
-                )
-                """
+                INSERT INTO data(time, profile) VALUES (?,?)
+                """, (time, profile)
+
                 )  
     
 
