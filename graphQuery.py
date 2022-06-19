@@ -21,3 +21,7 @@ def weekly():
     upper_limit = datetime.datetime.now()
     lower_limit = datetime.datetime.now() - timedelta(days= -7)
 
+
+def monthly():
+    upper_limit = datetime.datetime.now()
+    lower_limit = datetime.datetime.now() - timedelta(days = -30)
