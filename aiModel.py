@@ -35,4 +35,4 @@ def feedAI():
         # gets gyrometers data in tuple format in 3 axes 
         gyr_x, gyr_y, gyr_z = gyroscope.rotation
         
-        aiModel.gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
+        gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
