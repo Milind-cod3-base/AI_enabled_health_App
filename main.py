@@ -294,6 +294,9 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     # similarly initiating task manager's tasks table
     databaseManager.creatingTableTaskManager()
 
+    # initiating database to store the users movement profile
+    databaseManager.createTableStoreProfile()
+
     def build(self):
 
         return sm    # going to screenmanager
