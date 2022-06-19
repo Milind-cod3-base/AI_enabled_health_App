@@ -8,6 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from plyer import accelerometer
 from plyer import gyroscope
+import datetime
 
 # importing self made encrypting module
 import encryptDatabase  
@@ -168,7 +169,7 @@ class MainWindow(Screen):
         accelerometer.enable()
         gyroscope.enable()
 
-        time = "this must be taken from the phone api"
+        time = datetime.datetime.now()
 
         # gets accelerometers data in tuple format in 3 axes (x,y,z)
         acc_x, acc_y, acc_z = accelerometer.acceleration
