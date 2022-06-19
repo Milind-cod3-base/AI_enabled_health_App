@@ -141,8 +141,8 @@ def taskQuery(username):
 
 
 # this will get the classified movemnt profile from the output and store it into the db file
-def getProfile(time, profile):
-    
+def storeProfile(time, profile):
+
 
     pass
     
