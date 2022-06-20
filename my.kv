@@ -333,43 +333,49 @@ WindowManager:
 <SettingMain>:
     name: "settingM"
 
-    Button:
-        text: "Notification settings"
-        size_hint: 0.4,0.1
-        font_size: (root.width **2 + root.height **2) / 15**4 
-        pos_hint: {"x":0.30,"top":0.80}
-        on_release: 
-            root.manager.transition.direction = "left"
-            root.notif()  # going to notification setting window
-    
-    
-    Button:
-        text: "Profile settings"
-        size_hint: 0.4,0.1
-        font_size: (root.width **2 + root.height **2) / 15**4 
-        pos_hint: {"x":0.30,"top":0.60}
-        on_release: 
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint:{"center_x":0.1,"center_y":0.97}
+        user_font_size: "30sp"
+        theme_text_color: "Custom"
+        text_color: rgba(71,92,119,255)
+        on_press:
+            root.manager.transition.direction = "right"
+            root.back()  # going to profile setting window
+    MDLabel:
+        text: "Settings"
+        theme_text_color: "Secondary"
+        font_size: "20sp"
+        pos_hint: {"center_x": 0.90, "center_y":0.97}
+        color: rgba(71,92,119,255)
+    MDRoundFlatButton:
+        text:"Profile Settings"
+        theme_text_color: "Custom"
+        radius: 30,30,30,30
+        pos_hint: {"center_x": 0.50, "center_y": 0.50}
+        on_press:
             root.manager.transition.direction = "left"
             root.prof()  # going to profile setting window
 
+    MDRoundFlatButton:
+        text:"Notification Settings"
+        theme_text_color: "Custom"
+        radius: 30,30,30,30
+        pos_hint: {"center_x": 0.50, "center_y": 0.40}
+        on_press:
+            root.manager.transition.direction = "left"
+            root.notif()  # going to notification setting window
+
     
-    Button:
-        text: "Logout"
-        size_hint: 0.4,0.1
-        font_size: (root.width **2 + root.height **2) / 15**4 
-        pos_hint: {"x":0.30,"top":0.40}
-        on_release: 
+    MDRoundFlatButton:
+        text:"Logout"
+        theme_text_color: "Custom"
+        radius: 30,30,30,30
+        pos_hint: {"center_x": 0.50, "center_y": 0.25}
+        on_press:
             root.manager.transition.direction = "right"
             root.login()  # going to profile setting window
 
-    Button: 
-        text: "Back"
-        size_hint: 0.4,0.1
-        font_size: (root.width **2 + root.height **2) / 15**4 
-        pos_hint: {"x":0.30,"top":0.20}
-        on_release: 
-            root.manager.transition.direction = "right"
-            root.back()  # going to profile setting window
 
 
 
