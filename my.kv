@@ -23,51 +23,60 @@ WindowManager:
     username: username
     password: password
 
-    FloatLayout:
+    MDCard:
+        size_hint: None, None
+        size: 400, 600
+        pos_hint : {"center_x":.5,"center_y":.5}
+        elevation : 15
+        padding : 20
+        spacing : 30
+        orientation : "vertical"
 
-        Label:
-            text: "Username: "
-            font_size: (root.width**2 + root.height**2)/ 13**4
-            pos_hint: {"x":0.1, "top":0.9}
-            size_hint: 0.35,0.15
-
-        TextInput:
+        MDLabel:
+            text:'LOGIN'
+            font_style: 'Button'
+            font_size: 35
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 10
         
-            id: username
-            multiline: False
-            font_size: (root.width**2 + root.height**2) / 13**4
-            pos_hint:{"x":0.45, "top":0.9}
-            size_hint: 0.4, 0.15
 
-        Label:
-            text: "Passcode: "
-            font_size: (root.width**2 + root.height**2) / 13**4
-            pos_hint:{"x":0.1, "top":0.7}
-            size_hint: 0.35, 0.15
+        MDTextFieldRound:
+            id: username 
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            width: 220
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            color_active: [1,1,1,1]
 
-        TextInput:
+        MDTextFieldRound:
             id: password
-            multiline: False
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 220
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            color_active: [1,1,1,1]
             password: True
-            font_size: (root.width**2 + root.height**2) / 13**4
-            pos_hint:{"x":0.45, "top":0.7}
-            size_hint: 0.4, 0.15
 
-        Button:
+        MDRoundFlatButton:
 
             text: "Sign in"
-            font_size: (root.width**2 + root.height**2) / 13**4
-            pos_hint:{"x":0.3, "y":0.05}
-            size_hint: 0.4, 0.1
+            pos_hint: {"center_x":.5}
+            font_size: 15
+            
             on_release: 
                 root.manager.transition.direction = "up"  # here root is login window
                 root.loginBtn()
 
-        Button:
-            text: "Don't have an account? Create one!"
-            font_size: (root.width**2 + root.height**2) / 15**4
-            pos_hint:{"x":0.3, "y":0.3}
-            size_hint: 0.4, 0.1
+        MDRoundFlatButton:
+            text: "Sign up"
+            pos_hint: {"center_x":.5}
+            font_size: 15
             on_release:
                 root.manager.transition.direction = "right"
                 root.createBtn()
