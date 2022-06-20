@@ -9,6 +9,19 @@ from kivy.uix.popup import Popup
 from plyer import accelerometer
 from plyer import gyroscope
 from kivy.core.window import Window
+from kivy.core.text import LabelBase
+from kivy.uix.widget import Widget
+
+# transitioning from kivy to kivymd
+from kivymd.app import MDApp
+from kivymd.uix.behaviors import FakeRectangularElevationBehavior
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.screen import MDScreen
+from kivymd.uix.card import MDCard
+from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
+from kivymd.uix.menu import MDDropdownMenu
+from kivy.uix.scrollview import ScrollView
+
 
 import datetime
 
