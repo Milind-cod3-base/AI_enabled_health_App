@@ -294,7 +294,7 @@ class Graph(Screen):
 class ProfileCard(MDFloatLayout, FakeRectangularElevationBehavior):
     pass
 
-class UserCard(MDcard):
+class UserCard(MDCard):
     pass
 
 # inheriting screenmanager class properties to manage multiple screens
@@ -309,6 +309,16 @@ class MotivationTaskCard(ProfileCard):
 
 class SettingsCard(ProfileCard):
     pass
+
+class DailyGraph():
+    pass
+
+class WeeklyGraph():
+    pass
+class MonthlyGraph():
+    pass
+
+
 
 kv = Builder.load_file("my.kv") # loading my.kv file
 
