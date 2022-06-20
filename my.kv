@@ -383,14 +383,31 @@ WindowManager:
 
     name: "settingN"
 
-    Button:
-        text: "Back"
-        on_release: 
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint:{"center_x":0.1,"center_y":0.97}
+        user_font_size: "30sp"
+        theme_text_color: "Custom"
+        text_color: rgba(71,92,119,255)
+        on_release:
             root.manager.transition.direction = "right"
             root.back()
-        font_size: (root.width**2 + root.height**2) / 15**4
-        pos_hint:{"x":0.40, "top":0.2}
-        size_hint: 0.4, 0.15
+    MDLabel:
+        text: "Notification"
+        theme_text_color: "Secondary"
+        font_size: "20sp"
+        pos_hint: {"center_x": 0.90, "center_y":0.97}
+        color: rgba(71,92,119,255)
+    UserCard:
+        size_hint : None,None
+        size :280,470
+        pos_hint : {"center_x":.5,"center_y":.45}
+        elevation : 30
+        padding : 10
+        spacing : 5
+        orientation : "vertical"
+        radius: 20,20,20,20
+        # Adding items to the card
 
 <SettingProfile>:
     name: "settingP"
