@@ -4,6 +4,7 @@ import databaseManager
 from plyer import accelerometer
 from plyer import gyroscope
 import datetime
+import time
 
 # this function contains the ai, and takes input such from accelerometer and gyro
 def gruResponse( time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z ):
@@ -26,6 +27,9 @@ def feedAI():
     gyroscope.enable()
 
     while True:
+        
+        # frequency of 50hz, hence setting a cycle of 0.02 seconds
+        time.sleep(0.02)
 
         time = datetime.datetime.now()
 
