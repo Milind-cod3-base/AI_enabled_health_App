@@ -3,8 +3,10 @@
 # import matplotlib  or kivy.matplotlib etc?
 
 import datetime
-
 from datetime import timedelta
+
+# importing databaseManager module
+import databaseManager
 
 
 # function to scan and display  daily activity
@@ -15,6 +17,9 @@ def daily():
 
     # starting of time query
     lower_limit = datetime.datetime.now() - timedelta(days= -1)
+
+    # getting daily range from the db
+    databaseManager.queryGraph(lower_limit, upper_limit)
 
 
 
