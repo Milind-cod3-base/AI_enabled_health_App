@@ -289,12 +289,25 @@ class Graph(Screen):
         sm.current="mainW"
 
 
+# inherting mdfflatlatlayout and fakerect class
+class ProfileCard(MDFloatLayout, FakeRectangularElevationBehavior):
+    pass
+
+class UserCard(MDcard):
+    pass
 
 # inheriting screenmanager class properties to manage multiple screens
 class WindowManager(ScreenManager): 
     pass
 
+class MovementAnalysisCard(ProfileCard):
+    pass
 
+class MotivationTaskCard(ProfileCard):
+    pass
+
+class SettingsCard(ProfileCard):
+    pass
 
 kv = Builder.load_file("my.kv") # loading my.kv file
 
