@@ -26,7 +26,8 @@ from kivy.uix.scrollview import ScrollView
 import datetime
 
 # importing self made encrypting module
-import encryptDatabase  
+import encryptDatabase
+
 
 # importing self made task manager module
 import taskManager
@@ -320,7 +321,10 @@ screens = [LoginWindow(name="login"),
             SettingMain(name="settingM"), 
             SettingProfile(name="settingP"), 
             SettingNotif(name="settingN"),
-            Graph(name="graph")]
+            Graph(name="graph"),
+            DailyGraph(name="dailygraph"),
+            WeeklyGraph(name="weeklygraph"),
+            MonthlyGraph(name = "monthlygraph")]
 
 for i in screens:
     sm.add_widget(i) 
