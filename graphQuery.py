@@ -32,6 +32,9 @@ def weekly():
     # starting of time query
     lower_limit = datetime.datetime.now() - timedelta(days= -7)
 
+    # getting weekly range from the db
+    databaseManager.queryGraph(lower_limit, upper_limit)
+
 
 
 # function to scan and display  monthly activity
