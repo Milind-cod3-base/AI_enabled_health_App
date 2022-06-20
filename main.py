@@ -343,7 +343,7 @@ for i in screens:
 sm.current = "login"  # default screen must be login
 
 
-class MyMainApp(App): # inheriting the properties of App class from kivy library
+class MyMainApp(MDApp): # inheriting the properties of App class from kivy library
     
     # decrypting database and creating connection
     # checking whether the data table already exists in user.db.
@@ -358,7 +358,7 @@ class MyMainApp(App): # inheriting the properties of App class from kivy library
     databaseManager.createTableStoreProfile()
 
     def build(self):
-
+        self.theme_cls.theme_style = "Light"
         return sm    # going to screenmanager
 
 
