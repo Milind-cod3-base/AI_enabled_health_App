@@ -93,164 +93,242 @@ WindowManager:
     password: password
     confirm: confirm
 
-    FloatLayout:
-        cols:1
+    MDCard:
+        orientation: 'vertical'
+        size_hint: None,None
+        size: 400,600
+        pos_hint: {"center_x":.5,"center_y":.6}
+        elevation: 15
+        padding: 20
+        spacing: 20
+
+        MDLabel:
+            text: "SIGN-UP"
+            font_style: "Button"
+            font_size: 30
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 30
+
+        MDTextFieldRound:
+            id: username
+            hint_text: "Username"
+            size_hint_x: None
+            icon_right: "account"
+            width: 270
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            normal_color: [35/255,49/255,48/255,1]
+            color_active: [1,1,1,1]
+
+        MDTextFieldRound: 
+            id: password
+            hint_text: "password"
+            password: True
+            size_hint_x: None
+            icon_right: "eye-off"
+            width: 270
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            normal_color: [35/255,49/255,48/255,1]
+            color_active: [1,1,1,1]
+
+        MDTextFieldRound:
+            id: confirm 
+            hint_text: "confirm password"
+            size_hint_x: None
+            password: True
+            icon_right: "eye-off"
+            width: 270
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            normal_color: [35/255,49/255,48/255,1]
+            color_active: [1,1,1,1]
         
-        FloatLayout:
-            size: root.width, root.height/2  # dimensions of first float
+        MDRoundFlatButton:
+            text: "Submit"
+            font_size: 15
+            pos_hint: {"center_x":.5}
+            theme_text_color: "Custom"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
 
-            Label:
-                text: "Create an Account"
-                size_hint: 0.8, 0.2
-                pos_hint:{"x":0.1, "top": 1}
-                font_size: (root.width**2 + root.height**2) / 14**4 
-
-            Label:
-                
-                text: "Username: "
-                size_hint: 0.5, 0.12
-                pos_hint:{"x":0, "top": 0.8}
-                font_size: (root.width**2 + root.height**2) / 14**4
-
-            TextInput:
-            
-                id: username
-                multiline: False
-                size_hint: 0.4, 0.12
-                font_size: (root.width**2 + root.height**2) / 14**4  
-                pos_hint: {"x":0.5, "top":0.8}
-
-            Label:
-                size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top": 0.6}
-                text: "Password: "
-                font_size: (root.width**2 + root.height**2) / 14**4
-
-            TextInput:
-                
-                id: password
-                pos_hint: {"x":0.5, "top":0.6}
-                size_hint: 0.4, 0.12
-                multiline: False
-                password: True
-                font_size: (root.width**2 + root.height**2) / 14**4
-
-            Label:
-                size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top": 0.4}
-                text: "Confirm Password: "
-                font_size: (root.width**2 + root.height**2) / 14**4
-            
-            TextInput:
-                
-                id: confirm
-                pos_hint: {"x":0.5, "top":0.4}
-                size_hint: 0.4, 0.12
-                multiline: False
-                password: True
-                font_size: (root.width**2 + root.height**2) / 14**4
-
-            Button:
-                text: "Already have an Account? Log In!"
-                pos_hint:{"x":0.3, "y":0.12}
-                size_hint: 0.4,0.1
-                font_size: (root.width **2 + root.height **2) / 16**4 
-                on_release: 
-                    root.manager.transition.direction = "left"
-                    root.login()   # moving to login window
+        MDRoundFlatButton:
+            text: "Back"
+            font_size: 15
+            pos_hint: {"center_x":.5}
+            theme_text_color: "Custom"
+            on_release:
+                root.manager.transition.direction = "left" 
+                root.login()   # moving to login window
 
 
-            Button:
-                text: "Submit"
-                pos_hint: {"x":0.38, "y": 0.02}
-                size_hint: 0.3, 0.08
-                font_size: (root.width**2 + root.height**2) / 14**4
-                on_release:
-                    root.manager.transition.direction = "left"
-                    root.submit()
 
 <MainWindow>:
     name: "mainW"
 
-    FloatLayout:
-        cols:1
-        FloatLayout:
-            cols: 2
-            size: root.width, root.height/3
-            
-
-            Button:
-                text: "Check in"
-                size_hint: 0.2,0.1
-                font_size: (root.width **2 + root.height **2) / 15**4 
-                pos_hint: {"x":0.05,"top":0.95}
-                on_release: 
-                    # also can give a pop up that model has started working
-                    root.modelOn()
-            
-            Button:
-                text: "Check out"
-                size_hint: 0.2,0.1
-                font_size: (root.width **2 + root.height **2) / 15**4 
-                pos_hint: {"right":0.95,"top":0.95}
-                on_release:
-                    root.modelOff()
-
-        FloatLayout:
-            cols:1
-            size: root.width, root.height/3
-
-            Label:
-                text: "Motivational task"
-                size_hint: 0.8,0.3
-                font_size: (root.width **2 + root.height **2) / 15**4
-                pos_hint: {"x":0.01, "top":0.9}
-                
-        FloatLayout:
-            cols:2
-            size: root.width, root.height/3
-            Button:
-                text: "Pause"
-                size_hint: 0.2,0.1
-                font_size: (root.width **2 + root.height **2) / 15**4 
-                pos_hint: {"x":0.05,"top":0.65}
-                on_release: 
-                    # also can give a pop up that model has started working
-                    root.pauseNotif()
-            
-            Button:
-                text: "Remind Me"
-                size_hint: 0.2,0.1
-                font_size: (root.width **2 + root.height **2) / 15**4 
-                pos_hint: {"right":0.95,"top":0.65}
-                on_release:
-                    root.remindMe()
-
-        FloatLayout:
-            cols:1
-
-            Button:
-
-                text: "Graph"
-                size_hint: 0.2,0.1
-                font_size: (root.width **2 + root.height **2) / 15**4 
-                pos_hint: {"x":0.40,"top":0.40}
-                on_release: 
-                    root.manager.transition.direction = "left"
-                    root.scale()  # method for going to graph window
+    MDFloatLayout:
+        md_bg_color: rgba(246,250,255,255)
         
-        FloatLayout:
-            cols:1
+        MDIconButton:
+            icon: "cog"
+            pos_hint:{"center_x":0.90,"center_y":0.97}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(71,92,119,255)
+            on_press:
+                root.manager.transition.direction = "left"
+                root.set()  # method for going to setting window
 
-            Button:
+        MovementAnalysisCard:
+            orientation: "vertical"
+            padding: "10dp"
+            spacing: "5dp"
+            pos_hint: {"center_x":0.5,"center_y":0.78}
+            md_bg_color: 1,1,1,1
+            radius:(20,20,20,20)
+            size_hint: 0.9,0.3
+            elevation: 6
+            MDLabel:
+                text: "Movement Analysis"
+                theme_text_color: "Secondary"
+                font_size: "20sp"
+                pos_hint: {"center_x": 0.56, "center_y":0.82}
+                color: rgba(71,92,119,255)
+            MDSeparator:
+                pos_hint: {"center_x": 0.46, "center_y":0.74}
+                color: rgba(71,92,119,255)
+                pos: self.pos
+                size_hint:0.82,0.01
+            MDLabel:
+                text: "sitting"
+                font_size: "20sp"
+                pos_hint: {"center_x": 0.56, "center_y":0.65}
+                color: rgba(71,92,119,255)
+            GridLayout:
+                cols: 3
+                orientation: "tb-lr"
+                size_hint_y: None
+                pos_hint: {"center_x": 0.56, "center_y": 0.38}
+                height: self.minimum_height
+                padding: "4dp"
+                spacing: "5dp"
+                MDSwitch:
+                    id: Checkin
+                    on_release: 
+                        root.modelOn()
 
-                text: "Setting"
-                size_hint: 0.2,0.1
-                font_size: (root.width **2 + root.height **2) / 15**4 
-                pos_hint: {"x":0.40,"top":0.20}
-                on_release: 
-                    root.manager.transition.direction = "left"
-                    root.set()  # method for going to setting window
+                MDLabel:
+                    text: "Check-in"
+                    font_size: "12dp"
+
+                MDSwitch:
+                    id: Checkout
+                    on_release:
+                        root.modelOff()              
+                MDLabel:
+                    text: "Check-out"
+                    font_size: "12dp"
+                MDSwitch:
+                    id: Notifications
+                    on_release:
+                        root.pauseNotif()
+
+                MDLabel:
+                    text: "Pause Notifications"
+                    font_size: "12dp"
+    MotivationTaskCard:
+        orientation: "vertical"
+        padding: "10dp"
+        spacing: "5dp"
+        pos_hint: {"center_x":0.5,"center_y":0.42}
+        md_bg_color: 1,1,1,1
+        radius:(20,20,20,20)
+        size_hint: 0.9,0.40
+        elevation: 6
+        MDLabel:
+            text: "Motivation Tasks"
+            theme_text_color: "Secondary"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.56, "center_y":0.88}
+            color: rgba(71,92,119,255)
+        MDSeparator:
+            pos_hint: {"center_x": 0.46, "center_y":0.81}
+            color: rgba(71,92,119,255)
+            pos: self.pos
+            size_hint:0.82,0.01
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.49, "center_y": 0.74}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                size_hint: None, None
+                size: "50dp", "50dp"
+            MDLabel:
+                text: "Motivation Tasks"
+                font_size: "14dp"
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.49, "center_y": 0.60}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                size_hint: None, None
+                size: "50dp", "50dp"
+            MDLabel:
+                text: "Motivation Tasks"
+                font_size: "14dp"
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.49, "center_y": 0.46}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                size_hint: None, None
+                size: "50dp", "50dp"
+            MDLabel:
+                text: "Motivation Tasks"
+                font_size: "14dp"
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.49, "center_y": 0.32}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                size_hint: None, None
+                size: "50dp", "50dp"
+            MDLabel:
+                text: "Motivation Tasks"
+                font_size: "14dp"
+        MDRoundFlatButton:
+            text:"Remind Me"
+            theme_text_color: "Custom"
+            pos_hint: {"center_x": 0.5, "center_y": 0.14}
+            on_release:
+                root.remindMe()
+
+    MDRoundFlatButton:
+        text:"Activity Graphs"
+        theme_text_color: "Custom"
+        pos_hint: {"center_x": 0.5, "center_y": 0.15}
+        on_release:
+            root.manager.transition.direction = "left"
+            root.scale()  # method for going to graph window
         
 <SettingMain>:
     name: "settingM"
