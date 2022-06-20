@@ -8,6 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from plyer import accelerometer
 from plyer import gyroscope
+from kivy.core.window import Window
 
 import datetime
 
@@ -25,6 +26,10 @@ import databaseManager
 
 #importing GRU model
 import aiModel
+
+
+# giving main window size similiar to a phone screen
+Window.size= (320,510)
 
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
