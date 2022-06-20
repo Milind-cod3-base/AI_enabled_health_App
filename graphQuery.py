@@ -45,3 +45,8 @@ def monthly():
 
     # starting of time query
     lower_limit = datetime.datetime.now() - timedelta(days = -30)
+
+    # getting monthly range from the db
+    databaseManager.queryGraph(lower_limit, upper_limit)
+
+    
