@@ -183,7 +183,33 @@ def storeProfile(time, profile):
     conn.commit()
     conn.close()
 
+
+
+# this function is responsible to take upper and lower limit of time 
+# and give an ordered output between the range which could be called in
+# graphQuery module
+def queryGraph(lowerLimit, upperLimit):
     
+    conn = sqlite3.connect('movementProfile.db')
+
+    c = conn.cursor()
+
+    # getting time and profile column between certain time_stamp range
+    c.execute("SELECT time, profile FROM data WHERE time BETWEEN ? AND ?", (lowerLimit, upperLimit))
+
+
+    # items will give a list which contains timestamp and profile in the form of tuples
+    items = c.fetchall()
+    
+    c.commit()
+    c.close()
+
+    # returning here because it will end the function and connection to db can close before this
+    return items
+
+
+
+
 # CAUTION: clear table function, it will delete the mentioned table, use with caution
 def deleteTable(db):
 
