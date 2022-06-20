@@ -705,7 +705,73 @@ WindowManager:
             color: rgba(71,92,119,255)
 
 
-<MonthlyGraph> 
+<MonthlyGraph>:
+        name: 'monthlygraph'
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint:{"center_x":0.1,"center_y":0.97}
+        user_font_size: "30sp"
+        theme_text_color: "Custom"
+        text_color: rgba(71,92,119,255)
+        on_press:
+            root.manager.current = "settingM"
+            root.manager.transition.direction = 'right'
+    MDLabel:
+        text: "Activity Graphs"
+        theme_text_color: "Secondary"
+        font_size: "20sp"
+        pos_hint: {"center_x": 0.8, "center_y":0.97}
+        color: rgba(71,92,119,255)
+    ProfileCard:
+        orientation: "vertical"
+        padding: "10dp"
+        spacing: "5dp"
+        pos_hint: {"center_x":0.5,"center_y":0.88}
+        md_bg_color: 1,1,1,1
+        radius:(20,20,20,20)
+        size_hint: 0.9,0.10
+        elevation: 6
+        GridLayout:
+            cols: 3
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.50, "center_y": 0.50}
+            height: self.minimum_height
+            padding: "24dp"
+            spacing: "24dp"
+            MDRoundFlatButton:
+                text:"Day"
+                theme_text_color: "Custom"
+                radius: 30,30,30,30
+                on_press:
+                    root.manager.current = 'dailygraph'
+            MDRoundFlatButton:
+                text:"Week"
+                theme_text_color: "Custom"
+                radius: 30,30,30,30
+                on_press:
+                    root.manager.current = 'weeklygraph'
+            MDRoundFlatButton:
+                text:"Month"
+                theme_text_color: "Custom"
+                radius: 30,30,30,30
+                on_press:
+                    root.manager.current = 'monthlygraph'
+    ProfileCard:
+        orientation: "vertical"
+        padding: "10dp"
+        spacing: "5dp"
+        pos_hint: {"center_x":0.5,"center_y":0.45}
+        md_bg_color: 1,1,1,1
+        radius:(20,20,20,20)
+        size_hint: 0.9,0.6
+        elevation: 6
+        MDLabel:
+            text: "Week"
+            theme_text_color: "Secondary"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.9, "center_y":0.9}
+            color: rgba(71,92,119,255)
 
 
         
