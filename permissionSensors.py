@@ -1,11 +1,14 @@
 # module responsible for granting sensors and memory access to the app for android
-
-from kivy.utils import platform
+from plyer.facades.accelerometer import Accelerometer
 
 # function to grant access for accelerometer 
-def acceleroAccess():
-    pass
+def allowAccelero():
 
+    Accelerometer().enable()
+
+def denyAccelero():
+
+    Accelerometer.disable()
 
 # function to grant access for gyrometer
 def gyroAccess():
@@ -18,7 +21,8 @@ def memoryAccess():
 
 # function to grant access for bluetooth
 def bluetooth():
-    pass
+    if platform == 'android':
+        from android.permission import Permission
 
     
    
