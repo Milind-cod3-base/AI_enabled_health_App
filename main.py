@@ -288,7 +288,7 @@ class SettingProfile(Screen):
 class SettingNotif(Screen):
 
     def back(self):
-        sm.current = "settingM"
+        self.parent.current = "settingM"
 
 class Graph(Screen):
     
