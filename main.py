@@ -85,9 +85,10 @@ class LoginWindow(Screen): # login screen class inheriting screen class
 
                 if p == items[i][1]:      # checking if right password has been entered
 
+                    # using below code for transition instead of sm.current
                     self.parent.current = "mainW"
                     
-                    self.reset()
+                    #self.reset()
                     #sm.current = "mainW"
 
                 else:
@@ -130,9 +131,9 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         self.reset()  # clears everything
         self.parent.current = "create"
 
-    def reset(self): # resets the username and password section
-         self.username = ""  
-         self.password = ""
+    # def reset(self): # resets the username and password section
+    #      self.username = ""  
+    #      self.password = ""
         
 
 class CreateAccountWindow(Screen):
@@ -141,7 +142,7 @@ class CreateAccountWindow(Screen):
     confirm = ObjectProperty(None)
 
     def login(self):
-        self.reset() # clears all
+        #self.reset() # clears all
         self.parent.current = "login"
 
     def submit(self):
@@ -159,7 +160,7 @@ class CreateAccountWindow(Screen):
                 # using module to query and store the user data into database
                 databaseManager.addUser(u,p)
         
-                sm.current = "login"
+                self.parent.current = "login"
             
             else:
                 popup = Popup(
