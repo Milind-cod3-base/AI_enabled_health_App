@@ -12,6 +12,7 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.widget import Widget
 
+
 # transitioning from kivy to kivymd
 from kivymd.app import MDApp
 from kivymd.uix.behaviors import FakeRectangularElevationBehavior
@@ -39,7 +40,7 @@ import tempUser
 import databaseManager
 
 #importing GRU model
-import aiModel
+#import aiModel
 
 
 # giving main window size similiar to a phone screen
@@ -83,9 +84,11 @@ class LoginWindow(Screen): # login screen class inheriting screen class
             if u == items[i][0]:    # checking if username exists or not
 
                 if p == items[i][1]:      # checking if right password has been entered
+
+                    self.parent.current = "mainW"
                     
                     self.reset()
-                    sm.current = "mainW"
+                    #sm.current = "mainW"
 
                 else:
                         popup = Popup(
@@ -125,11 +128,11 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     
     def createBtn(self):
         self.reset()  # clears everything
-        sm.current = "create"
+        self.parent.current = "create"
 
     def reset(self): # resets the username and password section
-        self.username = ""  
-        self.password = ""
+         self.username = ""  
+         self.password = ""
         
 
 class CreateAccountWindow(Screen):
@@ -139,7 +142,7 @@ class CreateAccountWindow(Screen):
 
     def login(self):
         self.reset() # clears all
-        sm.current = "login"
+        self.parent.current = "login"
 
     def submit(self):
 
@@ -187,13 +190,15 @@ class MainWindow(Screen):
     def modelOn(self):
 
         # this will initiate the model which will start taking in the sensors data
-        aiModel.feedAI()
+        #aiModel.feedAI()
+        pass
         
 
     # this will check out off the model     
     def modelOff(self):
-        accelerometer.disable()
-        gyroscope.disable()
+        #accelerometer.disable()
+        #gyroscope.disable()
+        pass
     
     
     
@@ -212,7 +217,7 @@ class MainWindow(Screen):
         sm.current = "graph"
 
     def set(self):
-        sm.current = "settingM"
+        self.parent.current = "settingM"
 
 
 class SettingMain(Screen):
@@ -221,13 +226,13 @@ class SettingMain(Screen):
         sm.current = "settingN"
 
     def prof(self):
-        sm.current = "settingP"
+        self.parent.current = "settingP"
 
     def login(self):
-        sm.current = "login"
+        self.parent.current = "login"
 
     def back(self):
-        sm.current= "mainW"
+        self.parent.current= "mainW"
 
 
 class SettingProfile(Screen):
@@ -273,7 +278,7 @@ class SettingProfile(Screen):
            
     
     def back(self):
-        sm.current = "settingM"
+        self.parent.current = "settingM"
     
     
     
@@ -298,8 +303,8 @@ class UserCard(MDCard):
     pass
 
 # inheriting screenmanager class properties to manage multiple screens
-class WindowManager(ScreenManager): 
-    pass
+#class WindowManager(ScreenManager): 
+#   pass
 
 class MovementAnalysisCard(ProfileCard):
     pass
@@ -310,19 +315,19 @@ class MotivationTaskCard(ProfileCard):
 class SettingsCard(ProfileCard):
     pass
 
-class DailyGraph():
+class DailyGraph(Screen):
     pass
 
-class WeeklyGraph():
+class WeeklyGraph(Screen):
     pass
-class MonthlyGraph():
+class MonthlyGraph(Screen):
     pass
 
 
 
-kv = Builder.load_file("my.kv") # loading my.kv file
 
-sm = WindowManager() # instance of class
+
+sm = ScreenManager() # instance of class
 
 # putting screens in widget; standard procedure
 screens = [LoginWindow(name="login"),
@@ -340,6 +345,7 @@ for i in screens:
     sm.add_widget(i) 
 
 
+#kv = Builder.load_file("my.kv")
 sm.current = "login"  # default screen must be login
 
 
@@ -357,9 +363,14 @@ class MyMainApp(MDApp): # inheriting the properties of App class from kivy libra
     # initiating database to store the users movement profile
     databaseManager.createTableStoreProfile()
 
+  
+
     def build(self):
         self.theme_cls.theme_style = "Light"
-        return sm    # going to screenmanager
+        #return sm
+        return  Builder.load_file("my.kv") # loading my.kv file    # going to screenmanager
+    
+
 
 
 
