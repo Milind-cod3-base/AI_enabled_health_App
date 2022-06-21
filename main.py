@@ -224,7 +224,7 @@ class MainWindow(Screen):
 class SettingMain(Screen):
     
     def notif(self):
-        sm.current = "settingN"
+        self.parent.current = "settingN"
 
     def prof(self):
         self.parent.current = "settingP"
