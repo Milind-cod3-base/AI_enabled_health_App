@@ -293,7 +293,7 @@ class SettingNotif(Screen):
 class Graph(Screen):
     
     def back(self):
-        sm.current="mainW"
+        self.parent.current="mainW"
 
 
 # inherting mdfflatlatlayout and fakerect class
