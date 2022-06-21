@@ -215,7 +215,7 @@ class MainWindow(Screen):
         pass
     
     def scale(self):
-        sm.current = "graph"
+        sm.parent.current = "graph"
 
     def set(self):
         self.parent.current = "settingM"
