@@ -1,7 +1,6 @@
 
-WindowManager:
+ScreenManager:
 # window manager handles the below screens
-    
     LoginWindow:
     CreateAccountWindow:
     MainWindow:
@@ -70,15 +69,21 @@ WindowManager:
             font_size: 15
             
             on_release: 
-                root.manager.transition.direction = "up"  # here root is login window
                 root.loginBtn()
+                root.manager.transition.direction = "up"  # here root is login window
+                
+                
+
+
 
         MDRoundFlatButton:
             text: "Sign up"
             pos_hint: {"center_x":.5}
             font_size: 15
             on_release:
+                root.createBtn()
                 root.manager.transition.direction = "right"
+                
                 root.createBtn()
 
         Widget:
@@ -173,7 +178,7 @@ WindowManager:
         md_bg_color: rgba(246,250,255,255)
         
         MDIconButton:
-            icon: "cog"
+            icon: "android"
             pos_hint:{"center_x":0.90,"center_y":0.97}
             user_font_size: "30sp"
             theme_text_color: "Custom"
@@ -216,25 +221,25 @@ WindowManager:
                 padding: "4dp"
                 spacing: "5dp"
                 MDSwitch:
-                    #id: Checkin
-                    on_release: 
-                        root.modelOn()
+                    id: Checkin
+                    # on_release: 
+                    #     root.modelOn()
 
                 MDLabel:
                     text: "Check-in"
                     font_size: "12dp"
 
                 MDSwitch:
-                    #id: Checkout
-                    on_release:
-                        root.modelOff()              
+                    id: Checkout
+                    # on_release:
+                    #     root.modelOff()              
                 MDLabel:
                     text: "Check-out"
                     font_size: "12dp"
                 MDSwitch:
                     id: Notifications
-                    on_release:
-                        root.pauseNotif()
+                    # on_release:
+                    #     root.pauseNotif()
 
                 MDLabel:
                     text: "Pause Notifications"
@@ -428,8 +433,9 @@ WindowManager:
         theme_text_color: "Custom"
         text_color: rgba(71,92,119,255)
         on_press:
-            root.manager.transition.direction = "right"
             root.back()
+            root.manager.transition.direction = "right"
+            
     MDLabel:
         text: "Profile"
         theme_text_color: "Secondary"
@@ -706,7 +712,8 @@ WindowManager:
 
 
 <MonthlyGraph>:
-        name: 'monthlygraph'
+    name: 'monthlygraph'
+    
     MDIconButton:
         icon: "arrow-left"
         pos_hint:{"center_x":0.1,"center_y":0.97}
