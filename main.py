@@ -332,7 +332,7 @@ class ProfileScroller(ScrollView):
 class SystemPermission(Screen):
     pass
 
-class EditProfile(Screen):
+class UserData(Screen):
     pass
 
 
@@ -351,7 +351,7 @@ screens = [LoginWindow(name="login"),
             WeeklyGraph(name="weeklygraph"),
             MonthlyGraph(name = "monthlygraph"),
             SystemPermission(name= "systempermission"),
-            EditProfile(name = "editprofile")]
+            UserData(name = "editprofile")]
 
 for i in screens:
     sm.add_widget(i) 
