@@ -367,8 +367,8 @@ ScreenManager:
                     pos_hint: {"center_x": 0.5, "center_y": 0.5}
                     radius: 150,150,150,150
                     on_press:
-                        root.manager.current = 'setting'
-                        root.manager.transition.direction = 'left'
+                        root.manager.transition.direction = "left"
+                        root.set()  # method for going to setting window'
 
 
 
