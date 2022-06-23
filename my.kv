@@ -178,7 +178,7 @@ ScreenManager:
 <MainWindow>:
     name: "mainW"
 
-    Scrollview:
+    ScrollView:
         do_scroll_x: True
         do_scroll_y: True
 
@@ -257,118 +257,118 @@ ScreenManager:
                     MDLabel:
                         text: "Pause Notifications"
                         font_size: "12dp"
-        MotivationTaskCard:
-            orientation: "vertical"
-            padding: "10dp"
-            spacing: "5dp"
-            pos_hint: {"center_x":0.5,"center_y":0.35}
-            md_bg_color: 1,1,1,1
-            radius:(20,20,20,20)
-            size_hint: 0.9,0.55
-            elevation: 6
-            MDLabel:
-                text: "Motivation Tasks"
-                theme_text_color: "Secondary"
-                font_size: "20sp"
-                pos_hint: {"center_x": 0.56, "center_y":0.92}
-                color: rgba(71,92,119,255)
-            MDSeparator:
-                pos_hint: {"center_x": 0.46, "center_y":0.85}
-                color: rgba(71,92,119,255)
-                pos: self.pos
-                size_hint:0.82,0.01
-            GridLayout:
-                cols: 2
-                orientation: "tb-lr"
-                size_hint_y: None
-                pos_hint: {"center_x": 0.49, "center_y": 0.75}
-                height: self.minimum_height
-                padding: "4dp"
+            MotivationTaskCard:
+                orientation: "vertical"
+                padding: "10dp"
                 spacing: "5dp"
-                MDCheckbox:
-                    size_hint: None, None
-                    size: "50dp", "50dp"
-                MDLabel:
-                    text: "This could be a motivation task. But be carefull"
-                    font_size: "15dp"
-                    size: self.texture_size
-            GridLayout:
-                cols: 2
-                orientation: "tb-lr"
-                size_hint_y: None
-                pos_hint: {"center_x": 0.49, "center_y": 0.60}
-                height: self.minimum_height
-                padding: "4dp"
-                spacing: "5dp"
-                MDCheckbox:
-                    size_hint: None, None
-                    size: "50dp", "50dp"
+                pos_hint: {"center_x":0.5,"center_y":0.35}
+                md_bg_color: 1,1,1,1
+                radius:(20,20,20,20)
+                size_hint: 0.9,0.55
+                elevation: 6
                 MDLabel:
                     text: "Motivation Tasks"
-                    font_size: "14dp"
-            GridLayout:
-                cols: 2
-                orientation: "tb-lr"
-                size_hint_y: None
-                pos_hint: {"center_x": 0.49, "center_y": 0.46}
-                height: self.minimum_height
-                padding: "4dp"
-                spacing: "5dp"
-                MDCheckbox:
-                    size_hint: None, None
-                    size: "50dp", "50dp"
-                MDLabel:
-                    text: "Motivation Tasks"
-                    font_size: "14dp"
-            GridLayout:
-                cols: 2
-                orientation: "tb-lr"
-                size_hint_y: None
-                pos_hint: {"center_x": 0.49, "center_y": 0.32}
-                height: self.minimum_height
-                padding: "4dp"
-                spacing: "5dp"
-                MDCheckbox:
-                    size_hint: None, None
-                    size: "50dp", "50dp"
-                MDLabel:
-                    text: "Motivation Tasks"
-                    font_size: "14dp"
-            MDRoundFlatButton:
-                text:"Remind Me"
-                theme_text_color: "Custom"
-                pos_hint: {"center_x": 0.5, "center_y": 0.22}
-                on_release:
-                    root.remindMe()
-
-            GridLayout:
-                cols: 2
-                orientation: "tb-lr"
-                size_hint_y: None
-                pos_hint: {"center_x": 0.54, "center_y": 0.10}
-                height: self.minimum_height
-                padding: "2dp"
-                spacing: "50dp"
-
-            
-            
-            
+                    theme_text_color: "Secondary"
+                    font_size: "20sp"
+                    pos_hint: {"center_x": 0.56, "center_y":0.92}
+                    color: rgba(71,92,119,255)
+                MDSeparator:
+                    pos_hint: {"center_x": 0.46, "center_y":0.85}
+                    color: rgba(71,92,119,255)
+                    pos: self.pos
+                    size_hint:0.82,0.01
+                GridLayout:
+                    cols: 2
+                    orientation: "tb-lr"
+                    size_hint_y: None
+                    pos_hint: {"center_x": 0.49, "center_y": 0.75}
+                    height: self.minimum_height
+                    padding: "4dp"
+                    spacing: "5dp"
+                    MDCheckbox:
+                        size_hint: None, None
+                        size: "50dp", "50dp"
+                    MDLabel:
+                        text: "This could be a motivation task. But be carefull"
+                        font_size: "15dp"
+                        size: self.texture_size
+                GridLayout:
+                    cols: 2
+                    orientation: "tb-lr"
+                    size_hint_y: None
+                    pos_hint: {"center_x": 0.49, "center_y": 0.60}
+                    height: self.minimum_height
+                    padding: "4dp"
+                    spacing: "5dp"
+                    MDCheckbox:
+                        size_hint: None, None
+                        size: "50dp", "50dp"
+                    MDLabel:
+                        text: "Motivation Tasks"
+                        font_size: "14dp"
+                GridLayout:
+                    cols: 2
+                    orientation: "tb-lr"
+                    size_hint_y: None
+                    pos_hint: {"center_x": 0.49, "center_y": 0.46}
+                    height: self.minimum_height
+                    padding: "4dp"
+                    spacing: "5dp"
+                    MDCheckbox:
+                        size_hint: None, None
+                        size: "50dp", "50dp"
+                    MDLabel:
+                        text: "Motivation Tasks"
+                        font_size: "14dp"
+                GridLayout:
+                    cols: 2
+                    orientation: "tb-lr"
+                    size_hint_y: None
+                    pos_hint: {"center_x": 0.49, "center_y": 0.32}
+                    height: self.minimum_height
+                    padding: "4dp"
+                    spacing: "5dp"
+                    MDCheckbox:
+                        size_hint: None, None
+                        size: "50dp", "50dp"
+                    MDLabel:
+                        text: "Motivation Tasks"
+                        font_size: "14dp"
                 MDRoundFlatButton:
-                    text:"Activity Graphs"
+                    text:"Remind Me"
                     theme_text_color: "Custom"
-                    pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                    pos_hint: {"center_x": 0.5, "center_y": 0.22}
                     on_release:
-                        root.manager.transition.direction = "left"
-                        root.scale()  # method for going to graph window
+                        root.remindMe()
 
-                MDRoundFlatButton:
-                    text:"Settings"
-                    theme_text_color: "Custom"
-                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                    radius: 150,150,150,150
-                    on_press:
-                        root.manager.transition.direction = "left"
-                        root.set()  # method for going to setting window'
+                GridLayout:
+                    cols: 2
+                    orientation: "tb-lr"
+                    size_hint_y: None
+                    pos_hint: {"center_x": 0.54, "center_y": 0.10}
+                    height: self.minimum_height
+                    padding: "2dp"
+                    spacing: "50dp"
+
+                
+                
+                
+                    MDRoundFlatButton:
+                        text:"Activity Graphs"
+                        theme_text_color: "Custom"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                        on_release:
+                            root.manager.transition.direction = "left"
+                            root.scale()  # method for going to graph window
+
+                    MDRoundFlatButton:
+                        text:"Settings"
+                        theme_text_color: "Custom"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        radius: 150,150,150,150
+                        on_press:
+                            root.manager.transition.direction = "left"
+                            root.set()  # method for going to setting window'
 
 
 
