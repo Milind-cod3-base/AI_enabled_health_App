@@ -325,6 +325,15 @@ class MonthlyGraph(Screen):
     pass
 
 
+# setting new classes here for new windows
+class ProfileScroller(ScrollView):
+    pass 
+
+class SystemPermission(Screen):
+    pass
+
+class EditProfile(Screen):
+    pass
 
 
 
@@ -340,7 +349,9 @@ screens = [LoginWindow(name="login"),
             Graph(name="graph"),
             DailyGraph(name="dailygraph"),
             WeeklyGraph(name="weeklygraph"),
-            MonthlyGraph(name = "monthlygraph")]
+            MonthlyGraph(name = "monthlygraph"),
+            SystemPermission(name= "systempermission"),
+            EditProfile(name = "editprofile")]
 
 for i in screens:
     sm.add_widget(i) 
