@@ -351,7 +351,7 @@ screens = [LoginWindow(name="login"),
             WeeklyGraph(name="weeklygraph"),
             MonthlyGraph(name = "monthlygraph"),
             SystemPermission(name= "systempermission"),
-            UserData(name = "editprofile")]
+            UserData(name = "userdata")]
 
 for i in screens:
     sm.add_widget(i) 
