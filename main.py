@@ -44,7 +44,7 @@ import databaseManager
 
 
 # giving main window size similiar to a phone screen
-Window.size= (320,510)
+Window.size= (320,500)
 
 class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
@@ -128,7 +128,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     
     
     def createBtn(self):
-        self.reset()  # clears everything
+        #self.reset()  # clears everything
         self.parent.current = "create"
 
     # def reset(self): # resets the username and password section
@@ -215,7 +215,7 @@ class MainWindow(Screen):
         pass
     
     def scale(self):
-        sm.parent.current = "graph"
+        self.parent.current = "graph"
 
     def set(self):
         self.parent.current = "settingM"
@@ -347,7 +347,7 @@ for i in screens:
 
 
 #kv = Builder.load_file("my.kv")
-sm.current = "login"  # default screen must be login
+#sm.current = "login"  # default screen must be login
 
 
 class MyMainApp(MDApp): # inheriting the properties of App class from kivy library
