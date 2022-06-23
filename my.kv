@@ -390,11 +390,12 @@ ScreenManager:
         font_size: "20sp"
         pos_hint: {"center_x": 0.90, "center_y":0.97}
         color: rgba(71,92,119,255)
+    
     MDRoundFlatButton:
-        text:"Profile Settings"
+        text:"Edit Profile"
         theme_text_color: "Custom"
         radius: 30,30,30,30
-        pos_hint: {"center_x": 0.50, "center_y": 0.50}
+        pos_hint: {"center_x": 0.50, "center_y": 0.70}
         on_press:
             root.manager.transition.direction = "left"
             root.prof()  # going to profile setting window
@@ -403,17 +404,38 @@ ScreenManager:
         text:"Notification Settings"
         theme_text_color: "Custom"
         radius: 30,30,30,30
-        pos_hint: {"center_x": 0.50, "center_y": 0.40}
+        pos_hint: {"center_x": 0.50, "center_y": 0.60}
         on_press:
             root.manager.transition.direction = "left"
             root.notif()  # going to notification setting window
 
     
+    
+    MDRoundFlatButton:
+        text: "User Data"
+        font_size: 14
+        pos_hint: {"center_x":.5,"center_y": 0.50}
+        theme_text_color: "Custom"
+        on_press:
+            root.manager.current = 'userdata'
+            root.manager.transition.direction = 'left'
+
+
+
+    MDRoundFlatButton:
+        text: "Sytem Permission"
+        theme_text_color: "Custom"
+        radius: 30,30,30,30
+        pos_hint: {"center_x": 0.50, "center_y": 0.40}
+        on_press:
+            root.manager.current = 'systempermission'
+    
     MDRoundFlatButton:
         text:"Logout"
         theme_text_color: "Custom"
-        radius: 30,30,30,30
-        pos_hint: {"center_x": 0.50, "center_y": 0.25}
+        #radius: 30,30,30,30
+        pos_hint: {"center_x": 0.50, "center_y": 0.30}
+        font_size: 14
         on_press:
             root.manager.transition.direction = "right"
             root.login()  # going to profile setting window
