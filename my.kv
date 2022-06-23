@@ -190,21 +190,21 @@ ScreenManager:
             cols: 3
         
             
-            MDIconButton:
-                icon: "android"
-                pos_hint:{"center_x":0.90,"center_y":0.97}
-                user_font_size: "30sp"
-                theme_text_color: "Custom"
-                text_color: rgba(71,92,119,255)
-                on_press:
-                    root.manager.transition.direction = "left"
-                    root.set()  # method for going to setting window
+            # MDIconButton:
+            #     icon: "android"
+            #     pos_hint:{"center_x":0.90,"center_y":0.97}
+            #     user_font_size: "30sp"
+            #     theme_text_color: "Custom"
+            #     text_color: rgba(71,92,119,255)
+            #     on_press:
+            #         root.manager.transition.direction = "left"
+            #         root.set()  # method for going to setting window
 
             MovementAnalysisCard:
                 orientation: "vertical"
                 padding: "10dp"
                 spacing: "5dp"
-                pos_hint: {"center_x":0.5,"center_y":0.78}
+                pos_hint: {"center_x":0.5,"center_y":0.8}
                 md_bg_color: 1,1,1,1
                 radius:(20,20,20,20)
                 size_hint: 0.9,0.3
@@ -213,42 +213,42 @@ ScreenManager:
                     text: "Movement Analysis"
                     theme_text_color: "Secondary"
                     font_size: "20sp"
-                    pos_hint: {"center_x": 0.56, "center_y":0.82}
+                    pos_hint: {"center_x": 0.56, "center_y":0.88}
                     color: rgba(71,92,119,255)
                 MDSeparator:
-                    pos_hint: {"center_x": 0.46, "center_y":0.74}
+                    pos_hint: {"center_x": 0.46, "center_y":0.78}
                     color: rgba(71,92,119,255)
                     pos: self.pos
                     size_hint:0.82,0.01
                 MDLabel:
                     text: "sitting"
                     font_size: "20sp"
-                    pos_hint: {"center_x": 0.56, "center_y":0.65}
+                    pos_hint: {"center_x": 0.56, "center_y":0.67}
                     color: rgba(71,92,119,255)
                 GridLayout:
-                    cols: 3
+                    cols: 2
                     orientation: "tb-lr"
                     size_hint_y: None
-                    pos_hint: {"center_x": 0.56, "center_y": 0.38}
+                    pos_hint: {"center_x": 0.56, "center_y": 0.40}
                     height: self.minimum_height
                     padding: "4dp"
                     spacing: "5dp"
                     MDSwitch:
-                        id: Checkin
+                        id: Check-In/Check-Out
                         # on_release: 
                         #     root.modelOn()
 
                     MDLabel:
-                        text: "Check-in"
+                        text: "Check-in / Check Out"
                         font_size: "12dp"
 
-                    MDSwitch:
-                        id: Checkout
-                        # on_release:
-                        #     root.modelOff()              
-                    MDLabel:
-                        text: "Check-out"
-                        font_size: "12dp"
+                    # MDSwitch:
+                    #     id: Checkout
+                    #     # on_release:
+                    #     #     root.modelOff()              
+                    # MDLabel:
+                    #     text: "Check-out"
+                    #     font_size: "12dp"
                     MDSwitch:
                         id: Notifications
                         # on_release:
@@ -261,19 +261,19 @@ ScreenManager:
             orientation: "vertical"
             padding: "10dp"
             spacing: "5dp"
-            pos_hint: {"center_x":0.5,"center_y":0.42}
+            pos_hint: {"center_x":0.5,"center_y":0.35}
             md_bg_color: 1,1,1,1
             radius:(20,20,20,20)
-            size_hint: 0.9,0.40
+            size_hint: 0.9,0.55
             elevation: 6
             MDLabel:
                 text: "Motivation Tasks"
                 theme_text_color: "Secondary"
                 font_size: "20sp"
-                pos_hint: {"center_x": 0.56, "center_y":0.88}
+                pos_hint: {"center_x": 0.56, "center_y":0.92}
                 color: rgba(71,92,119,255)
             MDSeparator:
-                pos_hint: {"center_x": 0.46, "center_y":0.81}
+                pos_hint: {"center_x": 0.46, "center_y":0.85}
                 color: rgba(71,92,119,255)
                 pos: self.pos
                 size_hint:0.82,0.01
@@ -281,7 +281,7 @@ ScreenManager:
                 cols: 2
                 orientation: "tb-lr"
                 size_hint_y: None
-                pos_hint: {"center_x": 0.49, "center_y": 0.74}
+                pos_hint: {"center_x": 0.49, "center_y": 0.75}
                 height: self.minimum_height
                 padding: "4dp"
                 spacing: "5dp"
@@ -289,8 +289,9 @@ ScreenManager:
                     size_hint: None, None
                     size: "50dp", "50dp"
                 MDLabel:
-                    text: "Motivation Tasks"
-                    font_size: "14dp"
+                    text: "This could be a motivation task. But be carefull"
+                    font_size: "15dp"
+                    size: self.texture_size
             GridLayout:
                 cols: 2
                 orientation: "tb-lr"
@@ -336,18 +337,41 @@ ScreenManager:
             MDRoundFlatButton:
                 text:"Remind Me"
                 theme_text_color: "Custom"
-                pos_hint: {"center_x": 0.5, "center_y": 0.14}
+                pos_hint: {"center_x": 0.5, "center_y": 0.22}
                 on_release:
                     root.remindMe()
 
-        MDRoundFlatButton:
-            text:"Activity Graphs"
-            theme_text_color: "Custom"
-            pos_hint: {"center_x": 0.5, "center_y": 0.15}
-            on_release:
-                root.manager.transition.direction = "left"
-                root.scale()  # method for going to graph window
-        
+            GridLayout:
+                cols: 2
+                orientation: "tb-lr"
+                size_hint_y: None
+                pos_hint: {"center_x": 0.54, "center_y": 0.10}
+                height: self.minimum_height
+                padding: "2dp"
+                spacing: "50dp"
+
+            
+            
+            
+                MDRoundFlatButton:
+                    text:"Activity Graphs"
+                    theme_text_color: "Custom"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        root.scale()  # method for going to graph window
+
+                MDRoundFlatButton:
+                    text:"Settings"
+                    theme_text_color: "Custom"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    radius: 150,150,150,150
+                    on_press:
+                        root.manager.current = 'setting'
+                        root.manager.transition.direction = 'left'
+
+
+
 <SettingMain>:
     name: "settingM"
 
