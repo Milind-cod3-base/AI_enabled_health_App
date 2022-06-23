@@ -226,3 +226,36 @@ def deleteTable(db):
     conn.close()
 
 
+# a function to display the userdata in the user data screen
+def displayData():
+    key = encryptDatabase.loadKey() # loading the key 
+    encryptDatabase.decrypt("users.db",key)  # decrypting using key
+
+    conne = sqlite3.connect('users.db')
+
+    cur = conne.cursor()
+
+    cur.execute("""  SELECT name, 
+                            age, 
+                            weight, 
+                            height,
+                            job,
+                            gender
+                            FROM data
+                            WHERE username=? """,[tempUser.readName()])    
+                            # validating user by the login username and only updating its details
+                            
+    
+    items = cur.fetchall()
+
+    for i in items:
+        print(i)
+    
+    conne.commit()
+    conne.close()
+
+    
+    encryptDatabase.encrypt("users.db",key)  # encrypting using key
+
+
+displayData()
