@@ -46,7 +46,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     username= ObjectProperty(None)
     password = ObjectProperty(None)
 
-    
+  
     
     
     def loginBtn(self):
@@ -184,6 +184,26 @@ class CreateAccountWindow(Screen):
 
 class MainWindow(Screen):
     
+    mot1 = ObjectProperty(None)
+    mot2 = ObjectProperty(None)
+    mot3 = ObjectProperty(None)
+    mot4 = ObjectProperty(None)
+
+    def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
+        if self.mot1.active:
+            push_notification.pushNotif("what")
+        
+        elif self.mot2.active:
+            push_notification.pushNotif("why")
+
+        elif self.mot3.active:
+            push_notification.pushNotif("when")
+
+        elif self.mot4.active:
+            push_notification.pushNotif("we")
+    
+    
+    
     def modelOn(self):
 
         # this will initiate the model which will start taking in the sensors data
@@ -207,8 +227,6 @@ class MainWindow(Screen):
         taskManager.taskNotif("Here must be the selected task from the UI")
 
 
-    def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
-        pass
     
     def scale(self):
         self.parent.current = "graph"
@@ -231,6 +249,8 @@ class SettingMain(Screen):
     def back(self):
         self.parent.current= "mainW"
 
+    # def refreshData(self):
+    #     databaseManager.displayData
 
 class SettingProfile(Screen):
     
