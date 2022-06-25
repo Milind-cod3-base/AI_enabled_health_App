@@ -885,13 +885,17 @@ ScreenManager:
                 text: "Accelerometer:"
                 font_size: "15dp"
                 size: self.texture_size
+
             MDCheckbox:
                 size_hint: None, None
                 size: "50dp", "50dp"
+                on_active: root.allowAccelerometer()
+
             MDLabel:
                 text: "Allow"
                 font_size: "12dp"
                 size: self.texture_size
+
         GridLayout:
             cols: 5
             orientation: "tb-lr"
@@ -905,9 +909,12 @@ ScreenManager:
                 text: "Gyrometer:"
                 font_size: "15dp"
                 size: self.texture_size
+
             MDCheckbox:
                 size_hint: None, None
                 size: "50dp", "50dp"
+                on_active: root.allowGyrometer()
+
             MDLabel:
                 text: "Allow"
                 font_size: "12dp"
@@ -926,9 +933,12 @@ ScreenManager:
                 text: "Memory Access:"
                 font_size: "15dp"
                 size: self.texture_size
+                
             MDCheckbox:
                 size_hint: None, None
                 size: "50dp", "50dp"
+                on_active: root.allowStorage()
+
             MDLabel:
                 text: "Allow"
                 font_size: "12dp"
