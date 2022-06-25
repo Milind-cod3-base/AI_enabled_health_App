@@ -11,6 +11,7 @@ from plyer import gyroscope
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.widget import Widget
+from kivy.properties import StringProperty
 
 
 # transitioning from kivy to kivymd
@@ -327,19 +328,30 @@ class ProfileScroller(ScrollView):
 # classes reperesenting systemPermission
 class SystemPermission(Screen):
 
-    def allowAccelerometer():
+    def allowAccelerometer(self):
         permissionSensors.allowAccelero
 
-    def allowGyrometer():
+    def allowGyrometer(self):
         permissionSensors.allowGyro
 
-    def allowStorage():
+    def allowStorage(self):
         permissionSensors.memoryAccess
 
    
-
+# classes user data class 
 class UserData(Screen):
-    pass
+    
+    # using stringProperty to get the text into the label
+    n = StringProperty(databaseManager.userName)  
+    age = StringProperty(databaseManager.userAge)
+    gender = StringProperty(databaseManager.userGender)
+    weight = StringProperty(databaseManager.userWeight)
+    
+    # name of the below variables have been changed as height and position are
+    # prexisting variables in the kivy file.
+    hei= StringProperty(databaseManager.userHeight)
+    po = StringProperty(databaseManager.userPosition)
+    
 
 
 
