@@ -26,18 +26,12 @@ from kivy.uix.scrollview import ScrollView
 
 import datetime
 
-# importing self made encrypting module
+# importing self made  module
 import encryptDatabase
-
-
-# importing self made task manager module
 import taskManager
-
-# importing self made temp User module
 import tempUser
-
-# importing module for querying
 import databaseManager
+import permissionSensors
 
 #importing GRU model
 #import aiModel
@@ -329,8 +323,20 @@ class MonthlyGraph(Screen):
 class ProfileScroller(ScrollView):
     pass 
 
+
+# classes reperesenting systemPermission
 class SystemPermission(Screen):
-    pass
+
+    def allowAccelerometer():
+        permissionSensors.allowAccelero
+
+    def allowGyrometer():
+        permissionSensors.allowGyro
+
+    def allowStorage():
+        permissionSensors.memoryAccess
+
+   
 
 class UserData(Screen):
     pass
