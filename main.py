@@ -33,6 +33,7 @@ import taskManager
 import tempUser
 import databaseManager
 import permissionSensors
+import push_notification
 
 #importing GRU model
 #import aiModel
@@ -340,18 +341,30 @@ class SystemPermission(Screen):
    
 # classes user data class 
 class UserData(Screen):
+
+    if databaseManager.userGender != None:
     
-    # using stringProperty to get the text into the label
-    n = StringProperty(databaseManager.userName)  
-    age = StringProperty(databaseManager.userAge)
-    gender = StringProperty(databaseManager.userGender)
-    weight = StringProperty(databaseManager.userWeight)
+        # using stringProperty to get the text into the label
+        n = StringProperty(databaseManager.userName)  
+        age = StringProperty(databaseManager.userAge)
+        gender = StringProperty(databaseManager.userGender)
+        weight = StringProperty(databaseManager.userWeight)
+        
+        # name of the below variables have been changed as height and position are
+        # prexisting variables in the kivy file.
+        hei= StringProperty(databaseManager.userHeight)
+        po = StringProperty(databaseManager.userPosition)
     
-    # name of the below variables have been changed as height and position are
-    # prexisting variables in the kivy file.
-    hei= StringProperty(databaseManager.userHeight)
-    po = StringProperty(databaseManager.userPosition)
+    else:
+        n = StringProperty("empty")
+        age = StringProperty("empty")
+        gender = StringProperty("empty")
+        weight = StringProperty("empty")
+        hei= StringProperty("empty")
+        po = StringProperty("empty")
     
+
+        
 
 
 
