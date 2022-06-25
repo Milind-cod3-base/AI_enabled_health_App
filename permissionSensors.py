@@ -31,6 +31,8 @@ def denyGyro():
 def memoryAccess():
 
      if platform == "android":
+        # importing python for android library
+        # from that importing Permission classes
         from android.permissions import request_permissions, Permission
         
         request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
