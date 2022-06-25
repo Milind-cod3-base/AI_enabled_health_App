@@ -177,6 +177,10 @@ ScreenManager:
 
 <MainWindow>:
     name: "mainW"
+    mot1: "mot1"
+    mot2: "mot2"
+    mot3: "mot3"
+    mot4: "mot4"
 
     ScrollView:
         do_scroll_x: True
@@ -285,13 +289,18 @@ ScreenManager:
                     height: self.minimum_height
                     padding: "4dp"
                     spacing: "5dp"
+
                     MDCheckbox:
+                        group: "check"
+                        id: mot1
                         size_hint: None, None
                         size: "50dp", "50dp"
+                        
                     MDLabel:
                         text: "This could be a motivation task. But be carefull"
                         font_size: "15dp"
                         size: self.texture_size
+                
                 GridLayout:
                     cols: 2
                     orientation: "tb-lr"
@@ -301,11 +310,14 @@ ScreenManager:
                     padding: "4dp"
                     spacing: "5dp"
                     MDCheckbox:
+                        group: "check"
+                        id: mot2
                         size_hint: None, None
                         size: "50dp", "50dp"
                     MDLabel:
                         text: "Motivation Tasks"
                         font_size: "14dp"
+                
                 GridLayout:
                     cols: 2
                     orientation: "tb-lr"
@@ -315,11 +327,14 @@ ScreenManager:
                     padding: "4dp"
                     spacing: "5dp"
                     MDCheckbox:
+                        group: "check"
+                        id: mot3
                         size_hint: None, None
                         size: "50dp", "50dp"
                     MDLabel:
                         text: "Motivation Tasks"
                         font_size: "14dp"
+                
                 GridLayout:
                     cols: 2
                     orientation: "tb-lr"
@@ -329,11 +344,14 @@ ScreenManager:
                     padding: "4dp"
                     spacing: "5dp"
                     MDCheckbox:
+                        group: "check"
+                        id: mot4
                         size_hint: None, None
                         size: "50dp", "50dp"
                     MDLabel:
                         text: "Motivation Tasks"
                         font_size: "14dp"
+
                 MDRoundFlatButton:
                     text:"Remind Me"
                     theme_text_color: "Custom"
@@ -419,6 +437,7 @@ ScreenManager:
         on_press:
             root.manager.current = 'userdata'
             root.manager.transition.direction = 'left'
+            # root.refreshData()
 
 
 
