@@ -882,7 +882,7 @@ ScreenManager:
             spacing: "1dp"
 
             MDLabel:
-                text: "Motion Sensor"
+                text: "Accelerometer:"
                 font_size: "15dp"
                 size: self.texture_size
             MDCheckbox:
@@ -902,7 +902,7 @@ ScreenManager:
             spacing: "1dp"
 
             MDLabel:
-                text: "Bluetooth Access:"
+                text: "Gyrometer:"
                 font_size: "15dp"
                 size: self.texture_size
             MDCheckbox:
@@ -924,6 +924,28 @@ ScreenManager:
 
             MDLabel:
                 text: "Memory Access:"
+                font_size: "15dp"
+                size: self.texture_size
+            MDCheckbox:
+                size_hint: None, None
+                size: "50dp", "50dp"
+            MDLabel:
+                text: "Allow"
+                font_size: "12dp"
+                size: self.texture_size
+
+
+        GridLayout:
+            cols: 5
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.49, "center_y": 0.63}
+            height: self.minimum_height
+            padding: "1dp"
+            spacing: "1dp"
+
+            MDLabel:
+                text: "Bluetooth Access:"
                 font_size: "15dp"
                 size: self.texture_size
             MDCheckbox:
