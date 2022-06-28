@@ -293,7 +293,23 @@ class SettingProfile(Screen):
 
         elif self.programmer.active:
             j= "programmer"
-            
+
+        
+        if self.age1.active:
+            a= "21-30"
+
+        elif self.age2.active:
+            a = "31-40"
+
+        elif self.age3.active:
+            a = "41-50"
+
+        elif self.age4.active:
+            a = "51+"
+
+
+        
+        
         
 
         
