@@ -313,26 +313,26 @@ class SettingProfile(Screen):
         if self.male.active:
             g = "male"
 
-        elif self.female.acive:
+        elif self.female.active:
             g = "female"
 
 
         
         
 
-        if n and a and w and h and j and g  is not None:
-            databaseManager.addProfile(n,a,w,h,j,g)
+        #if n and a and w and h and j and g  is not None:
+        databaseManager.addProfile(n,a,w,h,j,g)
 
             
                     
-        else:
-            popup = Popup(
-            title='Invalid Credentials',
-            content=Label(text='One or more fields have been left blank.\n\nPlease fill them before pressing Submit'),
-            size_hint = (0.5,0.5)
-            )
+        # else:
+        #     popup = Popup(
+        #     title='Invalid Credentials',
+        #     content=Label(text='One or more fields have been left blank.\n\nPlease fill them before pressing Submit'),
+        #     size_hint = (0.5,0.5)
+        #     )
 
-            popup.open()
+        #     popup.open()
 
 
 
