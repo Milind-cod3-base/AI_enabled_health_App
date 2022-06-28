@@ -294,7 +294,8 @@ class SettingProfile(Screen):
         elif self.programmer.active:
             j= "programmer"
 
-        
+       
+        # extracting values from the checkboxes for age
         if self.age1.active:
             a= "21-30"
 
@@ -307,13 +308,17 @@ class SettingProfile(Screen):
         elif self.age4.active:
             a = "51+"
 
+        
+        # extracting values from the checkboxes for gender
+        if self.male.active:
+            g = "male"
+
+        elif self.female.acive:
+            g = "female"
+
 
         
         
-        
-
-        
-
 
         if n and a and w and h and j and g  is not None:
             databaseManager.addProfile(n,a,w,h,j,g)
