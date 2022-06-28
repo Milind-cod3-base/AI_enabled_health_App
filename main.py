@@ -26,6 +26,7 @@ from kivy.uix.scrollview import ScrollView
 
 
 import datetime
+import matplotlib.pyplot as plt
 
 # importing self made  module
 import encryptDatabase
@@ -201,9 +202,8 @@ class MainWindow(Screen):
 
         elif self.mot4.active:
             push_notification.pushNotif("we")
-    
-    
-    
+            
+
     def modelOn(self):
 
         # this will initiate the model which will start taking in the sensors data
@@ -249,6 +249,14 @@ class SettingMain(Screen):
     def back(self):
         self.parent.current= "mainW"
 
+    
+    # job of this function will not only to change the screen
+    # but also to the refresh the userdata screen with the new
+    # logged in user
+    def disData(self): 
+    
+        self.parent.current = "userdata"
+
     # def refreshData(self):
     #     databaseManager.displayData
 
@@ -268,11 +276,26 @@ class SettingProfile(Screen):
 
 
         n = self.ids["n"].text
-        a = self.ids["age"].text
+        
         w = self.ids["weight"].text
         h = self.ids["heigh"].text
-        j = self.ids["job"].text
-        g = self.ids["gender"].text
+
+        # j = self.ids["job"].text
+        # g = self.ids["gender"].text
+        # a = self.ids["age"].text
+
+        # extracting values from the checkboxes for job
+        if self.exec.active:
+            j= "executive"
+        
+        elif self.manage.active:
+            j= "manager"
+
+        elif self.programmer.active:
+            j= "programmer"
+            
+        
+
         
 
 
@@ -333,7 +356,20 @@ class SettingsCard(ProfileCard):
     pass
 
 class DailyGraph(Screen):
-    pass
+    
+    def matplt(self):
+    
+        # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+        labels = 'Frogs', 'Hogs', 'Dogs'
+        sizes = [15, 30, 45]
+        explode = (0, 0.1, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
+        fig1, ax1 = plt.subplots()
+        ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+                shadow=True, startangle=90)
+        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+        plt.show()
 
 class WeeklyGraph(Screen):
     pass
@@ -361,8 +397,8 @@ class SystemPermission(Screen):
    
 # classes user data class 
 class UserData(Screen):
-
-    if databaseManager.userGender != None:
+    
+    if databaseManager.userGender != None :
     
         # using stringProperty to get the text into the label
         n = StringProperty(databaseManager.userName)  
