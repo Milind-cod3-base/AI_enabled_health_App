@@ -1,4 +1,6 @@
+# getting color
 
+#:import get_color_from_hex kivy.utils.get_color_from_hex
 ScreenManager:
 # window manager handles the below screens
     LoginWindow:
@@ -348,6 +350,7 @@ ScreenManager:
                         id: mot4
                         size_hint: None, None
                         size: "50dp", "50dp"
+                        
                     MDLabel:
                         text: "Motivation Tasks"
                         font_size: "14dp"
@@ -374,7 +377,7 @@ ScreenManager:
                     MDRoundFlatButton:
                         text:"Activity Graphs"
                         theme_text_color: "Custom"
-                        pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
                         on_release:
                             root.manager.transition.direction = "left"
                             root.scale()  # method for going to graph window
@@ -435,7 +438,7 @@ ScreenManager:
         pos_hint: {"center_x":.5,"center_y": 0.50}
         theme_text_color: "Custom"
         on_press:
-            root.manager.current = 'userdata'
+            root.disData()
             root.manager.transition.direction = 'left'
             # root.refreshData()
 
@@ -481,26 +484,121 @@ ScreenManager:
         font_size: "20sp"
         pos_hint: {"center_x": 0.90, "center_y":0.97}
         color: rgba(71,92,119,255)
-    UserCard:
-        size_hint: None,None
-        size: 280,470
-        pos_hint: {"center_x":.5,"center_y":.45}
-        elevation: 30
-        padding: 10
-        spacing: 5
-        orientation: "vertical"
-        radius: 20,20,20,20
+    MDLabel:
+        text: "Notification timer"
+        theme_text_color: "Secondary"
+        font_size: "15sp"
+        pos_hint: {"center_x": 0.80, "center_y":0.80}
+        color: rgba(71,92,119,255)
+
+    MDCard:
+        size_hint : None,None
+        size :200,150
+        pos_hint : {"center_x":.5,"center_y":.6}
+        elevation : 30
+        padding : 2
+        spacing : 2
+        orientation : "vertical"
         # Adding items to the card
+
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.55, "center_y": 0.45}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                group: "check3"
+                size_hint: None, None
+                size: "25dp", "25dp"
+            MDLabel:
+                text: "1 Hour"
+                font_size: "14dp"
+
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.55, "center_y": 0.45}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                group: "check3"
+                size_hint: None, None
+                size: "25dp", "25dp"
+            MDLabel:
+                text: "2 Hours"
+                font_size: "14dp"
+
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.55, "center_y": 0.45}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                group: "check3"
+                size_hint: None, None
+                size: "25dp", "25dp"
+            MDLabel:
+                text: "3 hours"
+                font_size: "14dp"
+
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            size_hint_y: None
+            pos_hint: {"center_x": 0.55, "center_y": 0.45}
+            height: self.minimum_height
+            padding: "4dp"
+            spacing: "5dp"
+            MDCheckbox:
+                group: "check3"
+                size_hint: None, None
+                size: "25dp", "25dp"
+            MDLabel:
+                text: "4 Hours"
+                font_size: "14dp"
+
+    MDRoundFlatButton:
+        text: "Save"
+        font_size: 14
+        pos_hint: {"center_x":.5, "center_y": 0.30}
+        theme_text_color: "Custom"
 
 <SettingProfile>:
     name: "settingP"
 
     n:n
-    age:age
-    gender:gender
     weight:weight
     heigh:heigh
+    
+    # ids for checkboxes
+    exec:exec
+    manage:manage
+    programmer:programmer
+
+    age1:age1
+    age2:age2
+    age3:age3
+    age4:age4
+
+    male:male
+    female:female
+
+
+
+    
+    
     job:job
+    age:age
+    gender:gender
+    
         
 
 
@@ -513,7 +611,8 @@ ScreenManager:
         on_press:
             root.back()
             root.manager.transition.direction = "right"
-            
+               
+    
     MDLabel:
         text: "Edit Profile"
         theme_text_color: "Secondary"
@@ -522,76 +621,194 @@ ScreenManager:
         color: rgba(71,92,119,255)
     UserCard:
         size_hint: None,None
-        size:280,470
-        pos_hint: {"center_x":.5,"center_y":.48}
+        size:250,450
+        pos_hint: {"center_x":.5,"center_y":.5}
         elevation: 15
-        padding: 5
-        spacing: 5
+        padding: 2
+        spacing: 2
         orientation: "vertical"
-        radius: 20,20,20,20
+        #radius: 20,20,20,20
         # Adding items to the card
-        
-        MDTextFieldRound:
-            id: n
-            hint_text: "Username"
-            size_hint_x: None
-            width: 220
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            color_active: [1,1,1,1]
-        
-        MDTextFieldRound:
-            id: age
-            hint_text: "Age"
-            size_hint_x: None
-            width: 220
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            color_active: [1,1,1,1]
-        
-        MDTextFieldRound:
-            id: weight
-            hint_text: "Weight [kg]"
-            size_hint_x: None
-            width: 220
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            color_active: [1,1,1,1]
-        
-        MDTextFieldRound:
-            id: heigh
-            hint_text: "Height [m]"
-            size_hint_x: None
-            width: 220
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            color_active: [1,1,1,1]
 
-        MDTextFieldRound:
-            id: job
-            hint_text: "Job position"
-            size_hint_x: None
-            width: 220
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            color_active: [1,1,1,1]
+        FloatLayout:
 
-        MDTextFieldRound:
-            id: gender
-            hint_text: "Gender"
-            size_hint_x: None
-            width: 220
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            color_active: [1,1,1,1]
+            padding : 2
+            spacing : 2
+            orientation : "vertical"
+
+        
+            MDTextFieldRound:
+                id: n
+                hint_text: "Username"
+                size_hint_x: None
+                width: 220
+                font_size: 14
+                pos_hint: {"center_x":.5,"center_y":0.95}
+                color_active: [1,1,1,1]
             
-        MDRoundFlatButton:
-            text: "Save"
-            font_size: 14
-            pos_hint: {"center_x":.5}
-            theme_text_color: "Custom"
-            on_press:
-                root.save()
+            # MDTextFieldRound:
+            #     id: age
+            #     hint_text: "Age"
+            #     size_hint_x: None
+            #     width: 220
+            #     font_size: 14
+            #     pos_hint: {"center_x":.5}
+            #     color_active: [1,1,1,1]
+            
+            MDTextFieldRound:
+                id: weight
+                hint_text: "Weight [kg]"
+                size_hint_x: None
+                width: 220
+                font_size: 14
+                pos_hint: {"center_x":.5, "center_y":0.85}
+                color_active: [1,1,1,1]
+            
+            MDTextFieldRound:
+                id: heigh
+                hint_text: "Height [m]"
+                size_hint_x: None
+                width: 220
+                font_size: 14
+                pos_hint: {"center_x":.5,"center_y":0.75}
+                color_active: [1,1,1,1]
+
+            MDLabel:
+                id: job
+                text: "Job position"
+                pos_hint: {"center_x":0.55,"center_y":0.65}
+                font_size: "14dp"
+
+            GridLayout:
+                cols: 3
+                orientation: "tb-lr"
+                size_hint_y: None
+                pos_hint: {"center_x": 0.55, "center_y": 0.60}
+                height: self.minimum_height
+                padding: "4dp"
+                spacing: "5dp"
+
+                MDCheckbox:
+                    id:exec
+                    group: "job"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "Executive"
+                    font_size: "12dp"
+                MDCheckbox:
+                    id:manage
+                    group: "job"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "Manager"
+                    font_size: "12dp"
+                MDCheckbox:
+                    id:manage
+                    group: "job"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "Programmer"
+                    font_size: "12dp"
+
+            MDLabel:
+                text: "Select your age range : "
+                pos_hint: {"center_x":0.55,"center_y":0.50}
+                font_size: "14dp"
+
+            GridLayout:
+                cols: 4
+                orientation: "tb-lr"
+                size_hint_y: None
+                pos_hint: {"center_x": 0.55, "center_y": 0.45}
+                height: self.minimum_height
+                padding: "4dp"
+                spacing: "5dp"
+                MDCheckbox:
+                    id:age1
+                    group: "check"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "21-30"
+                    font_size: "14dp"
+                MDCheckbox:
+                    id:age2
+                    group: "check"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "31-40"
+                    font_size: "14dp"
+                MDCheckbox:
+                    id:age3
+                    group: "check"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "41-50"
+                    font_size: "14dp"
+                MDCheckbox:
+                    id:age4
+                    group: "check"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "51+"
+                    font_size: "14dp"
+
+            MDLabel:
+                text: "Select your gender : "
+                pos_hint: {"center_x":0.55,"center_y":0.35}
+                font_size: "14dp"
+
+            GridLayout:
+                cols: 3
+                orientation: "tb-lr"
+                size_hint_y: None
+                pos_hint: {"center_x": 0.55, "center_y": 0.30}
+                height: self.minimum_height
+                padding: "4dp"
+                spacing: "5dp"
+
+                MDCheckbox:
+                    id:male
+                    group: "check2"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "Male"
+                    font_size: "14dp"
+                MDCheckbox:
+                    id: female
+                    group: "check2"
+                    size_hint: None, None
+                    size: "25dp", "25dp"
+                MDLabel:
+                    text: "Female"
+                    font_size: "14dp"
+
+            
+
+
+            # MDTextFieldRound:
+            #     id: gender
+            #     hint_text: "Gender"
+            #     size_hint_x: None
+            #     width: 220
+            #     font_size: 14
+            #     pos_hint: {"center_x":.5}
+            #     color_active: [1,1,1,1]
+                
+            MDRoundFlatButton:
+                text: "Save"
+                font_size: 14
+                pos_hint: {"center_x":.5,"center_y": 0.12}
+                theme_text_color: "Custom"
+                on_press:
+                    root.save()
 
 
 <Graph>:
