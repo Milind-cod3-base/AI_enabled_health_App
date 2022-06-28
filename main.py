@@ -24,6 +24,7 @@ from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.scrollview import ScrollView
 
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
 import datetime
 import matplotlib.pyplot as plt
@@ -377,20 +378,42 @@ class SettingsCard(ProfileCard):
     pass
 
 class DailyGraph(Screen):
-    
-    def matplt(self):
-    
-        # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-        labels = 'Frogs', 'Hogs', 'Dogs'
-        sizes = [15, 30, 45]
-        explode = (0, 0.1, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
-        fig1, ax1 = plt.subplots()
-        ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-                shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    # this is a dummy function
+    # it tests how to put graph on the card
+    # need to put layout and put the graph inside it for the
+    # correct position
+    def printDaily(self):
+        data_values = [ 60, 30, 10]
+        explode = (0.05, 0.05, 0.05)
+        plt.pie(data_values, autopct="%.1f%%", 
+            startangle=0, pctdistance=0.80, labeldistance=1.2, 
+            explode=explode)
+        
+        self.ids.testGraph.add_widget(FigureCanvasKivyAgg(figure=plt.gcf()))
 
-        plt.show()
+    
+    
+
+
+
+
+
+
+
+    # def matplt(self):
+    
+    #     # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+    #     labels = 'Frogs', 'Hogs', 'Dogs'
+    #     sizes = [15, 30, 45]
+    #     explode = (0, 0.1, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
+    #     fig1, ax1 = plt.subplots()
+    #     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+    #             shadow=True, startangle=90)
+    #     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    #     plt.show()
 
 class WeeklyGraph(Screen):
     pass
@@ -418,6 +441,7 @@ class SystemPermission(Screen):
    
 # classes user data class 
 class UserData(Screen):
+    
     
     if databaseManager.userGender != None :
     
