@@ -326,14 +326,14 @@ class SettingProfile(Screen):
 
             
                     
-        # else:
-        #     popup = Popup(
-        #     title='Invalid Credentials',
-        #     content=Label(text='One or more fields have been left blank.\n\nPlease fill them before pressing Submit'),
-        #     size_hint = (0.5,0.5)
-        #     )
+        
+        popup = Popup(
+        title='Saved',
+        content=Label(text='Your data has been saved securely'),
+        size_hint = (0.5,0.5)
+        )
 
-        #     popup.open()
+        popup.open()
 
 
 
