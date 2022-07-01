@@ -397,8 +397,8 @@ class DailyGraph(Screen):
         self.ids.chart_box.add_widget(self.piechart)
         
         
-    # def remove_chart(self):
-    #      self.ids.chart_box.remove_widget(self.piechart)
+    def remove_chart(self):
+         self.ids.chart_box.remove_widget(self.piechart)
     
     
 
@@ -423,7 +423,27 @@ class DailyGraph(Screen):
     #     plt.show()
 
 class WeeklyGraph(Screen):
-    pass
+    items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
+
+    # this is a dummy function
+    # it tests how to put graph on the card
+    # need to put layout and put the graph inside it for the
+    # correct position
+    def on_enter(self):
+        
+        self.piechart = AKPieChart(
+            items=self.items,
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            size_hint=[None, None],
+            size=(300,300)
+        )
+        self.ids.chart_box2.add_widget(self.piechart)
+        
+        
+    def remove_chart(self):
+         self.ids.chart_box2.remove_widget(self.piechart)
+
+
 class MonthlyGraph(Screen):
     pass
 
