@@ -31,7 +31,7 @@ def dailySitting():
      # starting of time query
      lower_limit = datetime.datetime.now() - timedelta(days= -1)
 
-     databaseManager.queryGraph('sitting', lower_limit,  upper_limit)
+     return databaseManager.queryGraph('sitting', lower_limit,  upper_limit)
     
 
 # returns only walking values in a day
@@ -42,7 +42,7 @@ def dailyWalking():
      # starting of time query
      lower_limit = datetime.datetime.now() - timedelta(days= -1)
 
-     databaseManager.queryGraph('walking', lower_limit, upper_limit)
+     return databaseManager.queryGraph('walking', lower_limit, upper_limit)
 
 # returns only running values in a day
 def dailyRunning():
@@ -52,19 +52,7 @@ def dailyRunning():
      # starting of time query
      lower_limit = datetime.datetime.now() - timedelta(days= -1)
 
-     databaseManager.queryGraph('running', lower_limit,  upper_limit)
-
-# # function to scan and display  weekly activity
-# def weekly():
-
-#     # ending of time query
-#     upper_limit = datetime.datetime.now()
-
-#     # starting of time query
-#     lower_limit = datetime.datetime.now() - timedelta(days= -7)
-
-#     # getting weekly range from the db
-#     databaseManager.queryGraph(lower_limit, upper_limit)
+     return databaseManager.queryGraph('running', lower_limit,  upper_limit)
 
 # returns only sitting values in a week
 def weeklySitting():
@@ -74,7 +62,7 @@ def weeklySitting():
 #     # starting of time query
      lower_limit = datetime.datetime.now() - timedelta(days= -7)
 
-     databaseManager.queryGraph('sitting', lower_limit,upper_limit)
+     return databaseManager.queryGraph('sitting', lower_limit,upper_limit)
 
 # returns only walking values in a week
 def weeklyWalking():
@@ -84,7 +72,7 @@ def weeklyWalking():
 #     # starting of time query
      lower_limit = datetime.datetime.now() - timedelta(days= -7)
 
-     databaseManager.queryGraph('walking', lower_limit,upper_limit)
+     return databaseManager.queryGraph('walking', lower_limit,upper_limit)
 
 # returns only running values in a week
 def weeklyRunning():
@@ -94,7 +82,7 @@ def weeklyRunning():
 #     # starting of time query
      lower_limit = datetime.datetime.now() - timedelta(days= -7)
 
-     databaseManager.queryGraph('running', lower_limit,upper_limit)
+     return databaseManager.queryGraph('running', lower_limit,upper_limit)
 
 
 
@@ -108,7 +96,7 @@ def monthlySitting():
     lower_limit = datetime.datetime.now() - timedelta(days = -30)
 
     # getting monthly range from the db
-    databaseManager.queryGraph('sitting',lower_limit, upper_limit)
+    return databaseManager.queryGraph('sitting',lower_limit, upper_limit)
 
 # returns only walking in a month
 def monthlyWalking():
@@ -120,7 +108,7 @@ def monthlyWalking():
     lower_limit = datetime.datetime.now() - timedelta(days = -30)
 
     # getting monthly range from the db
-    databaseManager.queryGraph('walking',lower_limit, upper_limit)
+    return databaseManager.queryGraph('walking',lower_limit, upper_limit)
 
 
 # returns only sitting in a month
@@ -133,7 +121,7 @@ def monthlyRunning():
     lower_limit = datetime.datetime.now() - timedelta(days = -30)
 
     # getting monthly range from the db
-    databaseManager.queryGraph('running',lower_limit, upper_limit)
+    return databaseManager.queryGraph('running',lower_limit, upper_limit)
 
     
 # below function is useful to get the graph displayed on the screen
