@@ -469,6 +469,12 @@ ScreenManager:
 
     name: "settingN"
 
+    # giving ids for checkboxes
+    oneH:oneH
+    twoH:twoH
+    threeH:threeH
+    fourH: fourH
+
     MDIconButton:
         icon: "arrow-left"
         pos_hint:{"center_x":0.1,"center_y":0.97}
@@ -510,6 +516,7 @@ ScreenManager:
             padding: "4dp"
             spacing: "5dp"
             MDCheckbox:
+                id:oneH
                 group: "check3"
                 size_hint: None, None
                 size: "25dp", "25dp"
@@ -526,6 +533,7 @@ ScreenManager:
             padding: "4dp"
             spacing: "5dp"
             MDCheckbox:
+                id:twoH
                 group: "check3"
                 size_hint: None, None
                 size: "25dp", "25dp"
@@ -542,6 +550,7 @@ ScreenManager:
             padding: "4dp"
             spacing: "5dp"
             MDCheckbox:
+                id:threeH
                 group: "check3"
                 size_hint: None, None
                 size: "25dp", "25dp"
@@ -558,6 +567,7 @@ ScreenManager:
             padding: "4dp"
             spacing: "5dp"
             MDCheckbox:
+                id:fourH
                 group: "check3"
                 size_hint: None, None
                 size: "25dp", "25dp"
@@ -567,6 +577,7 @@ ScreenManager:
 
     MDRoundFlatButton:
         text: "Save"
+        on_press: root.save()
         font_size: 14
         pos_hint: {"center_x":.5, "center_y": 0.30}
         theme_text_color: "Custom"
