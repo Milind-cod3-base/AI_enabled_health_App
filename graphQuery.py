@@ -98,8 +98,8 @@ def weeklyRunning():
 
 
 
-# function to scan and display  monthly activity
-def monthly():
+# returns only sitting in a month
+def monthlySitting():
 
     # ending of time query
     upper_limit = datetime.datetime.now()
@@ -108,7 +108,32 @@ def monthly():
     lower_limit = datetime.datetime.now() - timedelta(days = -30)
 
     # getting monthly range from the db
-    databaseManager.queryGraph(lower_limit, upper_limit)
+    databaseManager.queryGraph('sitting',lower_limit, upper_limit)
+
+# returns only walking in a month
+def monthlyWalking():
+
+    # ending of time query
+    upper_limit = datetime.datetime.now()
+
+    # starting of time query
+    lower_limit = datetime.datetime.now() - timedelta(days = -30)
+
+    # getting monthly range from the db
+    databaseManager.queryGraph('walking',lower_limit, upper_limit)
+
+
+# returns only sitting in a month
+def monthlyRunning():
+
+    # ending of time query
+    upper_limit = datetime.datetime.now()
+
+    # starting of time query
+    lower_limit = datetime.datetime.now() - timedelta(days = -30)
+
+    # getting monthly range from the db
+    databaseManager.queryGraph('running',lower_limit, upper_limit)
 
     
 # below function is useful to get the graph displayed on the screen
