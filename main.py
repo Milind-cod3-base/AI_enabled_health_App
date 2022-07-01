@@ -440,7 +440,7 @@ class WeeklyGraph(Screen):
         self.ids.chart_box2.add_widget(self.piechart)
         
         
-    def remove_chart(self):
+    def on_leave(self):
          self.ids.chart_box2.remove_widget(self.piechart)
 
 
