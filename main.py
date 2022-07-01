@@ -247,6 +247,11 @@ class SettingMain(Screen):
         self.parent.current = "settingP"
 
     def login(self):
+
+        # when the user will logout, the notification timer
+        # will set to 2 hours(default state)
+        tempUser.storeNotificationTimer(2)
+        
         self.parent.current = "login"
 
     def back(self):
@@ -356,22 +361,22 @@ class SettingNotif(Screen):
         # if one hour checkbox is active, 
         # notification timer is set to 1 hour
         if self.oneH.active:
-            push_notification.getNotifTime(1)
+            tempUser.storeNotificationTimer(1)
                 
         # if one hour checkbox is active, 
         # notification timer is set to 2 hour
         elif self.twoH.active:
-            push_notification.getNotifTime(2)
+            tempUser.storeNotificationTimer(2)
     
         # if one hour checkbox is active, 
         # notification timer is set to 3 hour
         elif self.threeH.active:
-            push_notification.getNotifTime(3)
+            tempUser.storeNotificationTimer(3)
 
         # if one hour checkbox is active, 
         # notification timer is set to 4 hour
         elif self.fourH.active:   
-            push_notification.getNotifTime(4) 
+            tempUser.storeNotificationTimer(4) 
     
     # takes back to the settings main screen
     def back(self):
