@@ -445,7 +445,25 @@ class WeeklyGraph(Screen):
 
 
 class MonthlyGraph(Screen):
-    pass
+    items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
+
+    # this is a dummy function
+    # it tests how to put graph on the card
+    # need to put layout and put the graph inside it for the
+    # correct position
+    def on_enter(self):
+        
+        self.piechart = AKPieChart(
+            items=self.items,
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            size_hint=[None, None],
+            size=(300,300)
+        )
+        self.ids.chart_box3.add_widget(self.piechart)
+        
+        
+    def on_leave(self):
+         self.ids.chart_box3.remove_widget(self.piechart)
 
 
 # setting new classes here for new windows
