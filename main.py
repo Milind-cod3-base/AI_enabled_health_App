@@ -389,7 +389,8 @@ class DailyGraph(Screen):
         w_perc= ((graphQuery.dailyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
         # percentage time spent running in a day
         r_perc= ((graphQuery.dailyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-
+        
+        # putting above variables along with labels in a dictionary inside a list
         items = [{"Sitting": s_perc, "Walking":w_perc, "Running": r_perc}]
         self.piechart = AKPieChart(
             items=items,
@@ -404,27 +405,32 @@ class DailyGraph(Screen):
          self.ids.chart_box.remove_widget(self.piechart)
     
 
-
+# class for screen for displaying weekly user activity 
 class WeeklyGraph(Screen):
-    items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
 
-    # this is a dummy function
-    # it tests how to put graph on the card
-    # need to put layout and put the graph inside it for the
-    # correct position
+    # This function starts when the user enters the screen
     def on_enter(self):
         
+        # percentage time spent sitting in a week
+        s_perc= ((graphQuery.weeklySitting)/ (datetime.datetime.now() - datetime.timedelta(days=7)))*100
+        # percentage time spent walking in a week
+        w_perc= ((graphQuery.weeklyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=7)))*100
+        # percentage time spent running in a week
+        r_perc= ((graphQuery.weeklyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=7)))*100
+
+        # putting above variables along with labels in a dictionary inside a list
+        items = [{"Sitting": s_perc, "Walking":w_perc, "Running": r_perc}]
         self.piechart = AKPieChart(
-            items=self.items,
+            items=items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             size_hint=[None, None],
             size=(300,300)
         )
-        self.ids.chart_box2.add_widget(self.piechart)
+        self.ids.chart_box.add_widget(self.piechart)
         
-        
-    def on_leave(self):
-         self.ids.chart_box2.remove_widget(self.piechart)
+    # This function removes the chart when the user leaves the screen  
+    def remove_chart(self):
+         self.ids.chart_box.remove_widget(self.piechart)
 
 
 class MonthlyGraph(Screen):
