@@ -11,18 +11,6 @@ import databaseManager
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
 
-# function to scan and display  daily activity
-# def daily():
-    
-#     # ending of time query
-#     upper_limit = datetime.datetime.now()
-
-#     # starting of time query
-#     lower_limit = datetime.datetime.now() - timedelta(days= -1)
-
-#     # getting daily range from the db
-#     databaseManager.queryGraph(lower_limit, upper_limit)
-
 # returns only sitting values in a day
 def dailySitting():
     # ending of time query
@@ -123,7 +111,3 @@ def monthlyRunning():
     # getting monthly range from the db
     return databaseManager.queryGraph('running',lower_limit, upper_limit)
 
-    
-# below function is useful to get the graph displayed on the screen
-#  def displayGraph():
-#     pass
