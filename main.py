@@ -37,6 +37,7 @@ import tempUser
 import databaseManager
 import permissionSensors
 import push_notification
+import graphQuery
 
 #importing GRU model
 #import aiModel
@@ -380,47 +381,29 @@ class SettingsCard(ProfileCard):
 
 class DailyGraph(Screen):
 
-    items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
-
-    # this is a dummy function
-    # it tests how to put graph on the card
-    # need to put layout and put the graph inside it for the
-    # correct position
+    # This function starts when the user enters the screen
     def on_enter(self):
-        
+        # percentage time spent sitting in a day
+        s_perc= ((graphQuery.dailySitting)/ (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        # percentage time spent walking in a day
+        w_perc= ((graphQuery.dailyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        # percentage time spent running in a day
+        r_perc= ((graphQuery.dailyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+
+        items = [{"Sitting": s_perc, "Walking":w_perc, "Running": r_perc}]
         self.piechart = AKPieChart(
-            items=self.items,
+            items=items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             size_hint=[None, None],
             size=(300,300)
         )
         self.ids.chart_box.add_widget(self.piechart)
         
-        
+    # This function removes the chart when the user leaves the screen  
     def remove_chart(self):
          self.ids.chart_box.remove_widget(self.piechart)
     
-    
 
-
-
-
-
-
-
-    # def matplt(self):
-    
-    #     # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-    #     labels = 'Frogs', 'Hogs', 'Dogs'
-    #     sizes = [15, 30, 45]
-    #     explode = (0, 0.1, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-    #     fig1, ax1 = plt.subplots()
-    #     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-    #             shadow=True, startangle=90)
-    #     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-    #     plt.show()
 
 class WeeklyGraph(Screen):
     items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
