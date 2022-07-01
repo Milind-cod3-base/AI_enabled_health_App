@@ -20,10 +20,12 @@ def readName():
 and also resets the screens at the time of logout to 2 hours so that it stays
 default"""
 
+# this will store the notification timer until logout
 def storeNotificationTimer(hours):
-    with open("tempUsername.txt","w") as file:
-        file.write(hours)
+    with open("tempNotificationTimer.txt","w") as file:
+        file.write(str(hours))
 
-def readNotificationTimer(hours):
-    with open("tempUsername.txt","r") as file:
+# this function gets the selected timer value by the user
+def readNotificationTimer():
+    with open("tempNotificationTimer.txt","r") as file:
         return file.read()
