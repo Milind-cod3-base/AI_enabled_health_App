@@ -14,3 +14,16 @@ def storeName(name):
 def readName():
     with open("tempUsername.txt","r") as file:
         return file.read()
+
+
+""" It also stores the notification timer setting given by the user
+and also resets the screens at the time of logout to 2 hours so that it stays
+default"""
+
+def storeNotificationTimer(hours):
+    with open("tempUsername.txt","w") as file:
+        file.write(hours)
+
+def readNotificationTimer(hours):
+    with open("tempUsername.txt","r") as file:
+        return file.read()
