@@ -1,5 +1,7 @@
 import sqlite3
 
+from numpy import append
+
 
 # importing module to encrypt the database
 import encryptDatabase
@@ -188,14 +190,14 @@ def storeProfile(time, profile):
 # this function is responsible to take upper and lower limit of time 
 # and give an ordered output between the range which could be called in
 # graphQuery module
-def queryGraph(lowerLimit, upperLimit):
+def queryGraph(profile, lowerLimit, upperLimit):
     
     conn = sqlite3.connect('movementProfile.db')
 
     c = conn.cursor()
 
     # getting time and profile column between certain time_stamp range
-    c.execute("SELECT time, profile FROM data WHERE time BETWEEN ? AND ?", (lowerLimit, upperLimit))
+    c.execute("SELECT time, profile FROM data WHERE profile ? AND time BETWEEN ? AND ?", (profile, lowerLimit, upperLimit))
 
 
     # items will give a list which contains timestamp and profile in the form of tuples
@@ -208,6 +210,10 @@ def queryGraph(lowerLimit, upperLimit):
     return items
 
 
+
+# a fucntion to get the 4 tasks from the task manager based on the user's job, age, gender, profile
+def getTask():
+    pass
 
 
 # CAUTION: clear table function, it will delete the mentioned table, use with caution
@@ -225,6 +231,14 @@ def deleteTable(db):
     conn.commit()
     conn.close()
 
+
+# declaring global empty variables
+userName = 'empty'
+userAge = 'empty'
+userWeight = 'empty'
+userHeight = 'empty'
+userPosition = 'empty'
+userGender = 'empty'
 
 # a function to display the userdata in the user data screen
 def displayData():
@@ -248,14 +262,30 @@ def displayData():
     
     items = cur.fetchall()
 
-    for i in items:
-        print(i)
+    
+    
+    global userName
+    global userAge
+    global userWeight
+    global userHeight
+    global userPosition
+    global userGender
+
+    userName = items[0][0]
+    userAge = items[0][1]
+    userWeight = items[0][2]
+    userHeight = items[0][3]
+    userPosition = items[0][4]
+    userGender = items[0][5]
+    
+    
     
     conne.commit()
     conne.close()
 
     
     encryptDatabase.encrypt("users.db",key)  # encrypting using key
+    
 
-
+# calling this function here to use the global variable
 displayData()
