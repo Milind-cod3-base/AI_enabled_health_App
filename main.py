@@ -25,6 +25,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.scrollview import ScrollView
 
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+from kivy_extensions.akivymd.uix.charts import AKPieChart
 
 import datetime
 import matplotlib.pyplot as plt
@@ -384,13 +385,15 @@ class DailyGraph(Screen):
     # need to put layout and put the graph inside it for the
     # correct position
     def printDaily(self):
-        data_values = [ 60, 30, 10]
-        explode = (0.05, 0.05, 0.05)
-        plt.pie(data_values, autopct="%.1f%%", 
-            startangle=0, pctdistance=0.80, labeldistance=1.2, 
-            explode=explode)
+        self.piechart = AKPieChart(
+            items=self.items,
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            size_hint=[None, None],
+            size=(dp(300), dp(300)),
+        )
+        self.ids.chart_box.add_widget(self.piechart)
         
-        self.ids.testGraph.add_widget(FigureCanvasKivyAgg(figure=plt.gcf()))
+        
 
     
     
