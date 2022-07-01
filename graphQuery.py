@@ -29,7 +29,7 @@ def dailySitting():
      upper_limit = datetime.datetime.now()
 
      # starting of time query
-     lower_limit = datetime.datetime.now() - timedelta(days= -1)
+     lower_limit = datetime.datetime.now() - timedelta(days= 1)
 
      return databaseManager.queryGraph('sitting', lower_limit,  upper_limit)
     
@@ -40,7 +40,7 @@ def dailyWalking():
      upper_limit = datetime.datetime.now()
 
      # starting of time query
-     lower_limit = datetime.datetime.now() - timedelta(days= -1)
+     lower_limit = datetime.datetime.now() - timedelta(days= 1)
 
      return databaseManager.queryGraph('walking', lower_limit, upper_limit)
 
@@ -50,7 +50,7 @@ def dailyRunning():
      upper_limit = datetime.datetime.now()
 
      # starting of time query
-     lower_limit = datetime.datetime.now() - timedelta(days= -1)
+     lower_limit = datetime.datetime.now() - timedelta(days= 1)
 
      return databaseManager.queryGraph('running', lower_limit,  upper_limit)
 
@@ -60,7 +60,7 @@ def weeklySitting():
      upper_limit = datetime.datetime.now()
 
 #     # starting of time query
-     lower_limit = datetime.datetime.now() - timedelta(days= -7)
+     lower_limit = datetime.datetime.now() - timedelta(days= 7)
 
      return databaseManager.queryGraph('sitting', lower_limit,upper_limit)
 
@@ -70,7 +70,7 @@ def weeklyWalking():
      upper_limit = datetime.datetime.now()
 
 #     # starting of time query
-     lower_limit = datetime.datetime.now() - timedelta(days= -7)
+     lower_limit = datetime.datetime.now() - timedelta(days= 7)
 
      return databaseManager.queryGraph('walking', lower_limit,upper_limit)
 
@@ -80,7 +80,7 @@ def weeklyRunning():
      upper_limit = datetime.datetime.now()
 
 #     # starting of time query
-     lower_limit = datetime.datetime.now() - timedelta(days= -7)
+     lower_limit = datetime.datetime.now() - timedelta(days= 7)
 
      return databaseManager.queryGraph('running', lower_limit,upper_limit)
 
@@ -93,7 +93,7 @@ def monthlySitting():
     upper_limit = datetime.datetime.now()
 
     # starting of time query
-    lower_limit = datetime.datetime.now() - timedelta(days = -30)
+    lower_limit = datetime.datetime.now() - timedelta(days = 30)
 
     # getting monthly range from the db
     return databaseManager.queryGraph('sitting',lower_limit, upper_limit)
@@ -105,7 +105,7 @@ def monthlyWalking():
     upper_limit = datetime.datetime.now()
 
     # starting of time query
-    lower_limit = datetime.datetime.now() - timedelta(days = -30)
+    lower_limit = datetime.datetime.now() - timedelta(days = 30)
 
     # getting monthly range from the db
     return databaseManager.queryGraph('walking',lower_limit, upper_limit)
@@ -118,7 +118,7 @@ def monthlyRunning():
     upper_limit = datetime.datetime.now()
 
     # starting of time query
-    lower_limit = datetime.datetime.now() - timedelta(days = -30)
+    lower_limit = datetime.datetime.now() - timedelta(days = 30)
 
     # getting monthly range from the db
     return databaseManager.queryGraph('running',lower_limit, upper_limit)
