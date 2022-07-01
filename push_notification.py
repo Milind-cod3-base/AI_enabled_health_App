@@ -2,6 +2,7 @@
 from plyer import notification  
 
 import time
+import tempUser
 
 # import TaskManager
 
@@ -21,11 +22,15 @@ def pushNotif(task):
 
 
 # I need a snooze function or repeat notification function which will be sending notification in x number of hours
-def repeatNotif(hours,task):
+def repeatNotif(task):
     
+    # reading the timer in hours. Picks 2 as default
+    # or else picks the 
+    notifTimer = tempUser.readNotificationTimer()
+
     # as sleep function takes input in seconds, converting hours into seconds
-    seconds = hours * 60 * 60
-   
+    seconds = notifTimer * 60 * 60
+    
    # setting up an idefinite loop of notifications
     while True:
         # this will snooze the notification for required seconds
