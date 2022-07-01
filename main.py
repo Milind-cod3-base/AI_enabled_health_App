@@ -188,10 +188,10 @@ class CreateAccountWindow(Screen):
 
 class MainWindow(Screen):
     
-    mot1 = ObjectProperty(None)
-    mot2 = ObjectProperty(None)
-    mot3 = ObjectProperty(None)
-    mot4 = ObjectProperty(None)
+    # mot1 = ObjectProperty(None)
+    # mot2 = ObjectProperty(None)
+    # mot3 = ObjectProperty(None)
+    # mot4 = ObjectProperty(None)
 
     def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
         if self.mot1.active:
