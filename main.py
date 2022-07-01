@@ -379,6 +379,8 @@ class MotivationTaskCard(ProfileCard):
 class SettingsCard(ProfileCard):
     pass
 
+
+# class for screen for displaying daily user activity
 class DailyGraph(Screen):
 
     # This function starts when the user enters the screen
@@ -432,7 +434,7 @@ class WeeklyGraph(Screen):
     def remove_chart(self):
          self.ids.chart_box.remove_widget(self.piechart)
 
-
+# class for screen for displaying monthly user activity
 class MonthlyGraph(Screen):
     items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
 
