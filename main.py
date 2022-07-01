@@ -24,7 +24,7 @@ from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.scrollview import ScrollView
 
-from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+# from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 from kivymd_extensions.akivymd.uix.charts import AKPieChart
 
 import datetime
@@ -263,6 +263,8 @@ class SettingMain(Screen):
     # def refreshData(self):
     #     databaseManager.displayData
 
+
+# settings window for adding user details
 class SettingProfile(Screen):
     
     n = ObjectProperty(None)
@@ -344,14 +346,14 @@ class SettingProfile(Screen):
     def back(self):
         self.parent.current = "settingM"
     
-    
-    
 
-
+# settings window to set the notification delay, 2 hours is default
 class SettingNotif(Screen):
 
     def back(self):
         self.parent.current = "settingM"
+
+
 
 class Graph(Screen):
     
