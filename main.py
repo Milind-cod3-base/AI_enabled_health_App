@@ -25,7 +25,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.scrollview import ScrollView
 
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
-from kivy_extensions.akivymd.uix.charts import AKPieChart
+from kivymd_extensions.akivymd.uix.charts import AKPieChart
 
 import datetime
 import matplotlib.pyplot as plt
@@ -380,22 +380,25 @@ class SettingsCard(ProfileCard):
 
 class DailyGraph(Screen):
 
+    items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
+
     # this is a dummy function
     # it tests how to put graph on the card
     # need to put layout and put the graph inside it for the
     # correct position
-    def printDaily(self):
+    def on_enter(self):
+        
         self.piechart = AKPieChart(
             items=self.items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             size_hint=[None, None],
-            size=(dp(300), dp(300)),
+            size=(300,300)
         )
         self.ids.chart_box.add_widget(self.piechart)
         
         
-    def remove_chart(self):
-         self.ids.chart_box.remove_widget(self.piechart)
+    # def remove_chart(self):
+    #      self.ids.chart_box.remove_widget(self.piechart)
     
     
 
