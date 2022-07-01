@@ -26,7 +26,7 @@ def repeatNotif(task):
     
     # reading the timer in hours. Picks 2 as default
     # or else picks the 
-    notifTimer = tempUser.readNotificationTimer()
+    notifTimer = int(tempUser.readNotificationTimer())
 
     # as sleep function takes input in seconds, converting hours into seconds
     seconds = notifTimer * 60 * 60
