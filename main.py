@@ -394,7 +394,8 @@ class DailyGraph(Screen):
         self.ids.chart_box.add_widget(self.piechart)
         
         
-
+    def remove_chart(self):
+         self.ids.chart_box.remove_widget(self.piechart)
     
     
 
