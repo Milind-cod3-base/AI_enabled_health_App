@@ -196,8 +196,8 @@ def queryGraph(profile, lowerLimit, upperLimit):
 
     c = conn.cursor()
 
-    # getting time and profile column between certain time_stamp range
-    c.execute("SELECT time, profile FROM data WHERE profile ? AND time BETWEEN ? AND ?", (profile, lowerLimit, upperLimit))
+    # getting time column between certain time_stamp range of a certain profile
+    c.execute("SELECT time FROM data WHERE profile ? AND time BETWEEN ? AND ?", (profile, lowerLimit, upperLimit))
 
 
     # items will give a list which contains timestamp and profile in the form of tuples
