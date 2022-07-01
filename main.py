@@ -350,6 +350,30 @@ class SettingProfile(Screen):
 # settings window to set the notification delay, 2 hours is default
 class SettingNotif(Screen):
 
+    # function to save user's notification setting
+    def save(self):
+        
+        # if one hour checkbox is active, 
+        # notification timer is set to 1 hour
+        if self.oneH.active:
+            push_notification.getNotifTime(1)
+                
+        # if one hour checkbox is active, 
+        # notification timer is set to 2 hour
+        elif self.twoH.active:
+            push_notification.getNotifTime(2)
+    
+        # if one hour checkbox is active, 
+        # notification timer is set to 3 hour
+        elif self.threeH.active:
+            push_notification.getNotifTime(3)
+
+        # if one hour checkbox is active, 
+        # notification timer is set to 4 hour
+        elif self.fourH.active:   
+            push_notification.getNotifTime(4) 
+    
+    # takes back to the settings main screen
     def back(self):
         self.parent.current = "settingM"
 
