@@ -385,6 +385,10 @@ class DailyGraph(Screen):
 
     # This function starts when the user enters the screen
     def on_enter(self):
+        """ As AkPieChart takes values only in percentage
+        We must convert time into percentage which will be later
+        displayed in the form of pie chart with three labels"""
+
         # percentage time spent sitting in a day
         s_perc= ((graphQuery.dailySitting)/ (datetime.datetime.now() - datetime.timedelta(days=1)))*100
         # percentage time spent walking in a day
@@ -412,6 +416,10 @@ class WeeklyGraph(Screen):
 
     # This function starts when the user enters the screen
     def on_enter(self):
+
+        """ As AkPieChart takes values only in percentage
+        We must convert time into percentage which will be later
+        displayed in the form of pie chart with three labels"""
         
         # percentage time spent sitting in a week
         s_perc= ((graphQuery.weeklySitting)/ (datetime.datetime.now() - datetime.timedelta(days=7)))*100
@@ -434,27 +442,38 @@ class WeeklyGraph(Screen):
     def remove_chart(self):
          self.ids.chart_box.remove_widget(self.piechart)
 
+
+
 # class for screen for displaying monthly user activity
 class MonthlyGraph(Screen):
-    items = [{"Python": 40, "Java": 30, "C++": 10, "PHP": 8, "Ruby": 12}]
-
-    # this is a dummy function
-    # it tests how to put graph on the card
-    # need to put layout and put the graph inside it for the
-    # correct position
+    
+    # This function starts when the user enters the screen
     def on_enter(self):
         
+        """ As AkPieChart takes values only in percentage
+        We must convert time into percentage which will be later
+        displayed in the form of pie chart with three labels"""
+
+        # percentage time spent sitting in a monthly
+        s_perc= ((graphQuery.monthlySitting)/ (datetime.datetime.now() - datetime.timedelta(days=30)))*100
+        # percentage time spent walking in a monthly
+        w_perc= ((graphQuery.monthlyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=30)))*100
+        # percentage time spent running in a monthly
+        r_perc= ((graphQuery.monthlyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=30)))*100
+
+        # putting above variables along with labels in a dictionary inside a list
+        items = [{"Sitting": s_perc, "Walking":w_perc, "Running": r_perc}]
         self.piechart = AKPieChart(
-            items=self.items,
+            items=items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             size_hint=[None, None],
             size=(300,300)
         )
-        self.ids.chart_box3.add_widget(self.piechart)
+        self.ids.chart_box.add_widget(self.piechart)
         
-        
-    def on_leave(self):
-         self.ids.chart_box3.remove_widget(self.piechart)
+    # This function removes the chart when the user leaves the screen  
+    def remove_chart(self):
+         self.ids.chart_box.remove_widget(self.piechart)
 
 
 # setting new classes here for new windows
