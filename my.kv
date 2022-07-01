@@ -468,7 +468,7 @@ ScreenManager:
 <SettingNotif>:
 
     name: "settingN"
-
+   
     # giving ids for checkboxes
     oneH:oneH
     twoH:twoH
@@ -532,13 +532,16 @@ ScreenManager:
             height: self.minimum_height
             padding: "4dp"
             spacing: "5dp"
+            
             MDCheckbox:
                 id:twoH
+                active: True  # this will set 2 hours as the default
                 group: "check3"
                 size_hint: None, None
                 size: "25dp", "25dp"
+            
             MDLabel:
-                text: "2 Hours"
+                text: "2 Hours (default)"
                 font_size: "14dp"
 
         GridLayout:
