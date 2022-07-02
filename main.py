@@ -195,16 +195,20 @@ class MainWindow(Screen):
 
     def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
         if self.mot1.active:
-            push_notification.pushNotif("what")
+            tsk1 = self.ids.task1.text
+            push_notification.repeatNotif(tsk1)
         
         elif self.mot2.active:
-            push_notification.pushNotif("why")
+            tsk2 = self.ids.task2.text
+            push_notification.repeatNotif(tsk2)
 
         elif self.mot3.active:
-            push_notification.pushNotif("when")
+            tsk3 = self.ids.task3.text
+            push_notification.repeatNotif(tsk3)
 
         elif self.mot4.active:
-            push_notification.pushNotif("we")
+            tsk4 = self.ids.task4.text
+            push_notification.repeatNotif(tsk4)
             
 
     def modelOn(self):
@@ -221,6 +225,10 @@ class MainWindow(Screen):
         pass
     
     
+    def motTask1(self):
+        return tempUser.readNotificationTimer()
+
+
     
     # logic to pause notification
     def pauseNotif(self):  
