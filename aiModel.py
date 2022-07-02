@@ -6,25 +6,37 @@ from plyer import gyroscope
 import datetime
 import time
 
+
+
+
 # this function contains the ai, and takes input such from accelerometer and gyro
-def gruResponse( time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z ):
+# def gruResponse( time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z ):
     
-    #This will contain the output response of the gru after calculation, like sitting standing walking
-    output = "sitting"
+#     """Ai goes here"""
+   
+   
+   
+   
+#     #This will contain the output response of the gru after calculation, like sitting running walking
+#     output = "sitting"
 
-    databaseManager.storeProfile(time, output)
+#     databaseManager.storeProfile(time, output)
 
 
-    # below code might not be needed, could be revived later when needed
-    #return output    
+#     # returning the output
+#     return output    
 
+# setting a global variable
+GruOutput = ""
 
 
 
 # this function starts to feed sensors data into the ai model
 def feedAI():
-    accelerometer.enable()
-    gyroscope.enable()
+    global GruOutput
+    # commenting below as they are already enabled in allow section
+    # accelerometer.enable()
+    # gyroscope.enable()
 
     while True:
         
@@ -39,4 +51,25 @@ def feedAI():
         # gets gyrometers data in tuple format in 3 axes 
         gyr_x, gyr_y, gyr_z = gyroscope.rotation
         
-        gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
+        # below function will store AI output into profile database
+        # and will also return output
+        #gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
+
+
+        """Ai goes here"""
+   
+   
+   
+    
+        #This will contain the output response of the gru after calculation, like sitting running walking
+        output = "sitting"
+
+        databaseManager.storeProfile(time, output)
+
+
+        # returning the final output
+        return GruOutput
+            
+
+# this is to set reset the GruOutpu
+feedAI()
