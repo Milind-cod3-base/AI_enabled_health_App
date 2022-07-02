@@ -197,7 +197,7 @@ def queryGraph(profile, lowerLimit, upperLimit):
     c = conn.cursor()
 
     # getting time column between certain time_stamp range of a certain profile
-    c.execute("SELECT time FROM data WHERE profile ? AND time BETWEEN ? AND ?", (profile, lowerLimit, upperLimit))
+    c.execute("SELECT time FROM data WHERE profile=? AND time BETWEEN ? AND ?", (profile, lowerLimit, upperLimit))
 
 
     # items will give a list which contains timestamp and profile in the form of tuples
@@ -213,8 +213,30 @@ def queryGraph(profile, lowerLimit, upperLimit):
 
 # a fucntion to get the 4 tasks from the task manager based on the user's job, age, gender, profile
 def getTask():
-    pass
 
+    # storing job, age and gender to the variables of the current user and its profile
+    #job, age, gender = taskQuery(tempUser.readName)[0]
+    job, age, gender = "executive","21-30","male"
+    profile = "sitting"
+
+    # making a connection with task manager database and getting 4 tasks which will be
+    # later displayed in the main screen in checkboxes
+    conn = sqlite3.connect('motivationTasks.db')
+    cur = conn.cursor()
+
+    # returning four tasks based on the combination of job, age, gender, profile
+    # motivationTasks.db has the tasks for every combination of user data
+    cur.execute(""" SELECT task1, task2, task3, task4 FROM tasks
+                    WHERE job=? AND age=? 
+                    AND gender=? AND movementProfile=? """,(job, age, gender,profile))
+
+    item = cur.fetchall()
+
+    conn.commit()
+    conn.close()
+    
+    # returning the 4 tasks in tuple format 
+    return item[0]
 
 # CAUTION: clear table function, it will delete the mentioned table, use with caution
 def deleteTable(db):
@@ -289,3 +311,9 @@ def displayData():
 
 # calling this function here to use the global variable
 displayData()
+
+
+
+
+# dummy print to check the output of the getTask function
+#print(getTask()[3])
