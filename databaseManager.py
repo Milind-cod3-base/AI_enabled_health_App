@@ -215,8 +215,11 @@ def queryGraph(profile, lowerLimit, upperLimit):
 def getTask():
 
     # storing job, age and gender to the variables of the current user and its profile
-    #job, age, gender = taskQuery(tempUser.readName)[0]
-    job, age, gender = "executive","21-30","male"
+    job, age, gender = taskQuery(tempUser.readName)[0]
+    
+    # for now profile is set as dummy
+    # later on it will be connected with the output of the
+    # AI
     profile = "sitting"
 
     # making a connection with task manager database and getting 4 tasks which will be
