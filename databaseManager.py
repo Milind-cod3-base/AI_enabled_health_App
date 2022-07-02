@@ -1,16 +1,13 @@
 import sqlite3
 
 from numpy import append
-
+import aiModel
 
 # importing module to encrypt the database
 import encryptDatabase
 
 # importing tempUser to get the current logged in user's name
 import tempUser
-
-# this module is to create, commit and close connection with the databse
-
 
 # adding a new user via Create Account window
 def addUser(user,password):
@@ -220,30 +217,35 @@ def getTask():
     # this is the dummy variables, only for testing purposes
     #job, age, gender = "executive", "21-30","male"
     
-    
-    # for now profile is set as dummy
-    # later on it will be connected with the output of the
-    # AI
-    profile = "walking"
+    # putting this in a while loop so it keeps refreshing:
+    while True:
 
-    # making a connection with task manager database and getting 4 tasks which will be
-    # later displayed in the main screen in checkboxes
-    conn = sqlite3.connect('motivationTasks.db')
-    cur = conn.cursor()
+        # for now profile is set as dummy
+        # later on it will be connected with the output of the AI
+       
 
-    # returning four tasks based on the combination of job, age, gender, profile
-    # motivationTasks.db has the tasks for every combination of user data
-    cur.execute(""" SELECT task1, task2, task3, task4 FROM tasks
-                    WHERE job=? AND age=? 
-                    AND gender=? AND movementProfile=? """,(job, age, gender,profile))
+        # here a we need to constantly check the movement profile of user and given answer accordingly
+        # taking output from aimodel module using Gruoutput global variable
+        profile = aiModel.GruOutput
 
-    item = cur.fetchall()
+        # making a connection with task manager database and getting 4 tasks which will be
+        # later displayed in the main screen in checkboxes
+        conn = sqlite3.connect('motivationTasks.db')
+        cur = conn.cursor()
 
-    conn.commit()
-    conn.close()
-    
-    # returning the 4 tasks in tuple format 
-    return item[0]
+        # returning four tasks based on the combination of job, age, gender, profile
+        # motivationTasks.db has the tasks for every combination of user data
+        cur.execute(""" SELECT task1, task2, task3, task4 FROM tasks
+                        WHERE job=? AND age=? 
+                        AND gender=? AND movementProfile=? """,(job, age, gender,profile))
+
+        item = cur.fetchall()
+
+        conn.commit()
+        conn.close()
+        
+        # returning the 4 tasks in tuple format 
+        return item[0]
 
 # CAUTION: clear table function, it will delete the mentioned table, use with caution
 def deleteTable(db):
