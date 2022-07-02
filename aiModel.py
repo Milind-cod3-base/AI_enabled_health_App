@@ -33,7 +33,6 @@ GruOutput = ""
 
 # this function starts to feed sensors data into the ai model
 def feedAI():
-    global GruOutput
     # commenting below as they are already enabled in allow section
     # accelerometer.enable()
     # gyroscope.enable()
@@ -62,9 +61,11 @@ def feedAI():
    
     
         #This will contain the output response of the gru after calculation, like sitting running walking
-        output = "sitting"
+        
+        global GruOutput
+        GruOutput = "sitting"
 
-        databaseManager.storeProfile(time, output)
+        databaseManager.storeProfile(time, GruOutput)
 
 
         # returning the final output
