@@ -211,16 +211,20 @@ def queryGraph(profile, lowerLimit, upperLimit):
 
 
 
-# a fucntion to get the 4 tasks from the task manager based on the user's job, age, gender, profile
+# a function to get the 4 tasks from the task manager based on the user's job, age, gender, profile
 def getTask():
 
     # storing job, age and gender to the variables of the current user and its profile
     job, age, gender = taskQuery(tempUser.readName)[0]
     
+    # this is the dummy variables, only for testing purposes
+    #job, age, gender = "executive", "21-30","male"
+    
+    
     # for now profile is set as dummy
     # later on it will be connected with the output of the
     # AI
-    profile = "sitting"
+    profile = "walking"
 
     # making a connection with task manager database and getting 4 tasks which will be
     # later displayed in the main screen in checkboxes
@@ -319,4 +323,4 @@ displayData()
 
 
 # dummy print to check the output of the getTask function
-#print(getTask()[3])
+#print(getTask())
