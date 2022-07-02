@@ -224,9 +224,27 @@ class MainWindow(Screen):
         #gyroscope.disable()
         pass
     
-    
+    # taking first task output from getTask fucntion
+    # and displaying it on the motivation task label
     def motTask1(self):
-        return tempUser.readNotificationTimer()
+        return databaseManager.getTask()[0]
+
+    # taking second task output from getTask fucntion
+    # and displaying it on the motivation task label
+    def motTask2(self):
+        return databaseManager.getTask()[1]
+
+    # taking third task output from getTask fucntion
+    # and displaying it on the motivation task label
+    def motTask3(self):
+        return databaseManager.getTask()[2]
+    
+    # taking fourth task output from getTask fucntion
+    # and displaying it on the motivation task label
+    def motTask4(self):
+        return databaseManager.getTask()[3]
+    
+
 
 
     
