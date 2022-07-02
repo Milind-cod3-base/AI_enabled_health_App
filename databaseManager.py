@@ -131,15 +131,15 @@ def taskQuery(username):
 
     item = cur.fetchall()
 
-    for i in item:
-        print(i)
-
     con.commit()
     con.close()
      
     # encrypting database after creating it and closing connection
 
     encryptDatabase.encrypt("users.db",key)
+    
+    # returns a list carry a tuple of data. For ex. [('ceo', '21-30', 'male')]
+    return item
 
 
 # creating a table to store movement data coming from ai and time
