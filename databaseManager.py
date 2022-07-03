@@ -228,6 +228,10 @@ def getTask():
         # taking output from aimodel module using Gruoutput global variable
         profile = aiModel.GruOutput
 
+        # dummy profile to run the app on Windows machine
+        #profile = "sitting"
+        
+        
         # making a connection with task manager database and getting 4 tasks which will be
         # later displayed in the main screen in checkboxes
         conn = sqlite3.connect('motivationTasks.db')
