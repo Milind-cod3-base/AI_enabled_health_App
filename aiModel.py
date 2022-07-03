@@ -6,7 +6,8 @@ from plyer import gyroscope
 import datetime
 import time
 
-
+import tensorflow as tf
+import numpy as np
 
 # setting a global variable
 GruOutput = ""
@@ -19,9 +20,17 @@ t = time
 
 # this function starts to feed sensors data into the ai model
 def feedAI():
-    # commenting below as they are already enabled in allow section
-    #accelerometer.enable()
-    #gyroscope.enable()
+   
+    accelerometer.enable()
+    gyroscope.enable()
+
+    # Load TFLite model and allocate tensors
+    interpreter = tf.lite.Interpreter(model_path="gruM.tflite")
+    interpreter.allocate_tensors()
+
+    # Get input and output tensors.
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
 
     while True:
         
@@ -34,25 +43,36 @@ def feedAI():
         t = datetime.datetime.now()
 
         # gets accelerometers data in tuple format in 3 axes (x,y,z)
-        #acc_x, acc_y, acc_z = accelerometer.acceleration
+        [acc_x, acc_y, acc_z] = accelerometer.acceleration
         
         # gets gyrometers data in tuple format in 3 axes 
-        #gyr_x, gyr_y, gyr_z = gyroscope.rotation
-        
+        [gyr_x, gyr_y, gyr_z] = gyroscope.rotation
+
+         # input converted into  a single array
+        gru_input = [acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z]
         # below function will store AI output into profile database
         # and will also return output
         #gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
 
-
-        """Ai goes here"""
-   
-   
-   
-    
-        #This will contain the output response of the gru after calculation, like sitting running walking
+       
+        #input_shape = input_details[0]['shape']
         
+        input_data = gru_input
+        #input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
+        
+        interpreter.set_tensor(input_details[0]['index'], input_data)
+        #interpreter.set_tensor(input_details[0]['index'], input_data)
+
+        interpreter.invoke()
+
+        # The function `get_tensor()` returns a copy of the tensor data.
+        # Use `tensor()` in order to get a pointer to the tensor.
+        output_data = interpreter.get_tensor(output_details[0]['index'])
+       
+
+        #This will contain the output response of the gru after calculation, like sitting running walking
         global GruOutput
-        GruOutput = "sitting"
+        GruOutput = output_data
 
         #databaseManager.storeProfile(time, GruOutput)
 
