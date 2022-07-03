@@ -4,3 +4,5 @@ The permissions of the sensors are disabled and in databaaseManager file -> getT
 Gruoutput to sitting as a dummy variable “sitting”.
 
 And in aiModel.py -> feedAI -> accelerometer.acceleration and gyroscope.rotation is disabled as widnows Machine doesnt come with movement sensors.
+
+Also, in feedAI function -> databasemanger.Storeprofile has been disabled. 
