@@ -38,9 +38,7 @@ import databaseManager
 import permissionSensors
 import push_notification
 import graphQuery
-
-#importing GRU model
-#import aiModel
+import aiModel
 
 
 # giving main window size similiar to a phone screen
@@ -186,59 +184,65 @@ class CreateAccountWindow(Screen):
         p = ""
         co =  ""
 
+
+# This has the main screen and its widgets functions
 class MainWindow(Screen):
     
-    # mot1 = ObjectProperty(None)
-    # mot2 = ObjectProperty(None)
-    # mot3 = ObjectProperty(None)
-    # mot4 = ObjectProperty(None)
+    # a method to set the selected motivation task as the text for the
+    # notification in the timer selected by the user (2 hours is default)
+    def remindMe(self):   
 
-    def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
+        # if motivation task 1 check box is active, it should be in the notification
         if self.mot1.active:
             tsk1 = self.ids.task1.text
             push_notification.repeatNotif(tsk1)
         
+        # if motivation task 2 check box is active, it should be in the notification
         elif self.mot2.active:
             tsk2 = self.ids.task2.text
             push_notification.repeatNotif(tsk2)
-
+        
+        # if motivation task 3 check box is active, it should be in the notification
         elif self.mot3.active:
             tsk3 = self.ids.task3.text
             push_notification.repeatNotif(tsk3)
 
+        # if motivation task 4 check box is active, it should be in the notification
         elif self.mot4.active:
             tsk4 = self.ids.task4.text
             push_notification.repeatNotif(tsk4)
             
 
+    # this will initiate the model which will start taking in the sensors data
     def modelOn(self):
-
-        # this will initiate the model which will start taking in the sensors data
-        #aiModel.feedAI()
-        pass
+        aiModel.feedAI()
+        
         
 
-    # this will check out off the model     
+    # this will check out off the model  and  model wont run
     def modelOff(self):
-        #accelerometer.disable()
-        #gyroscope.disable()
-        pass
+        accelerometer.disable()
+        gyroscope.disable()
+        
     
     # taking first task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask1(self):
         return databaseManager.getTask()[0]
 
+
     # taking second task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask2(self):
         return databaseManager.getTask()[1]
 
+
     # taking third task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask3(self):
         return databaseManager.getTask()[2]
-    
+
+
     # taking fourth task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask4(self):
@@ -252,18 +256,21 @@ class MainWindow(Screen):
     def pauseNotif(self):  
         pass
 
+    # this will resume the notifications
     def unpauseNotif(self):  # logic to unpause notification
         taskManager.taskNotif("Here must be the selected task from the UI")
 
 
-    
+    # method to take user to graph page
     def scale(self):
         self.parent.current = "graph"
 
+    # method to go to main setting screen
     def set(self):
         self.parent.current = "settingM"
 
 
+# Main setting screen
 class SettingMain(Screen):
     
     def notif(self):
