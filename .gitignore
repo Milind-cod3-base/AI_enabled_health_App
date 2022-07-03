@@ -9,3 +9,9 @@ roughEncryption.py
 roughdb.py
 roughmodule.py
 roughpie_Chart.py
+login.py
+myapp.kv
+roughtaskdb.py
+roughtmy.kv
+roughttime.py
+__pycache__/
