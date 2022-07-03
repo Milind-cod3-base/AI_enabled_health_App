@@ -52,10 +52,10 @@ def feedAI():
         t = datetime.datetime.now()
 
         # gets accelerometers data in tuple format in 3 axes (x,y,z)
-        acc_x, acc_y, acc_z = accelerometer.acceleration
+        #acc_x, acc_y, acc_z = accelerometer.acceleration
         
         # gets gyrometers data in tuple format in 3 axes 
-        gyr_x, gyr_y, gyr_z = gyroscope.rotation
+        #gyr_x, gyr_y, gyr_z = gyroscope.rotation
         
         # below function will store AI output into profile database
         # and will also return output
@@ -72,7 +72,7 @@ def feedAI():
         global GruOutput
         GruOutput = "sitting"
 
-        databaseManager.storeProfile(time, GruOutput)
+        #databaseManager.storeProfile(time, GruOutput)
 
 
         # returning the final output
