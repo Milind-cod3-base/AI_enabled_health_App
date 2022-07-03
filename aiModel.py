@@ -8,24 +8,6 @@ import time
 
 
 
-
-# this function contains the ai, and takes input such from accelerometer and gyro
-# def gruResponse( time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z ):
-    
-#     """Ai goes here"""
-   
-   
-   
-   
-#     #This will contain the output response of the gru after calculation, like sitting running walking
-#     output = "sitting"
-
-#     databaseManager.storeProfile(time, output)
-
-
-#     # returning the output
-#     return output    
-
 # setting a global variable
 GruOutput = ""
 
