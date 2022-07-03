@@ -30,19 +30,26 @@ import time
 GruOutput = ""
 
 
+# global variable declared to resolve "local variable 'time' referenced
+# before assignment"
+t = time
+
 
 # this function starts to feed sensors data into the ai model
 def feedAI():
     # commenting below as they are already enabled in allow section
-    # accelerometer.enable()
-    # gyroscope.enable()
+    #accelerometer.enable()
+    #gyroscope.enable()
 
     while True:
         
-        # frequency of 50hz, hence setting a cycle of 0.02 seconds
-        time.sleep(0.02)
+        # calling global variable for time 
+        global t
 
-        time = datetime.datetime.now()
+        # frequency of 50hz, hence setting a cycle of 0.02 seconds
+        t.sleep(0.02)
+
+        t = datetime.datetime.now()
 
         # gets accelerometers data in tuple format in 3 axes (x,y,z)
         acc_x, acc_y, acc_z = accelerometer.acceleration
