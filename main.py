@@ -270,7 +270,7 @@ class MainWindow(Screen):
         self.parent.current = "settingM"
 
 
-# Main setting screen
+# Main setting screen 
 class SettingMain(Screen):
     
     def notif(self):
