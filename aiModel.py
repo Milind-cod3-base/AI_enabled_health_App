@@ -9,8 +9,8 @@ import time
 import tensorflow as tf
 import numpy as np
 
-# setting a global variable
-GruOutput = ""
+# setting a global variable and setting it as sitting
+GruOutput = "sitting"
 
 
 # global variable declared to resolve "local variable 'time' referenced
@@ -82,4 +82,4 @@ def feedAI():
             
 
 # this is to set reset the GruOutpu
-feedAI()
+#feedAI()
