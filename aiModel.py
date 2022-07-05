@@ -74,7 +74,7 @@ def feedAI():
         global GruOutput
         GruOutput = output_data
 
-        #databaseManager.storeProfile(time, GruOutput)
+        databaseManager.storeProfile(time, GruOutput)
 
 
         # returning the final output
