@@ -25,7 +25,7 @@ def feedAI():
     gyroscope.enable()
 
     # Load TFLite model and allocate tensors
-    interpreter = tf.lite.Interpreter(model_path="gruM.tflite")
+    interpreter = tf.lite.Interpreter(model_path="gruMilind.tflite")
     interpreter.allocate_tensors()
 
     # Get input and output tensors.
