@@ -140,22 +140,29 @@ class LoginWindow(Screen):
 
     
         
-
+# create account window classs
 class CreateAccountWindow(Screen):
     username = ObjectProperty(None)
     password = ObjectProperty(None)
     confirm = ObjectProperty(None)
 
+    # This method transits user to the login window in case he/she
+    # already has the ID in the app.
     def login(self):
+
         # clearing user's credential data before screen transition
         self.ids["username"].text = ""
         self.ids["password"].text = ""
         self.ids["confirm"].text = ""
         self.parent.current = "login"
 
+    # This method checks if all the textfields are filled and the
+    # password and confirm password are same. If all is ok, then
+    # the user can transit to the login window where he/she can enter
+    # credentials again to enter the app.
     def submit(self):
 
-        # taking user data
+        # taking user data from the front end
         if self.ids["username"].text and self.ids["password"].text and self.ids["confirm"].text is not None:
 
             u = self.ids["username"].text
@@ -176,6 +183,7 @@ class CreateAccountWindow(Screen):
                 # tranisitioning to the LoginWIndow
                 self.parent.current = "login"
             
+            # if the password annd confirm passowrd text field doesnt match, then it gives a pop up
             else:
                 popup = Popup(
                             title='Invalid Password', 
@@ -185,6 +193,7 @@ class CreateAccountWindow(Screen):
 
                 popup.open()
         
+        # if fields are not filled, then a pop up will occur
         else:
             popup = Popup(
                         title='Invalid Credentials',
