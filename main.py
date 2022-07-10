@@ -32,7 +32,6 @@ import matplotlib.pyplot as plt
 
 # importing self made  module
 import encryptDatabase
-import taskManager
 import tempUser
 import databaseManager
 import permissionSensors
@@ -286,7 +285,7 @@ class MainWindow(Screen):
 
     # this will resume the notifications
     def unpauseNotif(self):  # logic to unpause notification
-        taskManager.taskNotif("Here must be the selected task from the UI")
+        pass
 
 
     # method to take user to graph page
