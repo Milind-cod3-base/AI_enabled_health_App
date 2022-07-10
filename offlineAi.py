@@ -186,7 +186,8 @@ def predict2():
 def predict3():
     y = []
     for i in range(0, 14):
-        x = fd3[i]
+        # set fd2 and fd3 for different outputs which will lead to new tasks
+        x = fd1[i]
         y = predict(x)
         for i in range(0, 19):
             r = y[i]
