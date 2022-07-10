@@ -140,7 +140,10 @@ class CreateAccountWindow(Screen):
     confirm = ObjectProperty(None)
 
     def login(self):
-        
+        # clearing user's credential data before screen transition
+        self.ids["username"].text = ""
+        self.ids["password"].text = ""
+        self.ids["confirm"].text = ""
         self.parent.current = "login"
 
     def submit(self):
