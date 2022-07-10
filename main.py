@@ -194,31 +194,50 @@ class MainWindow(Screen):
 
         # if motivation task 1 check box is active, it should be in the notification
         if self.mot1.active:
+
+            # acquiring task from the label
             tsk1 = self.ids.task1.text
+
+            # storing the temporary task in temporaryMotivationTask.txt file
             tempUser.storeMotivation(tsk1)
+
+            # using this method to read the selected task and notify in given time
             push_notification.repeatNotif()
+
+            # starting the loop of selected notification timer
             push_notification.startTimer()
-            # then push this task, add function here
+            
         
         # if motivation task 2 check box is active, it should be in the notification
         elif self.mot2.active:
+            # acquiring task from the label
             tsk2 = self.ids.task2.text
+            # storing the temporary task in temporaryMotivationTask.txt file
             tempUser.storeMotivation(tsk2)
+            # using this method to read the selected task and notify in given time
             push_notification.repeatNotif()
+            # starting the loop of selected notification timer
             push_notification.startTimer()
         
         # if motivation task 3 check box is active, it should be in the notification
         elif self.mot3.active:
+            # acquiring task from the label
             tsk3 = self.ids.task3.text
             tempUser.storeMotivation(tsk3)
+            # using this method to read the selected task and notify in given time
             push_notification.repeatNotif()
+            # starting the loop of selected notification timer
             push_notification.startTimer()
 
         # if motivation task 4 check box is active, it should be in the notification
         elif self.mot4.active:
+            # acquiring task from the label
             tsk4 = self.ids.task4.text
+            # storing the temporary task in temporaryMotivationTask.txt file
             tempUser.storeMotivation(tsk4)
+            # using this method to read the selected task and notify in given time
             push_notification.repeatNotif()
+            # starting the loop of selected notification timer
             push_notification.startTimer()
             
 
