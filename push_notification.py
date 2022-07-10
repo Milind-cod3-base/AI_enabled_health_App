@@ -42,4 +42,3 @@ def startTimer():
     tl.start(block=True)
 
 
-    

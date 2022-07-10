@@ -45,6 +45,8 @@ import graphQuery
 import aiModel
 import offlineAi
 
+from plyer import notification 
+
 
 # giving main window size similiar to a phone screen
 Window.size= (320,500)
@@ -314,7 +316,7 @@ class MainWindow(Screen):
 
 
     
-    # logic to pause notification
+    # logic to pause notificatio
     def pauseNotif(self):  
         pass
 

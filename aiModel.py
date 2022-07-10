@@ -9,6 +9,10 @@ import time
 import tensorflow as tf
 import numpy as np
 
+from kivy.utils import platform
+
+#if platform == 'android':
+
 # setting a global variable and setting it as sitting
 GruOutput = "sitting"
 
@@ -20,7 +24,7 @@ t = time
 
 # this function starts to feed sensors data into the ai model
 def feedAI():
-   
+
     accelerometer.enable()
     gyroscope.enable()
 
@@ -48,13 +52,13 @@ def feedAI():
         # gets gyrometers data in tuple format in 3 axes 
         [gyr_x, gyr_y, gyr_z] = gyroscope.rotation
 
-         # input converted into  a single array
+        # input converted into  a single array
         gru_input = [acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z]
         # below function will store AI output into profile database
         # and will also return output
         #gruResponse(time, acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z)
 
-       
+    
         #input_shape = input_details[0]['shape']
         
         input_data = gru_input
@@ -68,7 +72,7 @@ def feedAI():
         # The function `get_tensor()` returns a copy of the tensor data.
         # Use `tensor()` in order to get a pointer to the tensor.
         output_data = interpreter.get_tensor(output_details[0]['index'])
-       
+    
 
         #This will contain the output response of the gru after calculation, like sitting running walking
         global GruOutput
@@ -83,3 +87,6 @@ def feedAI():
 
 # this is to set reset the GruOutpu
 #feedAI()
+
+# else: 
+#     pass
