@@ -327,6 +327,3 @@ displayData()
 
 
 
-
-# dummy print to check the output of the getTask function
-#print(getTask())
