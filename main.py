@@ -43,16 +43,21 @@ import aiModel
 # giving main window size similiar to a phone screen
 Window.size= (320,500)
 
-class LoginWindow(Screen): # login screen class inheriting screen class
+
+# login screen class inheriting screen class
+class LoginWindow(Screen): 
     username= ObjectProperty(None)
     password = ObjectProperty(None)
 
   
     
-    
+    # This method checks if the input username 
+    # is already present, if it doesn't it will ask to signup
+    # if user is present, then check if its password is correct
     def loginBtn(self):
-
-        u = self.ids["username"].text     # making instance of username and password text input
+        
+        # making instance of username and password text input
+        u = self.ids["username"].text     
         p = self.ids["password"].text
 
         # storing the entered username into tempUser.txt file.
@@ -70,13 +75,14 @@ class LoginWindow(Screen): # login screen class inheriting screen class
 
         c.execute("""SELECT username, password FROM data""")
 
-        items = c.fetchall() # fetching all usernames
+        # fetching all usernames
+        items = c.fetchall() 
         
 
+        # a count function to keep track of true and false
+        count = 0 
 
-        count = 0  # a count function to keep track of true and false
-
-
+        # loop to parse through the users database
         for i in range(len(items)):
             if u == items[i][0]:    # checking if username exists or not
 
@@ -100,12 +106,13 @@ class LoginWindow(Screen): # login screen class inheriting screen class
             
                         popup.open()
                 
-                    
-                count+=1  # to execute next statement in case username is not found
-                break  # to break the loop if the username found
+                # to execute next statement in case username is not found
+                count+=1  
+                # to break the loop if the username found
+                break  
 
-        
-        if count == 0:  # if count is still 0 it means there is no existing username
+        # if count is still 0 it means there is no existing username
+        if count == 0:  
 
             popup = Popup(
                         title='Invalid Username',
@@ -126,7 +133,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         encryptDatabase.encrypt("users.db",key)  # encrypting using the key
 
     
-    
+    # this button transits users to the signup page
     def createBtn(self):
         
         self.parent.current = "create"
