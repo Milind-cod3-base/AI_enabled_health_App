@@ -1,3 +1,12 @@
+"""
+    This module is responsible for granting and revoking system permissions
+    for system's motion sensors (accelerometer and gyrometer) and storage
+    access. Especially for android devices if apk file is generated.
+
+"""
+
+
+
 # module responsible for granting sensors and memory access to the app for android
 from plyer.facades.accelerometer import Accelerometer
 from plyer.facades.gyroscope import Gyroscope
