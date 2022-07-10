@@ -32,20 +32,25 @@ notifTimerSeconds = notifTimer * 60 * 60
 # instance given of Timeloop class
 tl = Timeloop()
 
-@tl.job(interval= timedelta(seconds= 1))
+@tl.job(interval= timedelta(seconds= notifTimerSeconds))
 # I need a snooze function or repeat notification function which will be sending notification in x number of hours
 def repeatNotif():
+    
+    # reading the temporary stored task
     get_task = tempUser.readMotivation()
 
+    #print(get_task)
+    
 
     notification.notify(title="Alert", message=get_task)
  
 
-
+def startTimer():
+    tl.start(block=True)
 
 
 # starting the block function above
-tl.start(block= True)
+#tl.start(block= True)
 
 
 #    # setting up an idefinite loop of notifications
