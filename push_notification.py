@@ -1,10 +1,12 @@
 
+from matplotlib.pyplot import title
 from plyer import notification  
 
 import time
 import tempUser
 
-import timeloop
+from timeloop import Timeloop
+from datetime import timedelta
 
 # import TaskManager
 
@@ -12,34 +14,52 @@ import timeloop
  No need of connecting this from the database, 
  it will directly read from the label which has been selected by the user """
 
-def pushNotif(task):     
+# def pushNotif(task):     
     
-    notification.notify(title = "Alert", message= task)
+#     notification.notify(title = "Alert", message= task)
     
 # pause function removed as it might not be important as I can just
 
 # def pauseNotif():
 #     pass     #Do I really need pause notification function?
+#task = ""
 
 
+# reading the timer in hours. Picks 2 as default
+notifTimer = int(tempUser.readNotificationTimer())
+notifTimerSeconds = notifTimer * 60 * 60
+# instance given of Timeloop class
+tl = Timeloop()
 
+@tl.job(interval= timedelta(seconds= 1))
 # I need a snooze function or repeat notification function which will be sending notification in x number of hours
-def repeatNotif(task):
-    
+def repeatNotif():
+    s = tempUser.readMotivation()
+
+
+    notification.notify(title="Alert", message=s)
     # reading the timer in hours. Picks 2 as default
     # or else picks the 
-    notifTimer = int(tempUser.readNotificationTimer())
+    # notifTimer = int(tempUser.readNotificationTimer())
 
-    # as sleep function takes input in seconds, converting hours into seconds
-    seconds = notifTimer * 60 * 60
+    # # as sleep function takes input in seconds, converting hours into seconds
+    # seconds = notifTimer * 60 * 60
     
-   # setting up an idefinite loop of notifications
-    while True:
-        # this will snooze the notification for required seconds
-        time.sleep(seconds)
+
+
+
+
+# starting the block function above
+tl.start(block= True)
+
+
+#    # setting up an idefinite loop of notifications
+#     while True:
+#         # this will snooze the notification for required seconds
+#         time.sleep(seconds)
         
-        # after snooze notification again.
-        pushNotif(task)
+#         # after snooze notification again.
+#         pushNotif(task)
 
 
 """ One issue might occur: can other functions of app operate properly, while Notification is in sleep mode?
