@@ -15,4 +15,6 @@ roughtaskdb.py
 roughtmy.kv
 roughttime.py
 taskManager.py
+roughNotif.py
+roughAi.py
 __pycache__/
