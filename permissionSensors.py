@@ -19,6 +19,7 @@ def allowAccelero():
 
     Accelerometer.enable()
 
+# function to revoke access for system's accelerometer
 def denyAccelero():
 
     Accelerometer.disable()
