@@ -29,3 +29,8 @@ def storeNotificationTimer(hours):
 def readNotificationTimer():
     with open("tempNotificationTimer.txt","r") as file:
         return file.read()
+
+
+def storeMotivation(task):
+    with open("tempMotivationTask.txt","w") as file:
+        file.write(str(task))
