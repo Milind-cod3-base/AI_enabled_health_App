@@ -1,4 +1,8 @@
-
+"""
+    This module is responsible for notification content in the dialog
+    box along with using a timer for notification. This, for exmaple,
+    enables user to get 'n' number of notifications in 'x' hours.
+"""
 
 from matplotlib.pyplot import title
 from plyer import notification  
