@@ -196,22 +196,26 @@ class MainWindow(Screen):
         if self.mot1.active:
             tsk1 = self.ids.task1.text
             tempUser.storeMotivation(tsk1)
+            push_notification.repeatNotif()
             # then push this task, add function here
         
         # if motivation task 2 check box is active, it should be in the notification
         elif self.mot2.active:
             tsk2 = self.ids.task2.text
             tempUser.storeMotivation(tsk2)
+            push_notification.repeatNotif()
         
         # if motivation task 3 check box is active, it should be in the notification
         elif self.mot3.active:
             tsk3 = self.ids.task3.text
             tempUser.storeMotivation(tsk3)
+            push_notification.repeatNotif()
 
         # if motivation task 4 check box is active, it should be in the notification
         elif self.mot4.active:
             tsk4 = self.ids.task4.text
             tempUser.storeMotivation(tsk4)
+            push_notification.repeatNotif()
             
 
     # this will initiate the model which will start taking in the sensors data
