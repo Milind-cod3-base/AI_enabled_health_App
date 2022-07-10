@@ -49,31 +49,4 @@ def startTimer():
     tl.start(block=True)
 
 
-# starting the block function above
-#tl.start(block= True)
-
-
-#    # setting up an idefinite loop of notifications
-#     while True:
-#         # this will snooze the notification for required seconds
-#         time.sleep(seconds)
-        
-#         # after snooze notification again.
-#         pushNotif(task)
-
-
-""" One issue might occur: can other functions of app operate properly, while Notification is in sleep mode?
-    to counter this issue, i can create a counter with zero which adds to after certain time and call notification function,
-    like i can do this inside getTime function"""
-
-
-
-# these functions are dummy functions which can be useful for getting the value from the ui and storing it.
-# either it can store it into an empty txt file or simple call. lets see.
-#def getTask(task):
-    #return task
-
-#def getTime(hours):
-    #return hours
-
     
