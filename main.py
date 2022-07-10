@@ -322,12 +322,15 @@ class MainWindow(Screen):
 # Main setting screen 
 class SettingMain(Screen):
     
+    # transition to notification setting
     def notif(self):
         self.parent.current = "settingN"
 
+    # transition to profile setting
     def prof(self):
         self.parent.current = "settingP"
 
+    # logout button which takes the user out of the application
     def login(self):
 
         # when the user will logout, the notification timer
@@ -335,7 +338,8 @@ class SettingMain(Screen):
         tempUser.storeNotificationTimer(2)
         
         self.parent.current = "login"
-
+        
+    # method to transit for mainWindow 
     def back(self):
         self.parent.current= "mainW"
 
@@ -347,8 +351,7 @@ class SettingMain(Screen):
     
         self.parent.current = "userdata"
 
-    # def refreshData(self):
-    #     databaseManager.displayData
+    
 
 
 # settings window for adding user details
