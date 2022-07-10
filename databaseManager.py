@@ -1,3 +1,14 @@
+"""
+    This module is responsible for running creating
+    queries in three databases,
+    namely users.db (encrypting and decrypting it also),
+    motivationTasks.db, and movementProfile.db files.
+
+    It also has access to temprorary/current user's such as its name,
+    notification timer, and current chosen notification.
+"""
+
+
 import sqlite3
 
 from numpy import append
