@@ -196,6 +196,7 @@ class MainWindow(Screen):
         if self.mot1.active:
             tsk1 = self.ids.task1.text
             tempUser.storeMotivation(tsk1)
+            # then push this task, add function here
         
         # if motivation task 2 check box is active, it should be in the notification
         elif self.mot2.active:
