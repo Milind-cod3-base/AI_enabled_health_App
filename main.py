@@ -81,12 +81,15 @@ class LoginWindow(Screen): # login screen class inheriting screen class
             if u == items[i][0]:    # checking if username exists or not
 
                 if p == items[i][1]:      # checking if right password has been entered
-
+                    
+                    # reseting text input fields
+                    self.ids["username"].text= ""
+                    self.ids["password"].text = ""
+                    
                     # using below code for transition instead of sm.current
                     self.parent.current = "mainW"
                     
-                    #self.reset()
-                    #sm.current = "mainW"
+                    
 
                 else:
                         popup = Popup(
@@ -125,12 +128,10 @@ class LoginWindow(Screen): # login screen class inheriting screen class
     
     
     def createBtn(self):
-        #self.reset()  # clears everything
+        
         self.parent.current = "create"
 
-    # def reset(self): # resets the username and password section
-    #      self.username = ""  
-    #      self.password = ""
+    
         
 
 class CreateAccountWindow(Screen):
@@ -139,7 +140,7 @@ class CreateAccountWindow(Screen):
     confirm = ObjectProperty(None)
 
     def login(self):
-        #self.reset() # clears all
+        
         self.parent.current = "login"
 
     def submit(self):
@@ -178,11 +179,7 @@ class CreateAccountWindow(Screen):
             popup.open()
             
 
-    def reset(self):   # resets everything to blank
-        u = ""
-        p = ""
-        co =  ""
-
+    
 
 # This has the main screen and its widgets functions
 class MainWindow(Screen):
