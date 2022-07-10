@@ -210,6 +210,7 @@ class MainWindow(Screen):
             tsk3 = self.ids.task3.text
             tempUser.storeMotivation(tsk3)
             push_notification.repeatNotif()
+            push_notification.startTimer()
 
         # if motivation task 4 check box is active, it should be in the notification
         elif self.mot4.active:
