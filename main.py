@@ -338,7 +338,7 @@ class SettingMain(Screen):
         tempUser.storeNotificationTimer(2)
         
         self.parent.current = "login"
-        
+
     # method to transit for mainWindow 
     def back(self):
         self.parent.current= "mainW"
@@ -357,6 +357,7 @@ class SettingMain(Screen):
 # settings window for adding user details
 class SettingProfile(Screen):
     
+    # setting up variables with None object properties
     n = ObjectProperty(None)
     a = ObjectProperty(None)
     w = ObjectProperty(None)
@@ -369,15 +370,11 @@ class SettingProfile(Screen):
 
         
 
-
+        # taking input from 3 text input fields
         n = self.ids["n"].text
-        
         w = self.ids["weight"].text
         h = self.ids["heigh"].text
 
-        # j = self.ids["job"].text
-        # g = self.ids["gender"].text
-        # a = self.ids["age"].text
 
         # extracting values from the checkboxes for job
         if self.exec.active:
@@ -420,7 +417,7 @@ class SettingProfile(Screen):
 
             
                     
-        
+        # pop for assurance of saved
         popup = Popup(
         title='Saved',
         content=Label(text='Your data has been saved securely'),
@@ -432,7 +429,7 @@ class SettingProfile(Screen):
 
 
            
-    
+    # Main setting screen transition
     def back(self):
         self.parent.current = "settingM"
     
