@@ -465,9 +465,10 @@ class SettingNotif(Screen):
         self.parent.current = "settingM"
 
 
-
+# class for Graph screen 
 class Graph(Screen):
     
+    # method for mainwindow transition
     def back(self):
         self.parent.current="mainW"
 
@@ -476,12 +477,10 @@ class Graph(Screen):
 class ProfileCard(MDFloatLayout, FakeRectangularElevationBehavior):
     pass
 
+# below are the cards just for the sole purpose of existing 
+# of cards in kivyMD ui.
 class UserCard(MDCard):
     pass
-
-# inheriting screenmanager class properties to manage multiple screens
-#class WindowManager(ScreenManager): 
-#   pass
 
 class MovementAnalysisCard(ProfileCard):
     pass
@@ -636,8 +635,8 @@ class UserData(Screen):
         
 
 
-
-sm = ScreenManager() # instance of class
+# instance of class
+sm = ScreenManager() 
 
 # putting screens in widget; standard procedure
 screens = [LoginWindow(name="login"),
@@ -657,11 +656,8 @@ for i in screens:
     sm.add_widget(i) 
 
 
-#kv = Builder.load_file("my.kv")
-#sm.current = "login"  # default screen must be login
-
-
-class MyMainApp(MDApp): # inheriting the properties of App class from kivy library
+# inheriting the properties of App class from kivy library
+class MyMainApp(MDApp): 
     
     # decrypting database and creating connection
     # checking whether the data table already exists in user.db.
@@ -679,12 +675,12 @@ class MyMainApp(MDApp): # inheriting the properties of App class from kivy libra
 
     def build(self):
         self.theme_cls.theme_style = "Light"
-        #return sm
-        return  Builder.load_file("my.kv") # loading my.kv file    # going to screenmanager
+        # loading my.kv file    # going to screenmanager
+        return  Builder.load_file("my.kv") 
     
 
 
 
-
+# if its the main file, execute the following code
 if __name__ == "__main__":
     MyMainApp().run()
