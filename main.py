@@ -85,7 +85,7 @@ class LoginWindow(Screen): # login screen class inheriting screen class
                     # reseting text input fields
                     self.ids["username"].text= ""
                     self.ids["password"].text = ""
-                    
+
                     # using below code for transition instead of sm.current
                     self.parent.current = "mainW"
                     
@@ -157,7 +157,13 @@ class CreateAccountWindow(Screen):
 
                 # using module to query and store the user data into database
                 databaseManager.addUser(u,p)
-        
+
+                # clearing user's credential data before screen transition
+                self.ids["username"].text = ""
+                self.ids["password"].text = ""
+                self.ids["confirm"].text = ""
+                
+                # tranisitioning to the LoginWIndow
                 self.parent.current = "login"
             
             else:
