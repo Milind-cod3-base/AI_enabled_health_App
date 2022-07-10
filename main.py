@@ -13,6 +13,10 @@ from kivy.core.text import LabelBase
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 
+import tensorflow as tf
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
 
 # transitioning from kivy to kivymd
 from kivymd.app import MDApp
@@ -23,6 +27,7 @@ from kivymd.uix.card import MDCard
 from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.scrollview import ScrollView
+from kivy.utils import platform
 
 # from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 from kivymd_extensions.akivymd.uix.charts import AKPieChart
@@ -38,6 +43,7 @@ import permissionSensors
 import push_notification
 import graphQuery
 import aiModel
+import offlineAi
 
 
 # giving main window size similiar to a phone screen
@@ -264,7 +270,14 @@ class MainWindow(Screen):
 
     # this will initiate the model which will start taking in the sensors data
     def modelOn(self):
-        aiModel.feedAI()
+
+
+        if platform == "android":
+            aiModel.feedAI()
+        else:
+            offlineAi.Load_Model()
+            offlineAi.predict2()
+
         
         
 
@@ -502,12 +515,14 @@ class DailyGraph(Screen):
         displayed in the form of pie chart with three labels"""
 
         # percentage time spent sitting in a day
-        s_perc= ((graphQuery.dailySitting)/ (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-        # percentage time spent walking in a day
-        w_perc= ((graphQuery.dailyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-        # percentage time spent running in a day
-        r_perc= ((graphQuery.dailyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-        
+        # s_perc= ((graphQuery.dailySitting)/ (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        # # # percentage time spent walking in a day
+        # w_perc= ((graphQuery.dailyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        # # # percentage time spent running in a day
+        # r_perc= ((graphQuery.dailyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        s_perc = 20
+        w_perc = 30
+        r_perc = 50
         # putting above variables along with labels in a dictionary inside a list
         items = [{"Sitting": s_perc, "Walking":w_perc, "Running": r_perc}]
         self.piechart = AKPieChart(

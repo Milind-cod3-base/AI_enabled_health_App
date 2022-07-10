@@ -126,9 +126,9 @@ fd3 = np.split(rs3, 14, axis=0)
 
 fd3 = np.array(fd3)
 
-#input_shape = ''
-#output_shape = ''
-#interpreter = ''
+# input_shape = ''
+# output_shape = ''
+# interpreter = ''
 
 # loading model
 
@@ -155,10 +155,10 @@ def predict(x):
 
 # file to predict
 
-def predict2(z):
+def predict2():
     y = []
     for i in range(0, 14):
-        x = z[i]
+        x = fd2[i]
         y = predict(x)
         for i in range(0, 19):
             r = y[i]
@@ -168,20 +168,49 @@ def predict2(z):
 
             if r[0] > r[1]:
                 if r[0] > r[2]:
-                    print(a)
+                    #print(a)
+                    return a
                 else:
-                    print(c)
+                    # print(c)
+                    return c
             else:
                 if r[1] > r[2]:
-                    print(b)
+                    # print(b)
+                    return b
                 else:
-                    print(c)
+                    # print(c)
+                    return c
 
+
+
+def predict3():
+    y = []
+    for i in range(0, 14):
+        x = fd3[i]
+        y = predict(x)
+        for i in range(0, 19):
+            r = y[i]
+            a = "running"
+            b = "sitting"
+            c = "walking"
+
+            if r[0] > r[1]:
+                if r[0] > r[2]:
+                    x = a
+                else:
+                    x = c
+            else:
+                if r[1] > r[2]:
+                    x = b
+                else:
+                    x = c
+            return x
+    
 # calling function
 
 
-Load_Model()
+#Load_Model()
 
 # predict function to predict activity
 
-predict2(fd1)
+#predict2()
