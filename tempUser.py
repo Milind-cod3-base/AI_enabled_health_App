@@ -37,5 +37,5 @@ def storeMotivation(task):
 
 # this function reads the current motivation
 def readMotivation():
-    with open("tempNotificationTimer.txt","r") as file:
+    with open("tempMotivationTask.txt","r") as file:
         return file.read()
