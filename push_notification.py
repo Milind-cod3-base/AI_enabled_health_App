@@ -28,23 +28,18 @@ from datetime import timedelta
 # reading the timer in hours. Picks 2 as default
 notifTimer = int(tempUser.readNotificationTimer())
 notifTimerSeconds = notifTimer * 60 * 60
+
 # instance given of Timeloop class
 tl = Timeloop()
 
 @tl.job(interval= timedelta(seconds= 1))
 # I need a snooze function or repeat notification function which will be sending notification in x number of hours
 def repeatNotif():
-    s = tempUser.readMotivation()
+    get_task = tempUser.readMotivation()
 
 
-    notification.notify(title="Alert", message=s)
-    # reading the timer in hours. Picks 2 as default
-    # or else picks the 
-    # notifTimer = int(tempUser.readNotificationTimer())
-
-    # # as sleep function takes input in seconds, converting hours into seconds
-    # seconds = notifTimer * 60 * 60
-    
+    notification.notify(title="Alert", message=get_task)
+ 
 
 
 
