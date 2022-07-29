@@ -1,3 +1,13 @@
+""" 
+    This module is responsible for creating a new Fernet key,
+    loading the created key from the key.key file, 
+    decrypt and encrypt the data base using same key.
+
+"""
+
+
+
+
 from cryptography.fernet import Fernet
 
 # function to write key into .key format file

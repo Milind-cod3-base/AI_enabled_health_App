@@ -8,7 +8,7 @@ from datetime import timedelta
 # importing databaseManager module
 import databaseManager
 
-from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+#from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
 
 # returns only sitting values in a day

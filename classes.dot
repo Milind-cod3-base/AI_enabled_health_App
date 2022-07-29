@@ -1,0 +1,26 @@
+digraph "classes" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{CreateAccountWindow|confirm\lpassword\lusername\l|login()\lreset()\lsubmit()\l}", shape="record"];
+"1" [label="{DailyGraph|piechart : AKPieChart\l|on_enter()\lremove_chart()\l}", shape="record"];
+"2" [label="{Graph|\l|back()\l}", shape="record"];
+"3" [label="{LoginWindow|password\lusername\l|createBtn()\lloginBtn()\l}", shape="record"];
+"4" [label="{MainWindow|\l|modelOff()\lmodelOn()\lmotTask1()\lmotTask2()\lmotTask3()\lmotTask4()\lpauseNotif()\lremindMe()\lscale()\lset()\lunpauseNotif()\l}", shape="record"];
+"5" [label="{MonthlyGraph|piechart : AKPieChart\l|on_enter()\lremove_chart()\l}", shape="record"];
+"6" [label="{MotivationTaskCard|\l|}", shape="record"];
+"7" [label="{MovementAnalysisCard|\l|}", shape="record"];
+"8" [label="{MyMainApp|\l|build()\l}", shape="record"];
+"9" [label="{ProfileCard|\l|}", shape="record"];
+"10" [label="{ProfileScroller|\l|}", shape="record"];
+"11" [label="{SettingMain|\l|back()\ldisData()\llogin()\lnotif()\lprof()\l}", shape="record"];
+"12" [label="{SettingNotif|\l|back()\lsave()\l}", shape="record"];
+"13" [label="{SettingProfile|a\lh\lj\lm\ln\lw\l|back()\lsave()\l}", shape="record"];
+"14" [label="{SettingsCard|\l|}", shape="record"];
+"15" [label="{SystemPermission|\l|allowAccelerometer()\lallowGyrometer()\lallowStorage()\l}", shape="record"];
+"16" [label="{UserCard|\l|}", shape="record"];
+"17" [label="{UserData|age\lgender\lhei\ln\lpo\lweight\l|}", shape="record"];
+"18" [label="{WeeklyGraph|piechart : AKPieChart\l|on_enter()\lremove_chart()\l}", shape="record"];
+"6" -> "9" [arrowhead="empty", arrowtail="none"];
+"7" -> "9" [arrowhead="empty", arrowtail="none"];
+"14" -> "9" [arrowhead="empty", arrowtail="none"];
+}

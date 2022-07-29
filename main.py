@@ -13,6 +13,10 @@ from kivy.core.text import LabelBase
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 
+import tensorflow as tf
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
 
 # transitioning from kivy to kivymd
 from kivymd.app import MDApp
@@ -23,6 +27,7 @@ from kivymd.uix.card import MDCard
 from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.scrollview import ScrollView
+from kivy.utils import platform
 
 # from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 from kivymd_extensions.akivymd.uix.charts import AKPieChart
@@ -32,30 +37,35 @@ import matplotlib.pyplot as plt
 
 # importing self made  module
 import encryptDatabase
-import taskManager
 import tempUser
 import databaseManager
 import permissionSensors
 import push_notification
 import graphQuery
+import aiModel
+import offlineAi
 
-#importing GRU model
-#import aiModel
+from plyer import notification 
 
 
 # giving main window size similiar to a phone screen
 Window.size= (320,500)
 
-class LoginWindow(Screen): # login screen class inheriting screen class
+
+# login screen class inheriting screen class
+class LoginWindow(Screen): 
     username= ObjectProperty(None)
     password = ObjectProperty(None)
 
   
     
-    
+    # This method checks if the input username 
+    # is already present, if it doesn't it will ask to signup
+    # if user is present, then check if its password is correct
     def loginBtn(self):
-
-        u = self.ids["username"].text     # making instance of username and password text input
+        
+        # making instance of username and password text input
+        u = self.ids["username"].text     
         p = self.ids["password"].text
 
         # storing the entered username into tempUser.txt file.
@@ -73,23 +83,27 @@ class LoginWindow(Screen): # login screen class inheriting screen class
 
         c.execute("""SELECT username, password FROM data""")
 
-        items = c.fetchall() # fetching all usernames
+        # fetching all usernames
+        items = c.fetchall() 
         
 
+        # a count function to keep track of true and false
+        count = 0 
 
-        count = 0  # a count function to keep track of true and false
-
-
+        # loop to parse through the users database
         for i in range(len(items)):
             if u == items[i][0]:    # checking if username exists or not
 
                 if p == items[i][1]:      # checking if right password has been entered
+                    
+                    # reseting text input fields
+                    self.ids["username"].text= ""
+                    self.ids["password"].text = ""
 
                     # using below code for transition instead of sm.current
                     self.parent.current = "mainW"
                     
-                    #self.reset()
-                    #sm.current = "mainW"
+                    
 
                 else:
                         popup = Popup(
@@ -100,12 +114,13 @@ class LoginWindow(Screen): # login screen class inheriting screen class
             
                         popup.open()
                 
-                    
-                count+=1  # to execute next statement in case username is not found
-                break  # to break the loop if the username found
+                # to execute next statement in case username is not found
+                count+=1  
+                # to break the loop if the username found
+                break  
 
-        
-        if count == 0:  # if count is still 0 it means there is no existing username
+        # if count is still 0 it means there is no existing username
+        if count == 0:  
 
             popup = Popup(
                         title='Invalid Username',
@@ -126,28 +141,36 @@ class LoginWindow(Screen): # login screen class inheriting screen class
         encryptDatabase.encrypt("users.db",key)  # encrypting using the key
 
     
-    
+    # this button transits users to the signup page
     def createBtn(self):
-        #self.reset()  # clears everything
+        
         self.parent.current = "create"
 
-    # def reset(self): # resets the username and password section
-    #      self.username = ""  
-    #      self.password = ""
+    
         
-
+# create account window classs
 class CreateAccountWindow(Screen):
     username = ObjectProperty(None)
     password = ObjectProperty(None)
     confirm = ObjectProperty(None)
 
+    # This method transits user to the login window in case he/she
+    # already has the ID in the app.
     def login(self):
-        #self.reset() # clears all
+
+        # clearing user's credential data before screen transition
+        self.ids["username"].text = ""
+        self.ids["password"].text = ""
+        self.ids["confirm"].text = ""
         self.parent.current = "login"
 
+    # This method checks if all the textfields are filled and the
+    # password and confirm password are same. If all is ok, then
+    # the user can transit to the login window where he/she can enter
+    # credentials again to enter the app.
     def submit(self):
 
-        # taking user data
+        # taking user data from the front end
         if self.ids["username"].text and self.ids["password"].text and self.ids["confirm"].text is not None:
 
             u = self.ids["username"].text
@@ -159,9 +182,16 @@ class CreateAccountWindow(Screen):
 
                 # using module to query and store the user data into database
                 databaseManager.addUser(u,p)
-        
+
+                # clearing user's credential data before screen transition
+                self.ids["username"].text = ""
+                self.ids["password"].text = ""
+                self.ids["confirm"].text = ""
+                
+                # tranisitioning to the LoginWIndow
                 self.parent.current = "login"
             
+            # if the password annd confirm passowrd text field doesnt match, then it gives a pop up
             else:
                 popup = Popup(
                             title='Invalid Password', 
@@ -171,6 +201,7 @@ class CreateAccountWindow(Screen):
 
                 popup.open()
         
+        # if fields are not filled, then a pop up will occur
         else:
             popup = Popup(
                         title='Invalid Credentials',
@@ -181,64 +212,101 @@ class CreateAccountWindow(Screen):
             popup.open()
             
 
-    def reset(self):   # resets everything to blank
-        u = ""
-        p = ""
-        co =  ""
+    
 
+# This has the main screen and its widgets functions
 class MainWindow(Screen):
     
-    # mot1 = ObjectProperty(None)
-    # mot2 = ObjectProperty(None)
-    # mot3 = ObjectProperty(None)
-    # mot4 = ObjectProperty(None)
+    # a method to set the selected motivation task as the text for the
+    # notification in the timer selected by the user (2 hours is default)
+    def remindMe(self):   
 
-    def remindMe(self):   # logic to snooze the notifications for 5 minutes  # BUT HOW WILL ONE CAN STOP THE SNOOZE
+        # if motivation task 1 check box is active, it should be in the notification
         if self.mot1.active:
+
+            # acquiring task from the label
             tsk1 = self.ids.task1.text
-            push_notification.repeatNotif(tsk1)
+
+            # storing the temporary task in temporaryMotivationTask.txt file
+            tempUser.storeMotivation(tsk1)
+
+            # using this method to read the selected task and notify in given time
+            push_notification.repeatNotif()
+
+            # starting the loop of selected notification timer
+            push_notification.startTimer()
+            
         
+        # if motivation task 2 check box is active, it should be in the notification
         elif self.mot2.active:
+            # acquiring task from the label
             tsk2 = self.ids.task2.text
-            push_notification.repeatNotif(tsk2)
-
+            # storing the temporary task in temporaryMotivationTask.txt file
+            tempUser.storeMotivation(tsk2)
+            # using this method to read the selected task and notify in given time
+            push_notification.repeatNotif()
+            # starting the loop of selected notification timer
+            push_notification.startTimer()
+        
+        # if motivation task 3 check box is active, it should be in the notification
         elif self.mot3.active:
+            # acquiring task from the label
             tsk3 = self.ids.task3.text
-            push_notification.repeatNotif(tsk3)
+            tempUser.storeMotivation(tsk3)
+            # using this method to read the selected task and notify in given time
+            push_notification.repeatNotif()
+            # starting the loop of selected notification timer
+            push_notification.startTimer()
 
+        # if motivation task 4 check box is active, it should be in the notification
         elif self.mot4.active:
+            # acquiring task from the label
             tsk4 = self.ids.task4.text
-            push_notification.repeatNotif(tsk4)
+            # storing the temporary task in temporaryMotivationTask.txt file
+            tempUser.storeMotivation(tsk4)
+            # using this method to read the selected task and notify in given time
+            push_notification.repeatNotif()
+            # starting the loop of selected notification timer
+            push_notification.startTimer()
             
 
+    # this will initiate the model which will start taking in the sensors data
     def modelOn(self):
 
-        # this will initiate the model which will start taking in the sensors data
-        #aiModel.feedAI()
-        pass
+
+        if platform == "android":
+            aiModel.feedAI()
+        else:
+            offlineAi.Load_Model()
+            offlineAi.predict2()
+
+        
         
 
-    # this will check out off the model     
+    # this will check out off the model  and  model wont run
     def modelOff(self):
-        #accelerometer.disable()
-        #gyroscope.disable()
-        pass
+        accelerometer.disable()
+        gyroscope.disable()
+        
     
     # taking first task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask1(self):
         return databaseManager.getTask()[0]
 
+
     # taking second task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask2(self):
         return databaseManager.getTask()[1]
 
+
     # taking third task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask3(self):
         return databaseManager.getTask()[2]
-    
+
+
     # taking fourth task output from getTask fucntion
     # and displaying it on the motivation task label
     def motTask4(self):
@@ -248,30 +316,36 @@ class MainWindow(Screen):
 
 
     
-    # logic to pause notification
+    # logic to pause notificatio
     def pauseNotif(self):  
         pass
 
+    # this will resume the notifications
     def unpauseNotif(self):  # logic to unpause notification
-        taskManager.taskNotif("Here must be the selected task from the UI")
+        pass
 
 
-    
+    # method to take user to graph page
     def scale(self):
         self.parent.current = "graph"
 
+    # method to go to main setting screen
     def set(self):
         self.parent.current = "settingM"
 
 
+# Main setting screen 
 class SettingMain(Screen):
     
+    # transition to notification setting
     def notif(self):
         self.parent.current = "settingN"
 
+    # transition to profile setting
     def prof(self):
         self.parent.current = "settingP"
 
+    # logout button which takes the user out of the application
     def login(self):
 
         # when the user will logout, the notification timer
@@ -280,6 +354,7 @@ class SettingMain(Screen):
         
         self.parent.current = "login"
 
+    # method to transit for mainWindow 
     def back(self):
         self.parent.current= "mainW"
 
@@ -291,13 +366,13 @@ class SettingMain(Screen):
     
         self.parent.current = "userdata"
 
-    # def refreshData(self):
-    #     databaseManager.displayData
+    
 
 
 # settings window for adding user details
 class SettingProfile(Screen):
     
+    # setting up variables with None object properties
     n = ObjectProperty(None)
     a = ObjectProperty(None)
     w = ObjectProperty(None)
@@ -310,15 +385,11 @@ class SettingProfile(Screen):
 
         
 
-
+        # taking input from 3 text input fields
         n = self.ids["n"].text
-        
         w = self.ids["weight"].text
         h = self.ids["heigh"].text
 
-        # j = self.ids["job"].text
-        # g = self.ids["gender"].text
-        # a = self.ids["age"].text
 
         # extracting values from the checkboxes for job
         if self.exec.active:
@@ -361,7 +432,7 @@ class SettingProfile(Screen):
 
             
                     
-        
+        # pop for assurance of saved
         popup = Popup(
         title='Saved',
         content=Label(text='Your data has been saved securely'),
@@ -373,7 +444,7 @@ class SettingProfile(Screen):
 
 
            
-    
+    # Main setting screen transition
     def back(self):
         self.parent.current = "settingM"
     
@@ -409,9 +480,10 @@ class SettingNotif(Screen):
         self.parent.current = "settingM"
 
 
-
+# class for Graph screen 
 class Graph(Screen):
     
+    # method for mainwindow transition
     def back(self):
         self.parent.current="mainW"
 
@@ -420,12 +492,10 @@ class Graph(Screen):
 class ProfileCard(MDFloatLayout, FakeRectangularElevationBehavior):
     pass
 
+# below are the cards just for the sole purpose of existing 
+# of cards in kivyMD ui.
 class UserCard(MDCard):
     pass
-
-# inheriting screenmanager class properties to manage multiple screens
-#class WindowManager(ScreenManager): 
-#   pass
 
 class MovementAnalysisCard(ProfileCard):
     pass
@@ -447,12 +517,14 @@ class DailyGraph(Screen):
         displayed in the form of pie chart with three labels"""
 
         # percentage time spent sitting in a day
-        s_perc= ((graphQuery.dailySitting)/ (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-        # percentage time spent walking in a day
-        w_perc= ((graphQuery.dailyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-        # percentage time spent running in a day
-        r_perc= ((graphQuery.dailyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
-        
+        # s_perc= ((graphQuery.dailySitting)/ (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        # # # percentage time spent walking in a day
+        # w_perc= ((graphQuery.dailyWalking)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        # # # percentage time spent running in a day
+        # r_perc= ((graphQuery.dailyRunning)/  (datetime.datetime.now() - datetime.timedelta(days=1)))*100
+        s_perc = 20
+        w_perc = 30
+        r_perc = 50
         # putting above variables along with labels in a dictionary inside a list
         items = [{"Sitting": s_perc, "Walking":w_perc, "Running": r_perc}]
         self.piechart = AKPieChart(
@@ -580,8 +652,8 @@ class UserData(Screen):
         
 
 
-
-sm = ScreenManager() # instance of class
+# instance of class
+sm = ScreenManager() 
 
 # putting screens in widget; standard procedure
 screens = [LoginWindow(name="login"),
@@ -601,11 +673,8 @@ for i in screens:
     sm.add_widget(i) 
 
 
-#kv = Builder.load_file("my.kv")
-#sm.current = "login"  # default screen must be login
-
-
-class MyMainApp(MDApp): # inheriting the properties of App class from kivy library
+# inheriting the properties of App class from kivy library
+class MyMainApp(MDApp): 
     
     # decrypting database and creating connection
     # checking whether the data table already exists in user.db.
@@ -623,12 +692,12 @@ class MyMainApp(MDApp): # inheriting the properties of App class from kivy libra
 
     def build(self):
         self.theme_cls.theme_style = "Light"
-        #return sm
-        return  Builder.load_file("my.kv") # loading my.kv file    # going to screenmanager
+        # loading my.kv file    # going to screenmanager
+        return  Builder.load_file("my.kv") 
     
 
 
 
-
+# if its the main file, execute the following code
 if __name__ == "__main__":
     MyMainApp().run()

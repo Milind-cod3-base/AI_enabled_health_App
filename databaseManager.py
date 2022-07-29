@@ -1,3 +1,14 @@
+"""
+    This module is responsible for running creating
+    queries in three databases,
+    namely users.db (encrypting and decrypting it also),
+    motivationTasks.db, and movementProfile.db files.
+
+    It also has access to temprorary/current user's such as its name,
+    notification timer, and current chosen notification.
+"""
+
+
 import sqlite3
 
 from numpy import append
@@ -8,6 +19,10 @@ import encryptDatabase
 
 # importing tempUser to get the current logged in user's name
 import tempUser
+
+import offlineAi
+
+from kivy.utils import platform
 
 # adding a new user via Create Account window
 def addUser(user,password):
@@ -194,7 +209,8 @@ def queryGraph(profile, lowerLimit, upperLimit):
     c = conn.cursor()
 
     # getting time column between certain time_stamp range of a certain profile
-    c.execute("SELECT time FROM data WHERE profile=? AND time BETWEEN ? AND ?", (profile, lowerLimit, upperLimit))
+    c.execute("SELECT time FROM data WHERE profile=? AND time BETWEEN ? AND ?", 
+                (profile, lowerLimit, upperLimit))
 
 
     # items will give a list which contains timestamp and profile in the form of tuples
@@ -214,20 +230,21 @@ def getTask():
     # storing job, age and gender to the variables of the current user and its profile
     job, age, gender = taskQuery(tempUser.readName)[0]
     
-    # this is the dummy variables, only for testing purposes
-    #job, age, gender = "executive", "21-30","male"
-    
+   
     # putting this in a while loop so it keeps refreshing:
     while True:
 
-        # for now profile is set as dummy
-        # later on it will be connected with the output of the AI
-       
 
-        # here a we need to constantly check the movement profile of user and given answer accordingly
-        # taking output from aimodel module using Gruoutput global variable
-        profile = aiModel.GruOutput
+        if platform == "android":
+            # here a we need to constantly check the movement profile of user and given answer accordingly
+            # taking output from aimodel module using Gruoutput global variable
+            profile = aiModel.GruOutput
+        else:
+            offlineAi.Load_Model()
+            offlineAi.predict2()
 
+            profile = offlineAi.predict3()
+            
         # dummy profile to run the app on Windows machine
         #profile = "sitting"
         
@@ -327,6 +344,3 @@ displayData()
 
 
 
-
-# dummy print to check the output of the getTask function
-#print(getTask())
